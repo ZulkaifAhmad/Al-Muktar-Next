@@ -1,0 +1,665 @@
+"use client";
+
+import React, { useState } from "react";
+import { Link } from "@/lib/navigation-adapter";
+import { useCourses, useBlogs, useTeachers } from "@/lib/queries";
+import {
+  ArrowRight,
+  BookOpen,
+  Award,
+  GraduationCap,
+  Building,
+  Globe,
+  ShieldCheck,
+  Monitor,
+  Compass,
+  CheckCircle2,
+  Quote,
+  ChevronDown,
+  HelpCircle,
+  Sparkles,
+} from "lucide-react";
+import BlogCard from "../components/BlogCard.jsx";
+import CourseCard from "../components/CourseCard.jsx";
+import StudentShowcase from "../components/StudentShowcase.jsx";
+import ApiErrorState from "../components/ApiErrorState.jsx";
+import { AboutImage, FounderImage, Logo, getImageUrl } from "../assets/assets.js";
+
+const faqs = [
+  {
+    question: "What is the admission process for new students?",
+    answer:
+      "Prospective students submit an application through our Apply page, followed by a placement conversation with our academic team to determine the right course and shift. Admission decisions are typically communicated within 1–2 working days.",
+  },
+  {
+    question: "Are classes available online as well as in person?",
+    answer:
+      "Yes. Most of our programs are conducted both on-campus in modern facilities and through structured online sessions, allowing remote students to participate fully.",
+  },
+  {
+    question: "Is there an age requirement to enroll?",
+    answer:
+      "We welcome learners across age groups — from foundational Tajweed programs for young students to comprehensive Dars-e-Nizami and Islamic studies courses for adults.",
+  },
+  {
+    question: "What qualifications do the teachers hold?",
+    answer:
+      "Our faculty members hold formal degrees and verified chains of transmission (Ijazah) from recognized Islamic universities, complemented by modern pedagogical training.",
+  },
+  {
+    question: "How can I stay updated on institute news and schedules?",
+    answer:
+      "Academic calendars, term dates, and event announcements are regularly posted on our Blog section and communicated directly to enrolled students.",
+  },
+];
+
+function Home() {
+  const [openFaq, setOpenFaq] = useState(0);
+
+  const {
+    data: courses = [],
+    isLoading: coursesLoading,
+    isError: isCoursesError,
+    refetch: refetchCourses,
+  } = useCourses();
+
+  const {
+    data: blogs = [],
+    isLoading: blogsLoading,
+    isError: isBlogsError,
+    refetch: refetchBlogs,
+  } = useBlogs();
+
+  const { data: teachers = [] } = useTeachers();
+
+  const [selectedTeacherId, setSelectedTeacherId] = useState("");
+
+  const activeTeachers = teachers.filter((t) => t.status !== "inactive");
+  const activeTeacher =
+    activeTeachers.find((t) => (t._id || t.id) === selectedTeacherId) || activeTeachers[0] || null;
+
+  const featuredCourses = courses.slice(0, 6);
+  const recentBlogs = blogs.slice(0, 6);
+
+  return (
+    <div className="bg-white dark:bg-[#070d18] font-sans text-slate-800 dark:text-slate-100 transition-colors duration-200">
+      {/* ── COMPACT 2-COLUMN HERO SECTION ── */}
+      <section className="bg-slate-50/70 dark:bg-[#081524] border-b border-slate-200/80 dark:border-slate-800/80 py-8 sm:py-10 transition-colors">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+            {/* Left Column — Text & CTAs */}
+            <div className="lg:col-span-7 space-y-3.5">
+              {/* Top Badge */}
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-teal-50 dark:bg-teal-950/60 border border-teal-200/70 dark:border-teal-800/60 text-[#0F6E8C] dark:text-teal-300 text-[10.5px] font-bold font-mono uppercase tracking-wider">
+                <Sparkles size={11} className="text-[#0F6E8C] dark:text-teal-400" />
+                Authentic Islamic Scholarship &amp; Education
+              </div>
+
+              {/* Main Headline */}
+              <h1 className="font-heading text-3xl sm:text-4xl lg:text-[44px] xl:text-[48px] font-extrabold text-slate-900 dark:text-white leading-[1.18] tracking-tight">
+                Where authentic knowledge meets{" "}
+                <span className="text-[#0F6E8C] dark:text-[#38BDF8]">character &amp; faith</span>
+              </h1>
+
+              {/* Description */}
+              <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed font-normal max-w-xl">
+                Al-Mukhtar Institute provides certified Islamic education integrated with modern academic learning — guided by qualified scholars and built on discipline and sincere care.
+              </p>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-wrap items-center gap-2.5 pt-1">
+                <Link
+                  to="/courses"
+                  className="inline-flex items-center gap-1.5 bg-[#0F6E8C] dark:bg-teal-600 text-white font-semibold px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg hover:bg-[#0B5C74] dark:hover:bg-teal-700 shadow-xs transition-colors text-xs sm:text-sm"
+                >
+                  <span>Explore Courses</span>
+                  <ArrowRight size={14} />
+                </Link>
+                <Link
+                  to="/apply"
+                  className="inline-flex items-center gap-1.5 bg-white dark:bg-[#0c1827] text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 font-semibold px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-colors text-xs sm:text-sm shadow-2xs"
+                >
+                  <span>Apply for Admission</span>
+                </Link>
+              </div>
+
+              {/* Quick Feature Checklist */}
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 pt-1 text-[11px] text-slate-500 dark:text-slate-400 font-mono">
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 size={12} className="text-[#0F6E8C] dark:text-teal-400" />
+                  Certified Ijazah Faculty
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 size={12} className="text-[#0F6E8C] dark:text-teal-400" />
+                  Flexible Shifts
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <CheckCircle2 size={12} className="text-[#0F6E8C] dark:text-teal-400" />
+                  Recognized Certificates
+                </span>
+              </div>
+            </div>
+
+            {/* Right Column — Founder Image Showcase with Redirection to /teachers */}
+            <div className="lg:col-span-5 flex justify-center lg:justify-end">
+              <div className="relative w-full max-w-[320px] sm:max-w-[360px]">
+                <Link
+                  to="/teachers"
+                  className="group block relative rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0c1827] p-2 shadow-sm hover:shadow-xl transition-all duration-300 hover:border-[#0F6E8C]/50 dark:hover:border-teal-400/50"
+                  title="View Muhammad Anwar's Profile & Faculty"
+                >
+                  <div className="relative h-[320px] sm:h-[360px] lg:h-[390px] w-full rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800">
+                    <img
+                      src={FounderImage}
+                      alt="Muhammad Anwar — CEO Al-Mukhtar"
+                      className="w-full h-full object-cover object-bottom group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/15 to-transparent pointer-events-none" />
+
+                    {/* Top Floating Badge */}
+                    <div className="absolute top-2.5 right-2.5 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xs px-2.5 py-1 rounded-full border border-slate-200/80 dark:border-slate-700/80 shadow-2xs flex items-center gap-1.5 text-[9.5px] font-bold text-[#0F6E8C] dark:text-teal-300 font-mono">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                      FOUNDING DIRECTOR
+                    </div>
+
+                    {/* Bottom Floating Institution / Scholar Badge */}
+                    <div className="absolute bottom-2.5 left-2.5 right-2.5 bg-slate-950/90 backdrop-blur-xs p-2.5 rounded-xl border border-white/10 shadow-md flex items-center justify-between gap-2 text-white">
+                      <div className="min-w-0">
+                        <p className="text-xs font-bold text-white truncate font-heading leading-tight flex items-center gap-1.5">
+                          <span>Muhammad Anwar</span>
+                          <span className="text-[9.5px] font-mono text-emerald-400 font-normal">(CEO)</span>
+                        </p>
+                        <p className="text-[10px] text-slate-300 font-mono truncate">
+                          FAST-NUCES Faculty • Jamia Tur Rasheed
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-1 text-[10px] font-bold text-emerald-300 group-hover:text-emerald-200 shrink-0 font-mono bg-white/10 px-2.5 py-1 rounded-lg">
+                        <span>View About</span>
+                        <ArrowRight size={11} className="group-hover:translate-x-0.5 transition-transform" />
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Quick Metrics Strip */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-6 pt-5 border-t border-slate-200/80 dark:border-slate-800/80">
+            <div className="p-2.5 bg-white dark:bg-[#0c1827] rounded-xl border border-slate-200/70 dark:border-slate-800">
+              <p className="font-heading text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-0.5">500+</p>
+              <p className="text-[#0F6E8C] dark:text-teal-400 text-[10px] font-mono uppercase tracking-wider font-semibold">Students Taught</p>
+            </div>
+            <div className="p-2.5 bg-white dark:bg-[#0c1827] rounded-xl border border-slate-200/70 dark:border-slate-800">
+              <p className="font-heading text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-0.5">12+</p>
+              <p className="text-[#0F6E8C] dark:text-teal-400 text-[10px] font-mono uppercase tracking-wider font-semibold">Scholars</p>
+            </div>
+            <div className="p-2.5 bg-white dark:bg-[#0c1827] rounded-xl border border-slate-200/70 dark:border-slate-800">
+              <p className="font-heading text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-0.5">15+</p>
+              <p className="text-[#0F6E8C] dark:text-teal-400 text-[10px] font-mono uppercase tracking-wider font-semibold">Years Service</p>
+            </div>
+            <div className="p-2.5 bg-white dark:bg-[#0c1827] rounded-xl border border-slate-200/70 dark:border-slate-800">
+              <p className="font-heading text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-0.5">20+</p>
+              <p className="text-[#0F6E8C] dark:text-teal-400 text-[10px] font-mono uppercase tracking-wider font-semibold">Programs</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Credential Strip */}
+      <div className="border-b border-slate-200/80 dark:border-slate-800 bg-white dark:bg-[#070d18] py-4 transition-colors">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap gap-x-8 gap-y-2 text-xs text-slate-600 dark:text-slate-300 font-bold font-mono">
+          <div className="flex items-center gap-2">
+            <GraduationCap size={15} className="text-[#0F6E8C] dark:text-teal-400" />
+            Certified Curriculum
+          </div>
+          <div className="flex items-center gap-2">
+            <Award size={15} className="text-[#0F6E8C] dark:text-teal-400" />
+            Qualified Scholars
+          </div>
+          <div className="flex items-center gap-2">
+            <Building size={15} className="text-[#0F6E8C] dark:text-teal-400" />
+            Modern Campus
+          </div>
+          <div className="flex items-center gap-2">
+            <Globe size={15} className="text-[#0F6E8C] dark:text-teal-400" />
+            Inclusive Community
+          </div>
+        </div>
+      </div>
+
+      {/* ── ABOUT SECTION ── */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-14">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+          <div className="lg:col-span-6 relative order-2 lg:order-1">
+            <div className="rounded-xl overflow-hidden shadow-2xs border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-800">
+              <img
+                src={AboutImage}
+                alt="Students learning at Al-Mukhtar Institute"
+                className="w-full h-[300px] sm:h-[320px] object-cover"
+                loading="lazy"
+              />
+            </div>
+            <div className="absolute -bottom-3 -right-3 bg-white dark:bg-[#0c1827] rounded-xl shadow-xs border border-slate-200 dark:border-slate-700 px-3.5 py-2 items-center gap-2.5 hidden sm:flex">
+              <div className="w-8 h-8 rounded-lg bg-teal-50 dark:bg-teal-950/80 flex items-center justify-center text-[#0F6E8C] dark:text-teal-400">
+                <ShieldCheck size={16} />
+              </div>
+              <div>
+                <p className="font-heading text-xs font-bold text-slate-900 dark:text-white leading-tight">Authentic</p>
+                <p className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">Scholarly Methodology</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="lg:col-span-6 order-1 lg:order-2 space-y-3">
+            <span className="text-[#0F6E8C] dark:text-teal-400 text-[10.5px] font-bold tracking-widest uppercase font-mono block">
+              About Al-Mukhtar Institute
+            </span>
+            <h2 className="font-heading text-xl sm:text-2xl font-bold text-slate-900 dark:text-white leading-tight tracking-tight">
+              A trusted center of learning, guidance, and character
+            </h2>
+            <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-normal">
+              Founded with the vision to cultivate intellect, spiritual clarity, and moral discipline, Al-Mukhtar Institute serves hundreds of students through structured Islamic and academic programs.
+            </p>
+            <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-normal">
+              Our teachers are rigorously trained, our curriculum carefully designed, and every student receives personalized attention to grow academically and morally.
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+              {[
+                "Authentic Classical Curriculum",
+                "Qualified Faculty & Scholars",
+                "Structured Academic Support",
+                "Safe, Disciplined Environment",
+              ].map((item, i) => (
+                <div key={i} className="flex items-center gap-1.5">
+                  <CheckCircle2 size={13} className="text-[#0F6E8C] dark:text-teal-400 shrink-0" />
+                  <span className="text-xs text-slate-700 dark:text-slate-300 font-medium">{item}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="pt-2">
+              <Link
+                to="/about"
+                className="inline-flex items-center gap-1.5 text-[#0F6E8C] dark:text-teal-400 text-xs sm:text-sm font-semibold hover:gap-2 transition-all"
+              >
+                <span>Learn more about our institute</span>
+                <ArrowRight size={13} />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── METHODOLOGY / APPROACH ── */}
+      <section className="border-t border-slate-200/80 dark:border-slate-800 bg-slate-50/50 dark:bg-[#081220] py-12 sm:py-14 transition-colors">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-xl mx-auto mb-8">
+            <span className="text-[#0F6E8C] dark:text-teal-400 text-[10.5px] font-bold tracking-widest uppercase font-mono mb-1.5 block">
+              Our Methodology
+            </span>
+            <h2 className="font-heading text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
+              A Tri-fold Approach to Education
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
+            {[
+              {
+                icon: BookOpen,
+                title: "Traditional Sciences",
+                text: "Tafseer, Hadith, Fiqh, and Arabic grammar, taught by scholars with verified chains of transmission (Ijazah).",
+              },
+              {
+                icon: Monitor,
+                title: "Contemporary Studies",
+                text: "Modern academic literacy, mathematics, and critical thinking using contemporary educational methods.",
+              },
+              {
+                icon: Compass,
+                title: "Tarbiyah & Character",
+                text: "Active emphasis on Islamic ethics, personal discipline, integrity, and meaningful community service.",
+              },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="bg-white dark:bg-[#0c1827] p-4 sm:p-5 rounded-xl border border-slate-200/80 dark:border-slate-800 hover:border-[#0F6E8C]/40 dark:hover:border-teal-500/40 hover:shadow-xs transition-all shadow-2xs"
+              >
+                <div className="w-8 h-8 rounded-lg bg-teal-50 dark:bg-teal-950/80 flex items-center justify-center mb-3 text-[#0F6E8C] dark:text-teal-400">
+                  <item.icon size={15} />
+                </div>
+                <h3 className="font-heading font-bold text-sm sm:text-base text-slate-900 dark:text-white mb-1.5">{item.title}</h3>
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-normal">{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FEATURED COURSES ── */}
+      {(coursesLoading || isCoursesError || featuredCourses.length > 0) && (
+        <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-14">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-8">
+            <div>
+              <span className="text-[#0F6E8C] text-[10.5px] font-bold tracking-widest uppercase font-mono mb-1.5 block">
+                Academic Offerings
+              </span>
+              <h2 className="font-heading text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+                Featured Programs
+              </h2>
+            </div>
+            <Link
+              to="/courses"
+              className="inline-flex items-center gap-1.5 text-[#0F6E8C] text-xs sm:text-sm font-semibold hover:gap-2 transition-all shrink-0"
+            >
+              <span>View all programs</span>
+              <ArrowRight size={13} />
+            </Link>
+          </div>
+
+          {coursesLoading && featuredCourses.length === 0 && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {[...Array(6)].map((_, i) => (
+                <div key={i} className="rounded-xl border border-slate-200/80 overflow-hidden animate-pulse bg-white p-4 space-y-3">
+                  <div className="h-40 bg-slate-100 rounded-lg" />
+                  <div className="h-4 bg-slate-100 rounded w-3/4" />
+                  <div className="h-3 bg-slate-100 rounded w-full" />
+                </div>
+              ))}
+            </div>
+          )}
+
+          {isCoursesError && featuredCourses.length === 0 && (
+            <ApiErrorState
+              title="Unable to load featured courses"
+              message="Network or server connection issue while retrieving courses. Click refresh to try again."
+              onRetry={refetchCourses}
+            />
+          )}
+
+          {featuredCourses.length > 0 && (
+            <div className="space-y-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 items-start">
+                {featuredCourses.map((course) => (
+                  <CourseCard key={course._id || course.slug} course={course} />
+                ))}
+              </div>
+
+              {courses.length > 6 && (
+                <div className="text-center pt-2">
+                  <Link
+                    to="/courses"
+                    className="inline-flex items-center gap-2 bg-slate-50 hover:bg-slate-100 text-slate-700 hover:text-slate-900 border border-slate-200 font-bold px-5 py-2.5 rounded-xl transition-all text-xs sm:text-sm shadow-2xs"
+                  >
+                    <span>Explore All Courses ({courses.length})</span>
+                    <ArrowRight size={14} className="text-[#0F6E8C]" />
+                  </Link>
+                </div>
+              )}
+            </div>
+          )}
+        </section>
+      )}
+
+      {/* ── FACULTY / TEACHERS ── */}
+      {activeTeachers.length > 0 && activeTeacher && (
+        <section className="border-t border-slate-200/80 bg-white dark:bg-[#070d18] py-12 sm:py-14">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-slate-100 dark:border-slate-800 pb-3">
+              <div>
+                <span className="text-[#0F6E8C] dark:text-teal-400 text-[10.5px] font-bold tracking-widest uppercase font-mono mb-1 block">
+                  Our Faculty
+                </span>
+                <h2 className="font-heading text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
+                  Learn Under Experienced Scholars
+                </h2>
+              </div>
+              <Link
+                to="/about"
+                className="inline-flex items-center gap-1 text-[#0F6E8C] dark:text-teal-400 text-xs sm:text-sm font-semibold hover:gap-1.5 transition-all shrink-0"
+              >
+                <span>Explore Faculty &amp; Credentials</span>
+                <ArrowRight size={13} />
+              </Link>
+            </div>
+
+            {/* Wrapping Faculty Selector */}
+            <div className="flex flex-wrap items-center gap-x-4 sm:gap-x-6 gap-y-2 pb-2.5 border-b border-slate-100 dark:border-slate-800">
+              {activeTeachers.map((t, i) => {
+                const tId = t._id || t.id || `teacher-${i}`;
+                const isSelected = tId === (activeTeacher._id || activeTeacher.id);
+                return (
+                  <button
+                    key={`${tId}-${i}`}
+                    type="button"
+                    onClick={() => setSelectedTeacherId(tId)}
+                    className={`flex items-center gap-2 pb-1 transition-all cursor-pointer whitespace-nowrap relative ${
+                      isSelected
+                        ? "text-slate-900 dark:text-white font-bold"
+                        : "text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 font-medium"
+                    }`}
+                  >
+                    <img
+                      src={getImageUrl(t.image, FounderImage)}
+                      onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = FounderImage;
+                      }}
+                      alt={t.name}
+                      className={`w-6 h-6 rounded-full object-cover object-top transition-all ${
+                        isSelected ? "ring-2 ring-[#0F6E8C]" : "opacity-70 hover:opacity-100"
+                      }`}
+                    />
+                    <span className="text-xs sm:text-sm">{t.name}</span>
+                    {isSelected && (
+                      <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-[#0F6E8C] rounded-full" />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Scholar Profile View */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-7 items-center pt-1">
+              <div className="lg:col-span-7 flex flex-col sm:flex-row items-start sm:items-center gap-3.5 sm:gap-4">
+                <img
+                  src={getImageUrl(activeTeacher.image, FounderImage)}
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = FounderImage;
+                  }}
+                  alt={activeTeacher.name}
+                  className="w-20 h-20 sm:w-24 sm:h-24 rounded-xl object-cover object-top shadow-2xs shrink-0"
+                />
+                <div className="space-y-0.5 text-left min-w-0">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="text-[9.5px] font-bold text-[#0F6E8C] dark:text-teal-400 font-mono uppercase tracking-wider">
+                      {activeTeacher.department}
+                    </span>
+                    <span className="text-slate-300 dark:text-slate-600">•</span>
+                    <span className="text-[10.5px] text-slate-400 font-mono">
+                      {activeTeacher.experienceYears || "Certified"} Experience
+                    </span>
+                  </div>
+                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white font-heading tracking-tight truncate">
+                    {activeTeacher.name}
+                  </h3>
+                  <p className="text-xs font-semibold text-slate-600 dark:text-slate-300">
+                    {activeTeacher.role}
+                  </p>
+                  {activeTeacher.studentsMentored && (
+                    <div className="flex items-center gap-1.5 pt-0.5 text-[10.5px] text-slate-500 dark:text-slate-400 font-mono">
+                      <span className="text-slate-400">Mentored:</span>
+                      <span className="font-bold text-slate-700 dark:text-slate-200">{activeTeacher.studentsMentored}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {activeTeacher.quote && (
+                <div className="lg:col-span-5 border-l-2 border-[#0F6E8C] pl-3.5 space-y-1 text-left">
+                  <div className="flex items-center gap-1 text-[#0F6E8C]/70 dark:text-teal-400/70 text-[9.5px] font-bold font-mono uppercase tracking-wider">
+                    <Quote size={11} />
+                    <span>Scholarly Philosophy</span>
+                  </div>
+                  <blockquote className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-serif italic leading-relaxed">
+                    "{activeTeacher.quote}"
+                  </blockquote>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── NEWS & ANNOUNCEMENTS ── */}
+      {(blogsLoading || isBlogsError || recentBlogs.length > 0) && (
+        <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-14 border-t border-slate-200/80 dark:border-slate-800">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-8">
+            <div>
+              <span className="text-[#0F6E8C] text-[10.5px] font-bold tracking-widest uppercase font-mono mb-1.5 block">
+                News &amp; Publications
+              </span>
+              <h2 className="font-heading text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+                Latest from the Institute
+              </h2>
+            </div>
+            <Link
+              to="/blog"
+              className="inline-flex items-center gap-1.5 text-[#0F6E8C] text-xs sm:text-sm font-semibold hover:gap-2 transition-all shrink-0"
+            >
+              <span>View all articles</span>
+              <ArrowRight size={13} />
+            </Link>
+          </div>
+
+          {blogsLoading && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {[...Array(6)].map((_, i) => (
+                <div key={i} className="bg-white border border-slate-200 rounded-xl p-4 space-y-3 animate-pulse">
+                  <div className="w-full h-40 bg-slate-100 rounded-lg" />
+                  <div className="h-4 bg-slate-100 rounded w-3/4" />
+                  <div className="h-3 bg-slate-100 rounded w-full" />
+                </div>
+              ))}
+            </div>
+          )}
+
+          {isBlogsError && !blogsLoading && (
+            <ApiErrorState
+              title="Unable to load latest articles"
+              message="Failed to retrieve publications from the server. Click refresh to try again."
+              onRetry={refetchBlogs}
+            />
+          )}
+
+          {!blogsLoading && !isBlogsError && recentBlogs.length > 0 && (
+            <div className="space-y-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 items-start">
+                {recentBlogs.map((blog) => (
+                  <BlogCard key={blog._id || blog.slug} blog={blog} viewMode="grid" />
+                ))}
+              </div>
+
+              {blogs.length > 6 && (
+                <div className="text-center pt-2">
+                  <Link
+                    to="/blog"
+                    className="inline-flex items-center gap-2 bg-slate-50 hover:bg-slate-100 text-slate-700 hover:text-slate-900 border border-slate-200 font-bold px-5 py-2.5 rounded-xl transition-all text-xs sm:text-sm shadow-2xs"
+                  >
+                    <span>Explore All Articles ({blogs.length})</span>
+                    <ArrowRight size={14} className="text-[#0F6E8C]" />
+                  </Link>
+                </div>
+              )}
+            </div>
+          )}
+        </section>
+      )}
+
+      {/* ── STUDENTS & ALUMNI SUCCESS SHOWCASE (AFTER BLOG SECTION) ── */}
+      <StudentShowcase limit={6} showHeaderAction={true} />
+
+      {/* ── FAQS ── */}
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-14">
+        <div className="text-center max-w-xl mx-auto mb-8">
+          <span className="text-[#0F6E8C] dark:text-teal-400 text-[10.5px] font-bold tracking-widest uppercase font-mono mb-1.5 block">
+            FAQs
+          </span>
+          <h2 className="font-heading text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
+            Frequently Asked Questions
+          </h2>
+        </div>
+
+        <div className="space-y-2.5">
+          {faqs.map((faq, i) => {
+            const isOpen = openFaq === i;
+            return (
+              <div key={i} className="border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden bg-white dark:bg-[#0c1827] shadow-2xs">
+                <button
+                  onClick={() => setOpenFaq(isOpen ? -1 : i)}
+                  className="w-full flex items-center justify-between gap-3 text-left px-4 py-3 bg-white dark:bg-[#0c1827] hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-colors"
+                >
+                  <span className="flex items-center gap-2">
+                    <HelpCircle size={14} className="text-[#0F6E8C] dark:text-teal-400 shrink-0" />
+                    <span className="font-semibold text-xs sm:text-sm text-slate-900 dark:text-white">{faq.question}</span>
+                  </span>
+                  <ChevronDown
+                    size={14}
+                    className={`text-slate-400 shrink-0 transition-transform duration-200 ${isOpen ? "rotate-180 text-[#0F6E8C] dark:text-teal-400" : ""}`}
+                  />
+                </button>
+                <div
+                  className={`grid transition-all duration-200 ease-in-out ${
+                    isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed px-4 pb-3.5 pl-9 font-normal">
+                      {faq.answer}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* ── CLEAN PRE-FOOTER CTA ── */}
+      <section className="border-t border-slate-200/80 dark:border-slate-800 bg-slate-50/70 dark:bg-[#081524] py-10 sm:py-14 transition-colors">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="bg-white dark:bg-[#0c1827] border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 shadow-2xs">
+            <span className="inline-block text-[#0F6E8C] dark:text-teal-300 text-[9.5px] font-bold uppercase tracking-widest bg-teal-50 dark:bg-teal-950/80 border border-teal-200/60 dark:border-teal-800/60 px-2.5 py-0.5 rounded-full mb-2 font-mono">
+              Admissions Open
+            </span>
+            <h2 className="font-heading text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-2 tracking-tight">
+              Ready to begin your educational journey?
+            </h2>
+            <p className="text-slate-600 dark:text-slate-300 mb-4 max-w-md mx-auto text-xs leading-relaxed font-normal">
+              Join students learning under qualified scholars in a structured, supportive academic environment.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-2.5">
+              <Link
+                to="/apply"
+                className="inline-flex items-center gap-1.5 bg-[#0F6E8C] dark:bg-teal-600 text-white font-semibold px-5 py-2.5 rounded-lg hover:bg-[#0B5C74] dark:hover:bg-teal-700 shadow-2xs transition-colors text-xs"
+              >
+                <span>Apply Now</span>
+                <ArrowRight size={13} />
+              </Link>
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold px-5 py-2.5 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors text-xs"
+              >
+                <span>Contact Admissions</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+export default Home;

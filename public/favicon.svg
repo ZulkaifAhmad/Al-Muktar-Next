@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="almukhtar-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F6E8C"/>
+      <stop offset="100%" stop-color="#0B5C74"/>
+    </linearGradient>
+    <linearGradient id="gold-accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8FB3AA"/>
+      <stop offset="100%" stop-color="#5B9A8B"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Rounded Base Badge -->
+  <rect width="512" height="512" rx="112" fill="url(#almukhtar-grad)"/>
+  
+  <!-- Inner Border -->
+  <rect x="24" y="24" width="464" height="464" rx="88" fill="none" stroke="#8FB3AA" stroke-width="8" opacity="0.3"/>
+  
+  <!-- Open Book Emblem (Academic & Islamic Excellence) -->
+  <g transform="translate(96, 120)" fill="none" stroke="#FFFFFF" stroke-width="24" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Left Page -->
+    <path d="M160 210 C100 170 30 180 0 200 L0 40 C30 20 100 10 160 50 Z" fill="#FFFFFF" fill-opacity="0.15" stroke="#FFFFFF"/>
+    <!-- Right Page -->
+    <path d="M160 210 C220 170 290 180 320 200 L320 40 C290 20 220 10 160 50 Z" fill="#FFFFFF" fill-opacity="0.15" stroke="#FFFFFF"/>
+    <!-- Central Spine -->
+    <line x1="160" y1="50" x2="160" y2="210" stroke="url(#gold-accent)" stroke-width="20"/>
+  </g>
+  
+  <!-- Radiance / Pulse Crescent Star -->
+  <g transform="translate(256, 100)">
+    <circle cx="0" cy="0" r="28" fill="url(#gold-accent)"/>
+    <path d="M0 -36 L6 -10 L32 -10 L10 6 L18 30 L0 16 L-18 30 L-10 6 L-32 -10 L-6 -10 Z" fill="#FFFFFF" transform="scale(0.7)"/>
+  </g>
+  
+  <!-- Bottom Typography Initials -->
+  <text x="256" y="420" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="64" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="4">AL-MUKHTAR</text>
+</svg>

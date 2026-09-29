@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found — Al-Mukhtar Institute</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background-color: #f8fafc; color: #0f172a; display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 24px; text-align: center; }
+    .container { max-width: 480px; width: 100%; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 40px 32px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+    .badge { display: inline-block; background: #e0f2fe; color: #0369a1; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 4px 12px; border-radius: 9999px; margin-bottom: 16px; }
+    h1 { font-size: 28px; font-weight: 800; color: #0f172a; margin-bottom: 8px; }
+    p { font-size: 14px; color: #64748b; line-height: 1.6; margin-bottom: 24px; }
+    .btn { display: inline-block; background: #0F6E8C; color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 700; padding: 12px 24px; border-radius: 12px; transition: background-color 0.2s; }
+    .btn:hover { background: #0B5C74; }
+  </style>
+  <script>
+    // If hosting on static host like GitHub Pages, redirect to root with path query
+    const segment = window.location.pathname;
+    if (segment && segment !== "/" && segment !== "/404.html") {
+      // SPA Fallback redirect
+      window.location.replace("/" + (window.location.search || "") + (window.location.hash || ""));
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div class="badge">404 Error</div>
+    <h1>Page Not Found</h1>
+    <p>The academic resource or webpage you are looking for has been relocated or does not exist.</p>
+    <a href="/" class="btn">Return to Homepage</a>
+  </div>
+</body>
+</html>

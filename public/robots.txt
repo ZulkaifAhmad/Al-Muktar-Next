@@ -1,0 +1,23 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+Allow: /about
+Allow: /courses
+Allow: /courses/*
+Allow: /blog
+Allow: /blog/*
+Allow: /contact
+Allow: /apply
+
+# Disallow private admin, dashboard and API endpoints
+Disallow: /admin
+Disallow: /admin/*
+Disallow: /api/
+Disallow: /api/*
+Disallow: /profile
+Disallow: /verify-email
+Disallow: /forgot-password
+
+# Host & Sitemap location
+Host: https://almukhtar.org
+Sitemap: https://almukhtar.org/sitemap.xml

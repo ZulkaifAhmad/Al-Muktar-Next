@@ -1,0 +1,18 @@
+/* TEAM */
+Institution: Al-Mukhtar Institute of Health Sciences & Academic Studies
+Location: University Road, Peshawar, Khyber Pakhtunkhwa, Pakistan
+Website: https://almukhtar.org
+Contact: info@almukhtar.org
+
+/* ACADEMIC LEADERSHIP */
+Director: Mufti Muhammad Ismail
+Head of Recitation: Qari Abdul Rahman
+Department of Medical Imaging: Faculty of Allied Health Sciences
+
+/* SITE & TECHNOLOGY */
+Standards: HTML5, CSS3, ESNext
+Framework: React 19, Vite, Tailwind CSS, TanStack Query
+Backend: Node.js, Express, MongoDB
+Software: Antigravity IDE Engine
+Language: English & Urdu Support
+Doctype: HTML5

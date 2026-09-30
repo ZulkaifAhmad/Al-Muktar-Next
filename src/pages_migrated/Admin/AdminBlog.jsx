@@ -30,7 +30,7 @@ import {
   Clock,
   Image as ImageIcon,
 } from "lucide-react";
-import { getReadingTime } from "../../components/BlogCard.jsx";
+import { getReadingTime, calculateReadingStats } from "../../components/BlogCard.jsx";
 import ApiErrorState from "../../components/ApiErrorState.jsx";
 import { compressImageFile } from "../../lib/imageCompressor.js";
 
@@ -94,6 +94,18 @@ function AdminBlog() {
   });
 
   const selectedSubject = watch("subject");
+  const watchTitle = watch("title");
+  const watchDescription = watch("description");
+  const watchContent = watch("content");
+
+  const liveReadingStats = React.useMemo(() => {
+    return calculateReadingStats({
+      title: watchTitle,
+      description: watchDescription,
+      content: watchContent,
+      images: selectedImages,
+    });
+  }, [watchTitle, watchDescription, watchContent, selectedImages]);
 
   // Fetch blogs directly via TanStack Query
   const {
@@ -273,13 +285,13 @@ function AdminBlog() {
         </div>
       </div>
 
-      {/* Editor Form Modal / Card */}
+      {/* Editor Form — On Screen directly for Mobile, Card for Desktop/Laptop */}
       {showForm && (
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="bg-white dark:bg-[#0c1827] border border-slate-200 dark:border-slate-800 rounded-xl p-4 sm:p-5 shadow-sm space-y-4"
+          className="bg-transparent sm:bg-white sm:dark:bg-[#0c1827] border-0 sm:border border-slate-200 dark:border-slate-800 rounded-none sm:rounded-xl p-0 sm:p-5 shadow-none sm:shadow-sm space-y-4"
         >
-          <div className="flex items-center justify-between pb-2.5 border-b border-slate-100 dark:border-slate-800">
+          <div className="flex items-center justify-between pb-3 sm:pb-2.5 border-b border-slate-200/80 dark:border-slate-800">
             <h2 className="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider font-mono">
               {editingBlog ? "Edit Article" : "Compose Article"}
             </h2>
@@ -437,13 +449,17 @@ function AdminBlog() {
 
             {/* Rich Text Editor Content (Very Big Height) */}
             <div>
-              <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center justify-between flex-wrap gap-2 mb-2">
                 <label className="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider font-mono block">
                   Article Body Content <span className="text-rose-500">*</span>
                 </label>
-                <span className="text-[11px] text-slate-400 dark:text-slate-500">
-                  Use H1, H2, H3 headers for automatic Table of Contents generation
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="inline-flex items-center gap-1.5 text-[11px] font-mono font-semibold px-2.5 py-0.5 rounded-full bg-teal-50 dark:bg-teal-950/60 text-[#0F6E8C] dark:text-teal-300 border border-teal-200/70 dark:border-teal-800/60 shadow-2xs">
+                    <Clock className="w-3 h-3 text-[#0F6E8C] dark:text-teal-400" />
+                    <span>{liveReadingStats.text}</span>
+                    <span className="text-slate-400 dark:text-slate-500 font-normal">({liveReadingStats.words} words)</span>
+                  </span>
+                </div>
               </div>
               <Controller
                 name="content"

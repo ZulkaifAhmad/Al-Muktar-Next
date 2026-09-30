@@ -15,24 +15,45 @@ export async function GET(req, { params }) {
   try {
     await dbConnect();
     const resolvedParams = await params;
-    const slug = resolvedParams?.id;
+    const rawId = resolvedParams?.id;
 
-    if (!slug) {
+    if (!rawId || rawId === "undefined" || rawId === "null") {
       return NextResponse.json(
-        { success: false, message: "Valid slug is required." },
+        { success: false, message: "Valid blog identifier is required." },
         { status: 400 }
       );
     }
 
-    const isObjectId = mongoose.Types.ObjectId.isValid(slug);
+    let decodedId = rawId;
+    try {
+      decodedId = decodeURIComponent(rawId).trim();
+    } catch {
+      decodedId = rawId.trim();
+    }
+
+    const isObjectId = mongoose.Types.ObjectId.isValid(decodedId) || mongoose.Types.ObjectId.isValid(rawId);
     const filter = isObjectId
-      ? { $or: [{ slug }, { _id: slug }], status: "published" }
-      : { slug, status: "published" };
+      ? {
+          $or: [
+            { _id: decodedId },
+            { _id: rawId },
+            { slug: decodedId },
+            { slug: rawId },
+            { slug: decodedId.toLowerCase() },
+          ],
+        }
+      : {
+          $or: [
+            { slug: decodedId },
+            { slug: rawId },
+            { slug: decodedId.toLowerCase() },
+          ],
+        };
 
     const blog = await Blog.findOneAndUpdate(
       filter,
       { $inc: { views: 1 } },
-      { returnDocument: "after" }
+      { returnDocument: "after", new: true }
     )
       .populate("comments.user", "username email role")
       .populate("comments.replies.user", "username email role")

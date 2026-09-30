@@ -351,10 +351,10 @@ function AdminTeachers() {
         </div>
       </div>
 
-      {/* ── Add / Edit Teacher Form ─────────────────────────────────── */}
+      {/* ── Add / Edit Teacher Form — On Screen directly for Mobile, Card for Desktop/Laptop ── */}
       {showForm && (
-        <div className="bg-white dark:bg-[#0c1827] border border-slate-200 dark:border-slate-800 rounded-xl p-4 sm:p-6 shadow-sm space-y-5 animate-in fade-in duration-200">
-          <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+        <div className="bg-transparent sm:bg-white sm:dark:bg-[#0c1827] border-0 sm:border border-slate-200 dark:border-slate-800 rounded-none sm:rounded-xl p-0 sm:p-6 shadow-none sm:shadow-sm space-y-5 animate-in fade-in duration-200">
+          <div className="flex items-center justify-between border-b border-slate-200/80 dark:border-slate-800 pb-3">
             <div className="flex items-center gap-2">
               <div className="w-6 h-6 rounded-md bg-[#0F6E8C] text-white flex items-center justify-center">
                 {editingTeacher ? <Pencil size={12} /> : <Plus size={12} />}

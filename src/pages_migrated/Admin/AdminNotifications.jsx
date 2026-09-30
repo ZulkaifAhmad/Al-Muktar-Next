@@ -373,10 +373,10 @@ export default function AdminNotifications() {
         </div>
       )}
 
-      {/* ── INLINE CREATE / EDIT FORM PANEL (Standard Admin Layout) ── */}
+      {/* ── INLINE CREATE / EDIT FORM PANEL — On Screen directly for Mobile, Card for Desktop/Laptop ── */}
       {showForm && (
-        <div className="bg-white dark:bg-[#0c1827] border border-slate-200 dark:border-slate-800 rounded-xl p-4 sm:p-5 shadow-xs space-y-4">
-          <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-2.5">
+        <div className="bg-transparent sm:bg-white sm:dark:bg-[#0c1827] border-0 sm:border border-slate-200 dark:border-slate-800 rounded-none sm:rounded-xl p-0 sm:p-5 shadow-none sm:shadow-xs space-y-4">
+          <div className="flex items-center justify-between border-b border-slate-200/80 dark:border-slate-800 pb-3 sm:pb-2.5">
             <h2 className="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider font-mono flex items-center gap-2">
               <Sparkles size={13} className="text-[#0F6E8C]" />
               <span>{editingNotif ? "Edit Notification Details" : "Create New Notification"}</span>

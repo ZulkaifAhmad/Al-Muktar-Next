@@ -23,7 +23,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import BlogCard, { getReadingTime, getSnippet, getBlogImage, formatDate } from "../components/BlogCard.jsx";
+import BlogCard, { getReadingTime, calculateReadingStats, getSnippet, getBlogImage, formatDate } from "../components/BlogCard.jsx";
 import ApiErrorState from "../components/ApiErrorState.jsx";
 import { LogoImg } from "../assets/assets.js";
 import { toast } from "react-toastify";
@@ -124,9 +124,7 @@ function Blog() {
       if (sortBy === "oldest") return new Date(a.createdAt) - new Date(b.createdAt);
       if (sortBy === "views") return (b.views || 0) - (a.views || 0);
       if (sortBy === "readTime") {
-        const wordsA = (a.content || "").split(/\s+/).length;
-        const wordsB = (b.content || "").split(/\s+/).length;
-        return wordsA - wordsB;
+        return calculateReadingStats(a).seconds - calculateReadingStats(b).seconds;
       }
       return 0;
     });
@@ -444,7 +442,7 @@ function Blog() {
                       ? "bg-white dark:bg-slate-700 text-[#0F6E8C] dark:text-teal-300 shadow-2xs font-bold"
                       : "text-slate-400 dark:text-slate-500 hover:text-slate-700 dark:hover:text-slate-200"
                   }`}
-                  title="Grid View (3-4 per row)"
+                  title="Grid View (3-4 cards per row)"
                 >
                   <LayoutGrid className="w-3.5 h-3.5" />
                 </button>
@@ -467,18 +465,38 @@ function Blog() {
           {/* Full Width Grid / List Section */}
           <div ref={articlesSectionRef} className="w-full space-y-8 pt-2">
             {isLoading && (
-              <div className={viewMode === "list" ? "grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6" : "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6"}>
-                {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
-                  <div
-                    key={n}
-                    className="p-4 rounded-2xl bg-slate-50/70 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-800 animate-pulse space-y-3"
-                  >
-                    <div className="w-full h-40 bg-slate-200 dark:bg-slate-700 rounded-xl"></div>
-                    <div className="w-24 h-3.5 bg-slate-200 dark:bg-slate-700 rounded-md"></div>
-                    <div className="w-4/5 h-5 bg-slate-200 dark:bg-slate-700 rounded-md"></div>
-                    <div className="w-full h-4 bg-slate-200 dark:bg-slate-700 rounded-md"></div>
-                  </div>
-                ))}
+              <div
+                className={
+                  viewMode === "list"
+                    ? "grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5"
+                    : "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6"
+                }
+              >
+                {[1, 2, 3, 4, 5, 6, 7, 8].map((n) =>
+                  viewMode === "list" ? (
+                    <div
+                      key={n}
+                      className="p-3.5 sm:p-4 rounded-2xl bg-slate-50/70 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-800 animate-pulse flex flex-row items-center justify-between gap-3 sm:gap-4"
+                    >
+                      <div className="flex-1 space-y-2 py-1 min-w-0">
+                        <div className="w-20 h-3 bg-slate-200 dark:bg-slate-700 rounded" />
+                        <div className="w-4/5 h-4 bg-slate-200 dark:bg-slate-700 rounded" />
+                        <div className="w-full h-3 bg-slate-200 dark:bg-slate-700 rounded" />
+                      </div>
+                      <div className="w-20 h-20 min-[400px]:w-24 min-[400px]:h-24 sm:w-28 sm:h-28 bg-slate-200 dark:bg-slate-700 rounded-xl shrink-0" />
+                    </div>
+                  ) : (
+                    <div
+                      key={n}
+                      className="p-4 rounded-2xl bg-slate-50/70 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-800 animate-pulse space-y-3"
+                    >
+                      <div className="w-full aspect-[16/10] bg-slate-200 dark:bg-slate-700 rounded-xl" />
+                      <div className="w-24 h-3.5 bg-slate-200 dark:bg-slate-700 rounded-md" />
+                      <div className="w-4/5 h-5 bg-slate-200 dark:bg-slate-700 rounded-md" />
+                      <div className="w-full h-4 bg-slate-200 dark:bg-slate-700 rounded-md" />
+                    </div>
+                  )
+                )}
               </div>
             )}
 
@@ -518,14 +536,21 @@ function Blog() {
               </div>
             )}
 
-            {/* Render Blogs: 1 column on mobile, 2 on tablet, 3 on desktop grid (gap-8 to gap-10) */}
+            {/* Render Blogs: Grid (3-4 per row) vs List (2 per row) layout */}
             {!isLoading && !isError && filteredBlogs.length > 0 && (
               <>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8">
+                <div
+                  className={
+                    viewMode === "list"
+                      ? "grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5"
+                      : "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6"
+                  }
+                >
                   {paginatedBlogs.map((blog) => (
                     <BlogCard
                       key={blog._id || blog.slug}
                       blog={blog}
+                      layout={viewMode}
                       onCategoryClick={handleCategorySelect}
                     />
                   ))}

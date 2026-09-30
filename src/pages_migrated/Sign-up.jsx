@@ -41,7 +41,7 @@ function Signup() {
   };
 
   return (
-    <div className="min-h-screen w-full flex bg-slate-50 font-sans">
+    <div className="min-h-screen min-h-[100dvh] w-full flex bg-slate-50 font-sans">
       {/* Left Panel - Branding */}
       <div className="hidden lg:flex lg:w-[42%] relative bg-gradient-to-br from-[#0A2540] via-[#081E2E] to-[#0F6E8C] overflow-hidden">
         <img
@@ -108,11 +108,11 @@ function Signup() {
         </div>
       </div>
 
-      {/* Right Panel - Form */}
-      <div className="w-full lg:w-[58%] flex items-center justify-center px-6 py-12 sm:px-14">
-        <div className="w-full max-w-[420px]">
-          {/* Back to Home Button */}
-          <div className="mb-6">
+      {/* Right Panel - Form (Starts from top on mobile with full screen height, centered on desktop) */}
+      <div className="w-full lg:w-[58%] flex flex-col justify-start lg:justify-center items-center px-5 pt-6 pb-10 sm:px-14 sm:py-12 min-h-[100dvh] lg:min-h-screen overflow-y-auto">
+        <div className="w-full max-w-[420px] flex flex-col justify-start">
+          {/* Back to Home Button on top left */}
+          <div className="mb-4 sm:mb-6 self-start">
             <Link
               to="/"
               className="inline-flex items-center gap-2 text-xs font-bold text-slate-600 hover:text-[#0F6E8C] bg-white hover:bg-slate-50 px-3.5 py-2 rounded-xl border border-slate-200/80 transition-all group shadow-2xs"
@@ -123,11 +123,11 @@ function Signup() {
           </div>
 
           {/* Mobile logo */}
-          <div className="flex lg:hidden items-center gap-3 mb-8">
+          <div className="flex lg:hidden items-center gap-2.5 mb-6">
             <img
               src={Logo}
               alt="Madrasa Logo"
-              className="w-10 h-10 rounded-xl object-cover shadow-2xs"
+              className="w-9 h-9 rounded-xl object-cover shadow-2xs"
             />
             <span className="font-heading font-extrabold text-base text-slate-900">
               Al-Mukhtar Institute

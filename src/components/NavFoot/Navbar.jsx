@@ -57,7 +57,7 @@ const primaryNavLinks = [
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
-  const [mobileAboutExpanded, setMobileAboutExpanded] = useState(true);
+  const [mobileAboutExpanded, setMobileAboutExpanded] = useState(false);
   const dropdownTimeoutRef = useRef(null);
   const location = useLocation();
 
@@ -70,6 +70,7 @@ function Navbar() {
   useEffect(() => {
     setIsOpen(false);
     setAboutDropdownOpen(false);
+    setMobileAboutExpanded(false);
   }, [location.pathname]);
 
   // Prevent background scroll when mobile menu is open
@@ -80,7 +81,10 @@ function Navbar() {
     };
   }, [isOpen]);
 
-  const closeMenu = () => setIsOpen(false);
+  const closeMenu = () => {
+    setIsOpen(false);
+    setMobileAboutExpanded(false);
+  };
 
   const handleMouseEnterAbout = () => {
     if (dropdownTimeoutRef.current) {

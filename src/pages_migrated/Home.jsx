@@ -85,7 +85,7 @@ function Home() {
   return (
     <div className="bg-white dark:bg-[#070d18] font-sans text-slate-800 dark:text-slate-100 transition-colors duration-200">
       {/* ── PRESTIGIOUS HERO SECTION WITH ACADEMIC BACKGROUND ── */}
-      <section className="relative overflow-hidden bg-slate-950 border-b border-slate-800/80 py-10 sm:py-14 lg:py-16 transition-colors">
+      <section className="relative overflow-hidden bg-slate-950 border-b border-slate-800/80 py-10 sm:py-16 lg:py-20 transition-colors">
         {/* Background Image with Deep Scholarly Overlay */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <img
@@ -98,68 +98,68 @@ function Home() {
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
             {/* Left Column — Text & CTAs (Expanded Width) */}
-            <div className="lg:col-span-8 space-y-4 sm:space-y-4.5">
-              {/* Institutional Badge */}
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-teal-300 text-xs font-semibold font-mono tracking-wider shadow-sm">
-                <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
+            <div className="lg:col-span-8 space-y-4 sm:space-y-5">
+              {/* Institutional Badge — smaller font size on mobile */}
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-teal-300 text-[10px] min-[380px]:text-[11px] sm:text-xs font-semibold font-mono tracking-wider shadow-sm">
+                <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-teal-400 animate-pulse" />
                 <span>Premier Islamic &amp; Academic Institute</span>
               </div>
 
-              {/* Dignified Main Headline (Bolder, Punchy & High-Impact) */}
-              <h1 className="font-heading text-2xl sm:text-3xl lg:text-[38px] xl:text-[42px] font-black text-white leading-[1.16] tracking-tight">
+              {/* Dignified Main Headline — Balanced Hero Headline Size & High Contrast Weight */}
+              <h1 className="font-heading text-[30px] min-[380px]:text-[34px] sm:text-4xl md:text-5xl lg:text-[46px] xl:text-[52px] font-black text-white leading-[1.14] sm:leading-[1.1] lg:leading-[1.08] tracking-tight drop-shadow-sm">
                 Authentic Islamic Education &amp; Academic Excellence
               </h1>
 
               {/* Description */}
-              <p className="text-slate-200 text-xs sm:text-sm lg:text-[15px] leading-relaxed font-normal max-w-2xl">
+              <p className="text-slate-200 text-sm sm:text-base lg:text-[17px] leading-relaxed font-normal max-w-2xl">
                 Al-Mukhtar Institute provides certified Islamic scholarship integrated with contemporary academic education — guided by qualified scholars and built on academic rigor, discipline, and sincere mentorship.
               </p>
 
-              {/* CTA Buttons — 2 buttons in a single row on mobile */}
-              <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2.5 sm:gap-3 pt-1">
+              {/* CTA Buttons — Always 2 buttons in a single row on mobile */}
+              <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2.5 sm:gap-3.5 pt-2 max-w-md sm:max-w-none">
                 <Link
                   to="/courses"
-                  className="inline-flex items-center justify-center gap-1.5 sm:gap-2 bg-[#0F6E8C] hover:bg-[#0B5C74] text-white font-bold px-3 sm:px-6 py-2.5 sm:py-3 rounded-xl shadow-lg shadow-[#0F6E8C]/25 transition-all text-xs sm:text-sm hover:scale-[1.02] active:scale-[0.98] text-center"
+                  className="inline-flex items-center justify-center gap-1.5 sm:gap-2 bg-[#0F6E8C] hover:bg-[#0B5C74] text-white font-bold px-3 sm:px-6 py-3 sm:py-3.5 rounded-xl shadow-lg shadow-[#0F6E8C]/25 transition-all text-xs min-[400px]:text-sm sm:text-base hover:scale-[1.02] active:scale-[0.98] text-center"
                 >
                   <span>Explore Courses</span>
-                  <ArrowRight size={14} className="hidden xs:inline shrink-0" />
+                  <ArrowRight size={15} className="hidden min-[400px]:inline shrink-0" />
                 </Link>
                 <Link
                   to="/apply"
-                  className="inline-flex items-center justify-center gap-1.5 sm:gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/25 hover:border-white/40 backdrop-blur-sm font-bold px-3 sm:px-6 py-2.5 sm:py-3 rounded-xl transition-all text-xs sm:text-sm shadow-sm hover:scale-[1.02] active:scale-[0.98] text-center"
+                  className="inline-flex items-center justify-center gap-1.5 sm:gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/25 hover:border-white/40 backdrop-blur-sm font-bold px-3 sm:px-6 py-3 sm:py-3.5 rounded-xl transition-all text-xs min-[400px]:text-sm sm:text-base shadow-sm hover:scale-[1.02] active:scale-[0.98] text-center"
                 >
                   <span>Apply Now</span>
                 </Link>
               </div>
 
               {/* Feature Checklist */}
-              <div className="flex flex-wrap items-center gap-x-5 gap-y-2 pt-2 text-xs text-slate-300 font-mono">
+              <div className="flex flex-wrap items-center gap-x-5 sm:gap-x-6 gap-y-2.5 pt-2 text-xs sm:text-[13px] text-slate-300 font-mono">
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle2 size={13} className="text-teal-400" />
-                  Certified Ijazah Faculty
+                  <CheckCircle2 size={14} className="text-teal-400 shrink-0" />
+                  <span>Certified Ijazah Faculty</span>
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle2 size={13} className="text-teal-400" />
-                  Flexible Shifts (On-Campus &amp; Online)
+                  <CheckCircle2 size={14} className="text-teal-400 shrink-0" />
+                  <span>Flexible Shifts (On-Campus &amp; Online)</span>
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle2 size={13} className="text-teal-400" />
-                  Recognized Certification
+                  <CheckCircle2 size={14} className="text-teal-400 shrink-0" />
+                  <span>Recognized Certification</span>
                 </span>
               </div>
             </div>
 
-            {/* Right Column — Founder Showcase (Proportionate Width) */}
-            <div className="lg:col-span-4 flex justify-center lg:justify-end">
-              <div className="relative w-full max-w-[290px] sm:max-w-[310px]">
+            {/* Right Column — Founder Showcase */}
+            <div className="lg:col-span-4 flex justify-center lg:justify-end mt-4 lg:mt-0">
+              <div className="relative w-full max-w-[280px] sm:max-w-[320px]">
                 <Link
                   to="/teachers"
                   className="group block relative rounded-2xl overflow-hidden border border-white/15 bg-white/5 backdrop-blur-md p-2 shadow-2xl transition-all duration-300 hover:border-teal-400/50 hover:shadow-teal-900/30"
                   title="View Muhammad Anwar's Profile & Faculty"
                 >
-                  <div className="relative h-[300px] sm:h-[340px] lg:h-[350px] w-full rounded-xl overflow-hidden bg-slate-900">
+                  <div className="relative h-[300px] sm:h-[340px] lg:h-[360px] w-full rounded-xl overflow-hidden bg-slate-900">
                     <img
                       src={FounderImage}
                       alt="Muhammad Anwar — CEO Al-Mukhtar"
@@ -196,22 +196,22 @@ function Home() {
           </div>
 
           {/* Quick Metrics Strip */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-8 pt-6 border-t border-white/15">
-            <div className="p-3 bg-white/5 backdrop-blur-md rounded-xl border border-white/10">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-white/15">
+            <div className="p-3.5 sm:p-4 bg-white/5 backdrop-blur-md rounded-xl border border-white/10">
               <p className="font-heading text-xl sm:text-2xl font-black text-white mb-0.5">500+</p>
-              <p className="text-teal-300 text-[10.5px] font-mono uppercase tracking-wider font-semibold">Students Taught</p>
+              <p className="text-teal-300 text-[10.5px] sm:text-xs font-mono uppercase tracking-wider font-semibold">Students Taught</p>
             </div>
-            <div className="p-3 bg-white/5 backdrop-blur-md rounded-xl border border-white/10">
+            <div className="p-3.5 sm:p-4 bg-white/5 backdrop-blur-md rounded-xl border border-white/10">
               <p className="font-heading text-xl sm:text-2xl font-black text-white mb-0.5">12+</p>
-              <p className="text-teal-300 text-[10.5px] font-mono uppercase tracking-wider font-semibold">Scholars &amp; Faculty</p>
+              <p className="text-teal-300 text-[10.5px] sm:text-xs font-mono uppercase tracking-wider font-semibold">Scholars &amp; Faculty</p>
             </div>
-            <div className="p-3 bg-white/5 backdrop-blur-md rounded-xl border border-white/10">
+            <div className="p-3.5 sm:p-4 bg-white/5 backdrop-blur-md rounded-xl border border-white/10">
               <p className="font-heading text-xl sm:text-2xl font-black text-white mb-0.5">15+</p>
-              <p className="text-teal-300 text-[10.5px] font-mono uppercase tracking-wider font-semibold">Years of Service</p>
+              <p className="text-teal-300 text-[10.5px] sm:text-xs font-mono uppercase tracking-wider font-semibold">Years of Service</p>
             </div>
-            <div className="p-3 bg-white/5 backdrop-blur-md rounded-xl border border-white/10">
+            <div className="p-3.5 sm:p-4 bg-white/5 backdrop-blur-md rounded-xl border border-white/10">
               <p className="font-heading text-xl sm:text-2xl font-black text-white mb-0.5">20+</p>
-              <p className="text-teal-300 text-[10.5px] font-mono uppercase tracking-wider font-semibold">Certified Programs</p>
+              <p className="text-teal-300 text-[10.5px] sm:text-xs font-mono uppercase tracking-wider font-semibold">Certified Programs</p>
             </div>
           </div>
         </div>
@@ -219,22 +219,22 @@ function Home() {
 
       {/* Credential Strip */}
       <div className="border-b border-slate-200/80 dark:border-slate-800 bg-white dark:bg-[#070d18] py-4 transition-colors">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap gap-x-8 gap-y-2 text-xs text-slate-600 dark:text-slate-300 font-bold font-mono">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 sm:flex sm:flex-wrap items-center justify-between gap-3 sm:gap-8 text-xs text-slate-600 dark:text-slate-300 font-bold font-mono">
           <div className="flex items-center gap-2">
-            <GraduationCap size={15} className="text-[#0F6E8C] dark:text-teal-400" />
-            Certified Curriculum
+            <GraduationCap size={15} className="text-[#0F6E8C] dark:text-teal-400 shrink-0" />
+            <span>Certified Curriculum</span>
           </div>
           <div className="flex items-center gap-2">
-            <Award size={15} className="text-[#0F6E8C] dark:text-teal-400" />
-            Qualified Scholars
+            <Award size={15} className="text-[#0F6E8C] dark:text-teal-400 shrink-0" />
+            <span>Qualified Scholars</span>
           </div>
           <div className="flex items-center gap-2">
-            <Building size={15} className="text-[#0F6E8C] dark:text-teal-400" />
-            Modern Campus
+            <Building size={15} className="text-[#0F6E8C] dark:text-teal-400 shrink-0" />
+            <span>Modern Campus</span>
           </div>
           <div className="flex items-center gap-2">
-            <Globe size={15} className="text-[#0F6E8C] dark:text-teal-400" />
-            Inclusive Community
+            <Globe size={15} className="text-[#0F6E8C] dark:text-teal-400 shrink-0" />
+            <span>Inclusive Community</span>
           </div>
         </div>
       </div>

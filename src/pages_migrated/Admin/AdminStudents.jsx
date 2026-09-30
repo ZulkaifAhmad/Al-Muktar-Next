@@ -210,7 +210,6 @@ function AdminStudents() {
     mutationFn: (id) => api.delete(`/api/students/${id}`),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["students"] });
-      if (invalidateStudents) invalidateStudents();
       if (refetchStudents) refetchStudents();
       toast.success("Graduate record removed successfully.");
       setStudentToDelete(null);

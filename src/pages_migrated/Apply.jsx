@@ -136,6 +136,7 @@ function Apply() {
       queryClient.invalidateQueries({ queryKey: ["myApplications"] });
       queryClient.refetchQueries({ queryKey: ["myApplications"], type: "active" });
       queryClient.invalidateQueries({ queryKey: ["applications"] });
+      queryClient.invalidateQueries({ queryKey: ["application-stats"] });
       queryClient.invalidateQueries({ queryKey: ["applicationStats"] });
     },
   });

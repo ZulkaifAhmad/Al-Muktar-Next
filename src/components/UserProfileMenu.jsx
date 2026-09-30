@@ -7,13 +7,11 @@ import {
   LogOut,
   LayoutDashboard,
   ChevronDown,
-  BookOpen,
   Sun,
   Moon,
   ShieldCheck,
   Sparkles,
   ChevronRight,
-  Bell,
 } from "lucide-react";
 import { useAuth } from "./AuthContext.jsx";
 import { useTheme } from "@/context/ThemeContext";
@@ -106,7 +104,7 @@ function UserProfileMenu() {
           </div>
         </div>
 
-        {/* Admin Portal Featured Action (if admin) */}
+        {/* Admin Dashboard Featured Action (only if admin) */}
         {isAdmin && (
           <div className="p-3 border-b border-slate-100 dark:border-slate-800 bg-teal-50/40 dark:bg-teal-950/20">
             <Link
@@ -120,7 +118,7 @@ function UserProfileMenu() {
                 </div>
                 <div>
                   <p className="text-xs font-extrabold text-slate-900 dark:text-white leading-tight flex items-center gap-1">
-                    <span>Admin Portal</span>
+                    <span>Admin Dashboard</span>
                     <Sparkles size={12} className="text-amber-500" />
                   </p>
                   <p className="text-[10px] text-slate-600 dark:text-slate-400 font-medium">
@@ -177,7 +175,7 @@ function UserProfileMenu() {
           </div>
         </div>
 
-        {/* Navigation links */}
+        {/* Profile Link */}
         <div className="p-2 space-y-1">
           <Link
             to="/profile"
@@ -191,52 +189,12 @@ function UserProfileMenu() {
               <div>
                 <p className="font-bold text-xs">My Profile</p>
                 <p className="text-[10px] text-slate-400 dark:text-slate-500 font-normal">
-                  Credentials &amp; applications
+                  Credentials &amp; settings
                 </p>
               </div>
             </div>
             <ChevronRight size={15} className="text-slate-300 dark:text-slate-600 group-hover:text-[#0F6E8C] dark:group-hover:text-[#38BDF8] transition-colors" />
           </Link>
-
-          <Link
-            to="/notifications"
-            onClick={() => setOpen(false)}
-            className="flex items-center justify-between p-2.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-teal-50/70 dark:hover:bg-slate-800 hover:text-[#0F6E8C] dark:hover:text-[#38BDF8] transition-colors group"
-          >
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-teal-50 dark:bg-slate-800 flex items-center justify-center text-[#0F6E8C] dark:text-[#38BDF8] border border-teal-100 dark:border-slate-700">
-                <Bell size={15} />
-              </div>
-              <div>
-                <p className="font-bold text-xs">Announcements</p>
-                <p className="text-[10px] text-slate-400 dark:text-slate-500 font-normal">
-                  Academy notices &amp; updates
-                </p>
-              </div>
-            </div>
-            <ChevronRight size={15} className="text-slate-300 dark:text-slate-600 group-hover:text-[#0F6E8C] dark:group-hover:text-[#38BDF8] transition-colors" />
-          </Link>
-
-          {!isAdmin && (
-            <Link
-              to="/courses"
-              onClick={() => setOpen(false)}
-              className="flex items-center justify-between p-2.5 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-teal-50/70 dark:hover:bg-slate-800 hover:text-[#0F6E8C] dark:hover:text-[#38BDF8] transition-colors group"
-            >
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-teal-50 dark:bg-slate-800 flex items-center justify-center text-[#0F6E8C] dark:text-[#38BDF8] border border-teal-100 dark:border-slate-700">
-                  <BookOpen size={15} />
-                </div>
-                <div>
-                  <p className="font-bold text-xs">Browse Courses</p>
-                  <p className="text-[10px] text-slate-400 dark:text-slate-500 font-normal">
-                    Explore academic &amp; Islamic programs
-                  </p>
-                </div>
-              </div>
-              <ChevronRight size={15} className="text-slate-300 dark:text-slate-600 group-hover:text-[#0F6E8C] dark:group-hover:text-[#38BDF8] transition-colors" />
-            </Link>
-          )}
         </div>
 
         {/* Footer / Logout */}

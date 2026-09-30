@@ -13,8 +13,7 @@ export function useStudents() {
       const res = await api.get("/api/students");
       return res.data?.students || [];
     },
-    initialData: [],
-    staleTime: 5 * 60 * 1000,
+    staleTime: 30 * 1000,
   });
 }
 

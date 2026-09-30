@@ -14,8 +14,7 @@ export function useBlogs() {
       const res = await api.get("/api/blogs");
       return res.data?.blogs || [];
     },
-    initialData: [],
-    staleTime: 5 * 60 * 1000,
+    staleTime: 30 * 1000,
   });
 }
 
@@ -26,8 +25,7 @@ export function useAdminBlogs() {
       const res = await api.get("/api/blogs/admin/all");
       return res.data?.blogs || [];
     },
-    initialData: [],
-    staleTime: 2 * 60 * 1000,
+    staleTime: 30 * 1000,
   });
 }
 
@@ -40,7 +38,7 @@ export function useBlog(slugOrId) {
       return res.data?.blog || null;
     },
     enabled: Boolean(slugOrId),
-    staleTime: 5 * 60 * 1000,
+    staleTime: 30 * 1000,
   });
 }
 
@@ -52,6 +50,7 @@ export function useBlogMutations() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: blogKeys.all });
       queryClient.invalidateQueries({ queryKey: blogKeys.adminAll });
+      queryClient.invalidateQueries({ queryKey: ["adminBlogs"] });
     },
   });
 
@@ -60,6 +59,7 @@ export function useBlogMutations() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: blogKeys.all });
       queryClient.invalidateQueries({ queryKey: blogKeys.adminAll });
+      queryClient.invalidateQueries({ queryKey: ["adminBlogs"] });
     },
   });
 
@@ -68,6 +68,7 @@ export function useBlogMutations() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: blogKeys.all });
       queryClient.invalidateQueries({ queryKey: blogKeys.adminAll });
+      queryClient.invalidateQueries({ queryKey: ["adminBlogs"] });
     },
   });
 

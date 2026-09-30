@@ -71,7 +71,8 @@ function AppliedCandidates() {
     mutationFn: ({ id, status }) =>
       api.patch(`/api/applications/${id}/status`, { status }),
     onSuccess: (res) => {
-      invalidateApplications();
+      queryClient.invalidateQueries({ queryKey: ["applications"] });
+      queryClient.invalidateQueries({ queryKey: ["application-stats"] });
       // Update selected if open
       if (selected && selected._id === res.data.application._id) {
         setSelected(res.data.application);
@@ -83,7 +84,8 @@ function AppliedCandidates() {
   const deleteMutation = useMutation({
     mutationFn: (id) => api.delete(`/api/applications/${id}`),
     onSuccess: () => {
-      invalidateApplications();
+      queryClient.invalidateQueries({ queryKey: ["applications"] });
+      queryClient.invalidateQueries({ queryKey: ["application-stats"] });
       toast.success("Candidate application deleted successfully.");
       setCandidateToDelete(null);
       setSelected(null);

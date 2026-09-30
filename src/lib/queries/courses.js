@@ -13,8 +13,7 @@ export function useCourses() {
       const res = await api.get("/api/courses");
       return res.data?.courses || [];
     },
-    initialData: [],
-    staleTime: 5 * 60 * 1000,
+    staleTime: 30 * 1000,
   });
 }
 
@@ -27,7 +26,7 @@ export function useCourse(slugOrId) {
       return res.data?.course || null;
     },
     enabled: Boolean(slugOrId),
-    staleTime: 5 * 60 * 1000,
+    staleTime: 30 * 1000,
   });
 }
 
@@ -38,6 +37,7 @@ export function useCourseMutations() {
     mutationFn: (data) => api.post("/api/courses", data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: courseKeys.all });
+      queryClient.invalidateQueries({ queryKey: ["adminCourses"] });
     },
   });
 
@@ -45,6 +45,7 @@ export function useCourseMutations() {
     mutationFn: ({ id, data }) => api.put(`/api/courses/${id}`, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: courseKeys.all });
+      queryClient.invalidateQueries({ queryKey: ["adminCourses"] });
     },
   });
 
@@ -52,6 +53,7 @@ export function useCourseMutations() {
     mutationFn: (id) => api.delete(`/api/courses/${id}`),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: courseKeys.all });
+      queryClient.invalidateQueries({ queryKey: ["adminCourses"] });
     },
   });
 

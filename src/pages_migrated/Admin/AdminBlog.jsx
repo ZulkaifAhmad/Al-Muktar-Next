@@ -47,21 +47,9 @@ const quillModules = {
   ],
 };
 
-const quillFormats = [
-  "header",
-  "bold",
-  "italic",
-  "underline",
-  "strike",
-  "list",
-  "bullet",
-  "indent",
-  "blockquote",
-  "code-block",
-  "link",
-  "color",
-  "background",
-];
+// Note: formats prop is intentionally omitted to allow all registered formats.
+// react-quill-new v3.x (Quill 2.x) changed format registration and specifying
+// formats like "bullet" explicitly causes registration errors.
 
 const PRESET_CATEGORIES = [
   "Blog",
@@ -471,7 +459,6 @@ function AdminBlog() {
                     value={field.value}
                     onChange={field.onChange}
                     modules={quillModules}
-                    formats={quillFormats}
                     className="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden [&>.ql-container]:min-h-[320px] [&>.ql-container]:rounded-b-2xl [&>.ql-toolbar]:rounded-t-2xl [&>.ql-container]:text-base border border-slate-200 dark:border-slate-700"
                     placeholder="Write detailed Islamic research insights, Quranic explanations, or announcements..."
                   />

@@ -22,7 +22,7 @@ import {
   Clock,
   ChevronRight,
 } from "lucide-react";
-import { CampusImage, GreenDecorationBg } from "../assets/assets.js";
+import { CampusImage, GreenDecorationBg, bg } from "../assets/assets.js";
 
 
 const corePillars = [
@@ -98,16 +98,15 @@ function About() {
   return (
     <div className="bg-white dark:bg-[#070d18] font-sans text-slate-800 dark:text-slate-100 transition-colors duration-200">
       {/* ── 1. INSTITUTIONAL HERO SECTION ── */}
-      <section className="relative overflow-hidden bg-slate-950 text-white py-12 sm:py-16 border-b border-slate-800">
-        {/* Background Green Leaves Image & Overlay */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
+      <section className="relative overflow-hidden bg-slate-950 text-white py-14 sm:py-18 border-b border-slate-800">
+        {/* Background Image & Overlay */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <img
-            src={GreenDecorationBg}
+            src={bg}
             alt="Islamic Academic Heritage"
-            className="w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-center opacity-45"
           />
-          <div className="absolute inset-0 bg-slate-950/75 backdrop-blur-[1px]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#091E2D]/85 via-slate-950/70 to-[#0D2E45]/90" />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/85 via-slate-950/80 to-[#07111e]/95" />
         </div>
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#8FB3AA_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none z-0" />
         <div className="absolute -top-20 -right-20 w-80 h-80 bg-[#0F6E8C]/25 rounded-full blur-3xl pointer-events-none z-0" />

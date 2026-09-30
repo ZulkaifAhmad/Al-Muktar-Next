@@ -109,26 +109,33 @@ export default function StudentShowcase({ limit, showHeaderAction = false }) {
 
                 {/* Reflection Quote */}
                 {student.message && (
-                  <blockquote className="text-xs text-slate-600 dark:text-slate-300 italic line-clamp-2 leading-relaxed pl-3.5 py-0.5 border-l-2 border-[#0F6E8C] dark:border-teal-400 font-serif">
-                    "{student.message}"
-                  </blockquote>
+                  <p className="text-xs text-slate-600 dark:text-slate-300 line-clamp-2 leading-relaxed pl-3.5 py-0.5 border-l-2 border-[#0F6E8C] dark:border-teal-400 font-sans font-normal">
+                    &ldquo;{student.message}&rdquo;
+                  </p>
                 )}
               </div>
 
-              {/* Milestone Achievement Badge */}
-              <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                <div className="flex items-center gap-1.5 text-[11px] text-slate-600 dark:text-slate-400 truncate max-w-[65%]">
-                  <Award size={13} className="text-amber-500 shrink-0" />
-                  <span className="truncate font-medium">{student.keyAchievement || "Alumnus"}</span>
+              {/* Milestone Achievement Badge & Profile Action on separate lines */}
+              <div className="pt-3 border-t border-slate-100 dark:border-slate-800 space-y-2">
+                {student.keyAchievement && (
+                  <div className="flex items-start gap-1.5 text-[11px] text-slate-600 dark:text-slate-400">
+                    <Award size={13} className="text-amber-500 shrink-0 mt-0.5" />
+                    <span className="font-medium text-xs text-slate-700 dark:text-slate-300 leading-snug break-words flex-1">{student.keyAchievement}</span>
+                  </div>
+                )}
+                <div className="flex items-center justify-between pt-0.5">
+                  <span className="text-[10px] font-mono text-slate-400">
+                    {student.batchYear ? `Class ${student.batchYear}` : "Alumnus"}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setActiveModalStudent(student)}
+                    className="inline-flex items-center gap-1 text-xs font-bold text-[#0F6E8C] dark:text-teal-400 hover:underline cursor-pointer ml-auto"
+                  >
+                    <span>View Profile</span>
+                    <ChevronRight size={13} />
+                  </button>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => setActiveModalStudent(student)}
-                  className="inline-flex items-center gap-1 text-xs font-bold text-[#0F6E8C] dark:text-teal-400 hover:underline cursor-pointer"
-                >
-                  <span>Profile</span>
-                  <ChevronRight size={13} />
-                </button>
               </div>
             </div>
           ))}
@@ -138,15 +145,31 @@ export default function StudentShowcase({ limit, showHeaderAction = false }) {
       {/* Graduate Details Modal Dialog */}
       {activeModalStudent && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-950/75 backdrop-blur-xs overflow-y-auto animate-in fade-in duration-150"
+          className="fixed inset-0 z-50 flex items-center justify-center p-0 sm:p-4 md:p-6 bg-slate-950/80 backdrop-blur-xs overflow-y-auto animate-in fade-in duration-150"
           onClick={() => setActiveModalStudent(null)}
         >
           <div
-            className="bg-white dark:bg-[#0c1827] border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-6 max-w-lg w-full shadow-2xl space-y-4 max-h-[85vh] overflow-y-auto custom-scrollbar my-auto"
+            className="bg-white dark:bg-[#0c1827] border-0 sm:border border-slate-200 dark:border-slate-800 rounded-none sm:rounded-2xl max-w-full sm:max-w-4xl w-full h-full sm:h-[88vh] sm:max-h-[88vh] shadow-2xl flex flex-col overflow-hidden my-0 sm:my-auto"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-start justify-between gap-3 border-b border-slate-100 dark:border-slate-800 pb-3">
-              <div className="flex items-center gap-3">
+            <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 border-b border-slate-200 dark:border-slate-800 bg-slate-50/90 dark:bg-slate-900/90 shrink-0 sticky top-0 z-10 backdrop-blur-md">
+              <span className="text-xs font-bold uppercase tracking-wider font-mono text-slate-700 dark:text-slate-300">
+                Alumnus Profile
+              </span>
+              <button
+                type="button"
+                onClick={() => setActiveModalStudent(null)}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors cursor-pointer text-xs font-semibold"
+                title="Cancel and close"
+                aria-label="Cancel and close"
+              >
+                <span>Cancel</span>
+                <X size={17} />
+              </button>
+            </div>
+
+            <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-5 custom-scrollbar">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pb-4 border-b border-slate-100 dark:border-slate-800">
                 <img
                   src={getImageUrl(activeModalStudent.image, `https://ui-avatars.com/api/?name=${encodeURIComponent(activeModalStudent.name || "Student")}&background=0F6E8C&color=fff&bold=true`)}
                   onError={(e) => {
@@ -154,13 +177,13 @@ export default function StudentShowcase({ limit, showHeaderAction = false }) {
                     e.currentTarget.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(activeModalStudent.name || "Student")}&background=0F6E8C&color=fff&bold=true`;
                   }}
                   alt={activeModalStudent.name}
-                  className="w-14 h-14 rounded-xl object-cover object-top border border-slate-200 dark:border-slate-700 shadow-xs"
+                  className="w-20 h-20 rounded-2xl object-cover object-top border border-slate-200 dark:border-slate-700 shadow-xs shrink-0"
                 />
                 <div>
                   <span className="text-[10px] font-bold text-[#0F6E8C] dark:text-teal-400 uppercase font-mono">
                     {activeModalStudent.program} • {activeModalStudent.batchYear}
                   </span>
-                  <h3 className="text-base font-bold text-slate-900 dark:text-white font-heading">
+                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white font-heading">
                     {activeModalStudent.name}
                   </h3>
                   <p className="text-xs font-semibold text-slate-600 dark:text-slate-300">
@@ -169,65 +192,60 @@ export default function StudentShowcase({ limit, showHeaderAction = false }) {
                 </div>
               </div>
 
-              <button
-                onClick={() => setActiveModalStudent(null)}
-                className="p-1 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 cursor-pointer"
-              >
-                <X size={18} />
-              </button>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="p-3 rounded-lg bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-800">
+                  <span className="text-[10px] text-slate-400 uppercase font-mono block">Organization</span>
+                  <span className="text-xs font-bold text-slate-800 dark:text-slate-200 truncate block">
+                    {activeModalStudent.currentOrganization}
+                  </span>
+                </div>
+                <div className="p-3 rounded-lg bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-800">
+                  <span className="text-[10px] text-slate-400 uppercase font-mono block">Location</span>
+                  <span className="text-xs font-bold text-slate-800 dark:text-slate-200 truncate block">
+                    {activeModalStudent.location}
+                  </span>
+                </div>
+              </div>
+
+              {activeModalStudent.keyAchievement && (
+                <div className="p-3.5 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/40 space-y-0.5">
+                  <span className="text-[10px] font-bold text-amber-700 dark:text-amber-300 font-mono uppercase tracking-wider block">
+                    Key Scholarly Achievement
+                  </span>
+                  <p className="text-xs text-slate-800 dark:text-slate-200 leading-relaxed font-normal">
+                    {activeModalStudent.keyAchievement}
+                  </p>
+                </div>
+              )}
+
+              {activeModalStudent.message && (
+                <div className="space-y-1.5">
+                  <h4 className="text-[11px] font-bold text-slate-900 dark:text-white uppercase font-mono tracking-wider">
+                    Testimonial &amp; Reflection
+                  </h4>
+                  <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800">
+                    <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
+                      &ldquo;{activeModalStudent.message}&rdquo;
+                    </p>
+                  </div>
+                </div>
+              )}
             </div>
 
-            <div className="grid grid-cols-2 gap-2.5">
-              <div className="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-800">
-                <span className="text-[9.5px] text-slate-400 uppercase font-mono block">Organization</span>
-                <span className="text-xs font-bold text-slate-800 dark:text-slate-200 truncate block">
-                  {activeModalStudent.currentOrganization}
-                </span>
-              </div>
-              <div className="p-2.5 rounded-lg bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-800">
-                <span className="text-[9.5px] text-slate-400 uppercase font-mono block">Location</span>
-                <span className="text-xs font-bold text-slate-800 dark:text-slate-200 truncate block">
-                  {activeModalStudent.location}
-                </span>
-              </div>
-            </div>
-
-            {activeModalStudent.keyAchievement && (
-              <div className="p-3 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/40 space-y-0.5">
-                <span className="text-[9.5px] font-bold text-amber-700 dark:text-amber-300 font-mono uppercase tracking-wider block">
-                  Key Scholarly Achievement
-                </span>
-                <p className="text-xs text-slate-800 dark:text-slate-200 leading-relaxed font-medium">
-                  {activeModalStudent.keyAchievement}
-                </p>
-              </div>
-            )}
-
-            {activeModalStudent.message && (
-              <div className="space-y-1">
-                <h4 className="text-[11px] font-bold text-slate-900 dark:text-white uppercase font-mono tracking-wider">
-                  Testimonial &amp; Reflection
-                </h4>
-                <blockquote className="text-xs font-serif italic text-slate-600 dark:text-slate-300 leading-relaxed bg-slate-50 dark:bg-slate-900/50 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
-                  "{activeModalStudent.message}"
-                </blockquote>
-              </div>
-            )}
-
-            <div className="flex items-center justify-end gap-2 pt-3 border-t border-slate-100 dark:border-slate-800">
+            <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-3.5 border-t border-slate-200 dark:border-slate-800 bg-slate-50/90 dark:bg-slate-900/90 shrink-0">
               <button
                 type="button"
                 onClick={() => setActiveModalStudent(null)}
-                className="px-3.5 py-1.5 text-xs font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg cursor-pointer"
+                className="px-4 py-2 text-xs font-bold text-slate-700 dark:text-slate-300 bg-slate-200/70 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 rounded-xl transition-colors cursor-pointer"
               >
-                Close
+                Cancel
               </button>
               <Link
                 to="/apply"
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#0F6E8C] text-white text-xs font-bold hover:bg-[#0B5C74]"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#0F6E8C] text-white text-xs font-bold hover:bg-[#0B5C74] shadow-xs transition-all"
               >
                 <span>Join Our Academy</span>
-                <ArrowRight size={12} />
+                <ArrowRight size={13} />
               </Link>
             </div>
           </div>

@@ -30,6 +30,7 @@ import {
   X,
   MessageSquare,
   LogIn,
+  ZoomIn,
 } from "lucide-react";
 import { LogoImg, getImageUrl } from "../assets/assets.js";
 import ApiErrorState from "../components/ApiErrorState.jsx";
@@ -160,6 +161,7 @@ function BlogDetail() {
   const [editReplyText, setEditReplyText] = useState("");
   const [visibleCommentsCount, setVisibleCommentsCount] = useState(10);
   const [copied, setCopied] = useState(false);
+  const [activeImageModal, setActiveImageModal] = useState(null);
   const responsesRef = useRef(null);
 
   // Fetch current blog post
@@ -654,47 +656,61 @@ function BlogDetail() {
           </div>
         </div>
 
-        {/* Main Cover Image Hero - Only shown if article has uploaded image */}
+        {/* Uniform Images Row - All images have equal size in a single row */}
         {blogImages.length > 0 && (
-          <div className="space-y-2">
-            <div className="relative w-full h-64 sm:h-80 md:h-96 rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-800 shadow-2xs border border-slate-200/80 dark:border-slate-800">
-              <img
-                src={blogImages[0]}
-                onError={(e) => {
-                  e.currentTarget.onerror = null;
-                  e.currentTarget.src = LogoImg;
-                  e.currentTarget.className = "max-h-28 max-w-[70%] object-contain m-auto drop-shadow-2xs";
-                }}
-                alt={blog.title}
-                className="w-full h-full object-cover"
-              />
+          <div className="space-y-2.5">
+            <div
+              className={`grid gap-3 sm:gap-4 items-stretch ${
+                blogImages.length === 1
+                  ? "grid-cols-1 max-w-2xl mx-auto"
+                  : blogImages.length === 2
+                  ? "grid-cols-1 sm:grid-cols-2"
+                  : blogImages.length === 3
+                  ? "grid-cols-1 sm:grid-cols-3"
+                  : "grid-cols-1 sm:grid-cols-2 md:grid-cols-4"
+              }`}
+            >
+              {blogImages.map((img, idx) => (
+                <div
+                  key={idx}
+                  onClick={() => setActiveImageModal(img)}
+                  className={`group relative rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-800/90 border border-slate-200/90 dark:border-slate-800 shadow-2xs hover:shadow-md transition-all duration-300 cursor-pointer ${
+                    blogImages.length === 1
+                      ? "h-64 sm:h-80 md:h-96"
+                      : blogImages.length === 2
+                      ? "h-56 sm:h-64 md:h-72"
+                      : "h-48 sm:h-56 md:h-64"
+                  }`}
+                  title="Click to view full image"
+                >
+                  <img
+                    src={img}
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = LogoImg;
+                      e.currentTarget.className = "max-h-24 max-w-[65%] object-contain m-auto drop-shadow-2xs";
+                    }}
+                    alt={`${blog.title} - Image ${idx + 1}`}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-slate-950/0 group-hover:bg-slate-950/20 transition-colors flex items-center justify-center">
+                    <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900/80 backdrop-blur-xs text-white text-[11px] font-mono px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-md">
+                      <ZoomIn size={13} />
+                      <span>View Full</span>
+                    </span>
+                  </div>
+                  {blogImages.length > 1 && (
+                    <div className="absolute bottom-2.5 right-2.5 bg-slate-950/70 backdrop-blur-xs px-2 py-0.5 rounded-md text-[10px] font-mono text-white/90">
+                      {idx + 1} of {blogImages.length}
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
             <p className="text-center text-[10px] text-slate-400 dark:text-slate-500 font-mono">
               Al-Mukhtar Academic Publication • Authentic Knowledge &amp; Educational Research
             </p>
-          </div>
-        )}
-
-        {/* Additional Gallery if multiple images exist */}
-        {blogImages.length > 1 && (
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
-            {blogImages.slice(1).map((img, idx) => (
-              <div
-                key={idx}
-                className="aspect-[16/10] rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 flex items-center justify-center"
-              >
-                <img
-                  src={img}
-                  onError={(e) => {
-                    e.currentTarget.onerror = null;
-                    e.currentTarget.src = LogoImg;
-                    e.currentTarget.className = "max-h-16 max-w-[70%] object-contain m-auto drop-shadow-2xs";
-                  }}
-                  alt={`Attachment ${idx + 2}`}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-            ))}
           </div>
         )}
 
@@ -1326,6 +1342,32 @@ function BlogDetail() {
           )}
         </div>
       </div>
+
+      {/* Fullscreen Image Lightbox Modal */}
+      {activeImageModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-sm animate-in fade-in duration-200"
+          onClick={() => setActiveImageModal(null)}
+        >
+          <div
+            className="relative max-w-4xl max-h-[90vh] w-full flex flex-col items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setActiveImageModal(null)}
+              className="absolute -top-10 right-0 sm:right-2 text-white/80 hover:text-white p-2 rounded-full bg-slate-800/80 hover:bg-slate-700 transition-colors cursor-pointer"
+              title="Close image view"
+            >
+              <X size={20} />
+            </button>
+            <img
+              src={activeImageModal}
+              alt="Full view"
+              className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl border border-white/10"
+            />
+          </div>
+        </div>
+      )}
     </article>
   );
 }

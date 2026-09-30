@@ -182,7 +182,8 @@ export default function AdminNotifications() {
   const createMutation = useMutation({
     mutationFn: (payload) => api.post("/api/notifications", payload),
     onSuccess: () => {
-      invalidateNotifications();
+      queryClient.invalidateQueries({ queryKey: ["notifications"] });
+      queryClient.invalidateQueries({ queryKey: ["admin-notifications"] });
       setApiMsg({ success: true, text: "Notification published successfully." });
       resetForm();
       setTimeout(() => setApiMsg(null), 4000);
@@ -195,7 +196,8 @@ export default function AdminNotifications() {
   const updateMutation = useMutation({
     mutationFn: ({ id, payload }) => api.put(`/api/notifications/${id}`, payload),
     onSuccess: () => {
-      invalidateNotifications();
+      queryClient.invalidateQueries({ queryKey: ["notifications"] });
+      queryClient.invalidateQueries({ queryKey: ["admin-notifications"] });
       setApiMsg({ success: true, text: "Notification updated successfully." });
       resetForm();
       setTimeout(() => setApiMsg(null), 4000);
@@ -208,7 +210,8 @@ export default function AdminNotifications() {
   const toggleMutation = useMutation({
     mutationFn: (id) => api.patch(`/api/notifications/${id}/toggle`),
     onSuccess: (res) => {
-      invalidateNotifications();
+      queryClient.invalidateQueries({ queryKey: ["notifications"] });
+      queryClient.invalidateQueries({ queryKey: ["admin-notifications"] });
       toast.success(res.data?.message || "Status updated.");
     },
     onError: (err) => {
@@ -219,7 +222,8 @@ export default function AdminNotifications() {
   const deleteMutation = useMutation({
     mutationFn: (id) => api.delete(`/api/notifications/${id}`),
     onSuccess: () => {
-      invalidateNotifications();
+      queryClient.invalidateQueries({ queryKey: ["notifications"] });
+      queryClient.invalidateQueries({ queryKey: ["admin-notifications"] });
       toast.success("Notification deleted successfully.");
       setNotifToDelete(null);
     },

@@ -2,6 +2,7 @@ import LogoImport from "./Logo.jpeg";
 import bgImport from "./bg.webp";
 import greenDecorationFlowerImport from "./green decoration flower type.jpg";
 import heroImport from "./hero.png";
+import heroAcademicBgImport from "./hero_academic_bg.jpg";
 import image2Import from "./image2.jpg";
 import moon_lightImport from "./moon_light.jpg";
 import muftiImport from "./mufti.jpeg";
@@ -33,6 +34,8 @@ export const bg = getSrc(bgImport);
 export const greenDecorationFlower = getSrc(greenDecorationFlowerImport);
 export const GreenDecorationBg = greenDecorationFlower;
 export const hero = getSrc(heroImport);
+export const heroAcademicBg = getSrc(heroAcademicBgImport);
+export const HeroAcademicBg = heroAcademicBg;
 export const image2 = getSrc(image2Import);
 export const AboutImage = image2;
 export const CampusImage = image2;
@@ -62,6 +65,8 @@ export const assets = {
   greenDecorationFlower,
   GreenDecorationBg,
   hero,
+  heroAcademicBg,
+  HeroAcademicBg,
   image2,
   AboutImage,
   CampusImage,

@@ -15,8 +15,7 @@ export function useActiveNotifications() {
       const res = await api.get("/api/notifications/active");
       return res.data?.notifications || [];
     },
-    initialData: [],
-    staleTime: 60 * 1000,
+    staleTime: 30 * 1000,
   });
 }
 
@@ -27,8 +26,7 @@ export function useAllNotifications() {
       const res = await api.get("/api/notifications/all");
       return res.data?.notifications || [];
     },
-    initialData: [],
-    staleTime: 60 * 1000,
+    staleTime: 30 * 1000,
   });
 }
 
@@ -39,8 +37,7 @@ export function useAdminNotifications() {
       const res = await api.get("/api/notifications");
       return res.data?.notifications || [];
     },
-    initialData: [],
-    staleTime: 60 * 1000,
+    staleTime: 30 * 1000,
   });
 }
 

@@ -23,7 +23,7 @@ import BlogCard from "../components/BlogCard.jsx";
 import CourseCard from "../components/CourseCard.jsx";
 import StudentShowcase from "../components/StudentShowcase.jsx";
 import ApiErrorState from "../components/ApiErrorState.jsx";
-import { AboutImage, FounderImage, Logo, getImageUrl } from "../assets/assets.js";
+import { AboutImage, FounderImage, Logo, getImageUrl, HeroAcademicBg } from "../assets/assets.js";
 
 const faqs = [
   {
@@ -83,98 +83,111 @@ function Home() {
 
   return (
     <div className="bg-white dark:bg-[#070d18] font-sans text-slate-800 dark:text-slate-100 transition-colors duration-200">
-      {/* ── COMPACT 2-COLUMN HERO SECTION ── */}
-      <section className="bg-slate-50/70 dark:bg-[#081524] border-b border-slate-200/80 dark:border-slate-800/80 py-8 sm:py-10 transition-colors">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+      {/* ── PRESTIGIOUS HERO SECTION WITH ACADEMIC BACKGROUND ── */}
+      <section className="relative overflow-hidden bg-slate-950 border-b border-slate-800/80 py-10 sm:py-14 lg:py-16 transition-colors">
+        {/* Background Image with Deep Scholarly Overlay */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <img
+            src={HeroAcademicBg}
+            alt="Al-Mukhtar Academic Hall"
+            className="w-full h-full object-cover object-center opacity-30 sm:opacity-35 scale-105 transform duration-1000"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/85 to-slate-900/80" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(15,110,140,0.25),transparent_60%)]" />
+        </div>
+
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
             {/* Left Column — Text & CTAs */}
-            <div className="lg:col-span-7 space-y-3.5">
-              {/* Top Badge */}
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-teal-50 dark:bg-teal-950/60 border border-teal-200/70 dark:border-teal-800/60 text-[#0F6E8C] dark:text-teal-300 text-[10.5px] font-bold font-mono uppercase tracking-wider">
-                <Sparkles size={11} className="text-[#0F6E8C] dark:text-teal-400" />
-                Authentic Islamic Scholarship &amp; Education
+            <div className="lg:col-span-7 space-y-4 sm:space-y-5">
+              {/* Institutional Badge */}
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-teal-300 text-xs font-semibold font-mono tracking-wider shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
+                <span>Premier Islamic &amp; Academic Institute</span>
               </div>
 
-              {/* Main Headline */}
-              <h1 className="font-heading text-3xl sm:text-4xl lg:text-[44px] xl:text-[48px] font-extrabold text-slate-900 dark:text-white leading-[1.18] tracking-tight">
-                Where authentic knowledge meets{" "}
-                <span className="text-[#0F6E8C] dark:text-[#38BDF8]">character &amp; faith</span>
+              {/* Dignified Main Headline */}
+              <h1 className="font-heading text-3xl sm:text-4xl lg:text-[46px] xl:text-[50px] font-black text-white leading-[1.14] tracking-tight">
+                Where Authentic Knowledge Meets{" "}
+                <span className="text-teal-300 font-extrabold">
+                  Character &amp; Leadership
+                </span>
               </h1>
 
               {/* Description */}
-              <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed font-normal max-w-xl">
-                Al-Mukhtar Institute provides certified Islamic education integrated with modern academic learning — guided by qualified scholars and built on discipline and sincere care.
+              <p className="text-slate-200 text-sm sm:text-base leading-relaxed font-normal max-w-xl">
+                Al-Mukhtar Institute provides certified Islamic scholarship integrated with contemporary academic education — guided by qualified scholars and built on academic rigor, discipline, and sincere mentorship.
               </p>
 
               {/* CTA Buttons */}
-              <div className="flex flex-wrap items-center gap-2.5 pt-1">
+              <div className="flex flex-wrap items-center gap-3 pt-1">
                 <Link
                   to="/courses"
-                  className="inline-flex items-center gap-1.5 bg-[#0F6E8C] dark:bg-teal-600 text-white font-semibold px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg hover:bg-[#0B5C74] dark:hover:bg-teal-700 shadow-xs transition-colors text-xs sm:text-sm"
+                  className="inline-flex items-center gap-2 bg-[#0F6E8C] hover:bg-[#0B5C74] text-white font-bold px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl shadow-lg shadow-[#0F6E8C]/25 transition-all text-xs sm:text-sm hover:scale-[1.02] active:scale-[0.98]"
                 >
                   <span>Explore Courses</span>
-                  <ArrowRight size={14} />
+                  <ArrowRight size={15} />
                 </Link>
                 <Link
                   to="/apply"
-                  className="inline-flex items-center gap-1.5 bg-white dark:bg-[#0c1827] text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 font-semibold px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-colors text-xs sm:text-sm shadow-2xs"
+                  className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/25 hover:border-white/40 backdrop-blur-sm font-bold px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl transition-all text-xs sm:text-sm shadow-sm hover:scale-[1.02] active:scale-[0.98]"
                 >
                   <span>Apply for Admission</span>
                 </Link>
               </div>
 
-              {/* Quick Feature Checklist */}
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 pt-1 text-[11px] text-slate-500 dark:text-slate-400 font-mono">
+              {/* Feature Checklist */}
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-2 pt-2 text-xs text-slate-300 font-mono">
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle2 size={12} className="text-[#0F6E8C] dark:text-teal-400" />
+                  <CheckCircle2 size={13} className="text-teal-400" />
                   Certified Ijazah Faculty
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle2 size={12} className="text-[#0F6E8C] dark:text-teal-400" />
-                  Flexible Shifts
+                  <CheckCircle2 size={13} className="text-teal-400" />
+                  Flexible Shifts (On-Campus &amp; Online)
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle2 size={12} className="text-[#0F6E8C] dark:text-teal-400" />
-                  Recognized Certificates
+                  <CheckCircle2 size={13} className="text-teal-400" />
+                  Recognized Certification
                 </span>
               </div>
             </div>
 
-            {/* Right Column — Founder Image Showcase with Redirection to /teachers */}
+            {/* Right Column — Founder Showcase */}
             <div className="lg:col-span-5 flex justify-center lg:justify-end">
-              <div className="relative w-full max-w-[320px] sm:max-w-[360px]">
+              <div className="relative w-full max-w-[320px] sm:max-w-[350px]">
                 <Link
                   to="/teachers"
-                  className="group block relative rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0c1827] p-2 shadow-sm hover:shadow-xl transition-all duration-300 hover:border-[#0F6E8C]/50 dark:hover:border-teal-400/50"
+                  className="group block relative rounded-2xl overflow-hidden border border-white/15 bg-white/5 backdrop-blur-md p-2 shadow-2xl transition-all duration-300 hover:border-teal-400/50 hover:shadow-teal-900/30"
                   title="View Muhammad Anwar's Profile & Faculty"
                 >
-                  <div className="relative h-[320px] sm:h-[360px] lg:h-[390px] w-full rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800">
+                  <div className="relative h-[320px] sm:h-[360px] lg:h-[380px] w-full rounded-xl overflow-hidden bg-slate-900">
                     <img
                       src={FounderImage}
                       alt="Muhammad Anwar — CEO Al-Mukhtar"
                       className="w-full h-full object-cover object-bottom group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/15 to-transparent pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent pointer-events-none" />
 
                     {/* Top Floating Badge */}
-                    <div className="absolute top-2.5 right-2.5 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xs px-2.5 py-1 rounded-full border border-slate-200/80 dark:border-slate-700/80 shadow-2xs flex items-center gap-1.5 text-[9.5px] font-bold text-[#0F6E8C] dark:text-teal-300 font-mono">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    <div className="absolute top-2.5 right-2.5 bg-slate-950/80 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/15 shadow-sm flex items-center gap-1.5 text-[9.5px] font-bold text-teal-300 font-mono">
+                      <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" />
                       FOUNDING DIRECTOR
                     </div>
 
                     {/* Bottom Floating Institution / Scholar Badge */}
-                    <div className="absolute bottom-2.5 left-2.5 right-2.5 bg-slate-950/90 backdrop-blur-xs p-2.5 rounded-xl border border-white/10 shadow-md flex items-center justify-between gap-2 text-white">
+                    <div className="absolute bottom-2.5 left-2.5 right-2.5 bg-slate-950/90 backdrop-blur-md p-2.5 rounded-xl border border-white/15 shadow-md flex items-center justify-between gap-2 text-white">
                       <div className="min-w-0">
                         <p className="text-xs font-bold text-white truncate font-heading leading-tight flex items-center gap-1.5">
                           <span>Muhammad Anwar</span>
-                          <span className="text-[9.5px] font-mono text-emerald-400 font-normal">(CEO)</span>
+                          <span className="text-[9.5px] font-mono text-teal-400 font-normal">(CEO)</span>
                         </p>
                         <p className="text-[10px] text-slate-300 font-mono truncate">
                           FAST-NUCES Faculty • Jamia Tur Rasheed
                         </p>
                       </div>
-                      <div className="flex items-center gap-1 text-[10px] font-bold text-emerald-300 group-hover:text-emerald-200 shrink-0 font-mono bg-white/10 px-2.5 py-1 rounded-lg">
-                        <span>View About</span>
+                      <div className="flex items-center gap-1 text-[10px] font-bold text-teal-300 group-hover:text-teal-200 shrink-0 font-mono bg-white/10 px-2.5 py-1 rounded-lg">
+                        <span>View Profile</span>
                         <ArrowRight size={11} className="group-hover:translate-x-0.5 transition-transform" />
                       </div>
                     </div>
@@ -185,22 +198,22 @@ function Home() {
           </div>
 
           {/* Quick Metrics Strip */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-6 pt-5 border-t border-slate-200/80 dark:border-slate-800/80">
-            <div className="p-2.5 bg-white dark:bg-[#0c1827] rounded-xl border border-slate-200/70 dark:border-slate-800">
-              <p className="font-heading text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-0.5">500+</p>
-              <p className="text-[#0F6E8C] dark:text-teal-400 text-[10px] font-mono uppercase tracking-wider font-semibold">Students Taught</p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-8 pt-6 border-t border-white/15">
+            <div className="p-3 bg-white/5 backdrop-blur-md rounded-xl border border-white/10">
+              <p className="font-heading text-xl sm:text-2xl font-black text-white mb-0.5">500+</p>
+              <p className="text-teal-300 text-[10.5px] font-mono uppercase tracking-wider font-semibold">Students Taught</p>
             </div>
-            <div className="p-2.5 bg-white dark:bg-[#0c1827] rounded-xl border border-slate-200/70 dark:border-slate-800">
-              <p className="font-heading text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-0.5">12+</p>
-              <p className="text-[#0F6E8C] dark:text-teal-400 text-[10px] font-mono uppercase tracking-wider font-semibold">Scholars</p>
+            <div className="p-3 bg-white/5 backdrop-blur-md rounded-xl border border-white/10">
+              <p className="font-heading text-xl sm:text-2xl font-black text-white mb-0.5">12+</p>
+              <p className="text-teal-300 text-[10.5px] font-mono uppercase tracking-wider font-semibold">Scholars &amp; Faculty</p>
             </div>
-            <div className="p-2.5 bg-white dark:bg-[#0c1827] rounded-xl border border-slate-200/70 dark:border-slate-800">
-              <p className="font-heading text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-0.5">15+</p>
-              <p className="text-[#0F6E8C] dark:text-teal-400 text-[10px] font-mono uppercase tracking-wider font-semibold">Years Service</p>
+            <div className="p-3 bg-white/5 backdrop-blur-md rounded-xl border border-white/10">
+              <p className="font-heading text-xl sm:text-2xl font-black text-white mb-0.5">15+</p>
+              <p className="text-teal-300 text-[10.5px] font-mono uppercase tracking-wider font-semibold">Years of Service</p>
             </div>
-            <div className="p-2.5 bg-white dark:bg-[#0c1827] rounded-xl border border-slate-200/70 dark:border-slate-800">
-              <p className="font-heading text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-0.5">20+</p>
-              <p className="text-[#0F6E8C] dark:text-teal-400 text-[10px] font-mono uppercase tracking-wider font-semibold">Programs</p>
+            <div className="p-3 bg-white/5 backdrop-blur-md rounded-xl border border-white/10">
+              <p className="font-heading text-xl sm:text-2xl font-black text-white mb-0.5">20+</p>
+              <p className="text-teal-300 text-[10.5px] font-mono uppercase tracking-wider font-semibold">Certified Programs</p>
             </div>
           </div>
         </div>

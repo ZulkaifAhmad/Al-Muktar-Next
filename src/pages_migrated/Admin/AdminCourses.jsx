@@ -117,7 +117,6 @@ function CoursePost() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["adminCourses"] });
       queryClient.invalidateQueries({ queryKey: ["courses"] });
-      invalidateCourses();
       refetchCourses();
       toast.success("Course deleted successfully.");
       setCourseToDelete(null);

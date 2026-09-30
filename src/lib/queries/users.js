@@ -13,8 +13,7 @@ export function useAdminUsers() {
       const res = await api.get("/api/admin/users");
       return res.data?.users || [];
     },
-    initialData: [],
-    staleTime: 60 * 1000,
+    staleTime: 30 * 1000,
   });
 }
 

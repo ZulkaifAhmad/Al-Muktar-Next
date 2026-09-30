@@ -14,8 +14,7 @@ export function useApplications() {
       const res = await api.get("/api/applications");
       return res.data?.applications || [];
     },
-    initialData: [],
-    staleTime: 60 * 1000,
+    staleTime: 30 * 1000,
   });
 }
 

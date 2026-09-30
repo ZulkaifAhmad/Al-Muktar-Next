@@ -202,7 +202,6 @@ function AdminTeachers() {
     mutationFn: (id) => api.delete(`/api/teachers/${id}`),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["teachers"] });
-      if (invalidateTeachers) invalidateTeachers();
       if (refetchTeachers) refetchTeachers();
       toast.success("Teacher removed successfully.");
       setTeacherToDelete(null);

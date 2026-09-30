@@ -99,7 +99,8 @@ function AdminUsers() {
       setAdminEmail("");
       setAdminPassword("");
       setFormError("");
-      invalidateUsers();
+      queryClient.invalidateQueries({ queryKey: ["admin-users"] });
+      queryClient.invalidateQueries({ queryKey: ["user-count"] });
     },
     onError: (err) => {
       const msg = err.response?.data?.message || "Failed to create admin.";
@@ -135,7 +136,8 @@ function AdminUsers() {
     onSuccess: (res) => {
       toast.success(res.data?.message || "User deleted successfully");
       setUserToDelete(null);
-      invalidateUsers();
+      queryClient.invalidateQueries({ queryKey: ["admin-users"] });
+      queryClient.invalidateQueries({ queryKey: ["user-count"] });
     },
     onError: (err) => {
       toast.error(

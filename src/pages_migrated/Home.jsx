@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import BlogCard from "../components/BlogCard.jsx";
 import CourseCard from "../components/CourseCard.jsx";
+import TeacherCards from "../components/TeacherCards.jsx";
 import StudentShowcase from "../components/StudentShowcase.jsx";
 import ApiErrorState from "../components/ApiErrorState.jsx";
 import { AboutImage, FounderImage, Logo, getImageUrl, HeroAcademicBg } from "../assets/assets.js";
@@ -97,42 +98,39 @@ function Home() {
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-            {/* Left Column — Text & CTAs */}
-            <div className="lg:col-span-7 space-y-4 sm:space-y-5">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
+            {/* Left Column — Text & CTAs (Expanded Width) */}
+            <div className="lg:col-span-8 space-y-4 sm:space-y-4.5">
               {/* Institutional Badge */}
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-teal-300 text-xs font-semibold font-mono tracking-wider shadow-sm">
                 <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
                 <span>Premier Islamic &amp; Academic Institute</span>
               </div>
 
-              {/* Dignified Main Headline */}
-              <h1 className="font-heading text-3xl sm:text-4xl lg:text-[46px] xl:text-[50px] font-black text-white leading-[1.14] tracking-tight">
-                Where Authentic Knowledge Meets{" "}
-                <span className="text-teal-300 font-extrabold">
-                  Character &amp; Leadership
-                </span>
+              {/* Dignified Main Headline (Bolder, Punchy & High-Impact) */}
+              <h1 className="font-heading text-2xl sm:text-3xl lg:text-[38px] xl:text-[42px] font-black text-white leading-[1.16] tracking-tight">
+                Authentic Islamic Education &amp; Academic Excellence
               </h1>
 
               {/* Description */}
-              <p className="text-slate-200 text-sm sm:text-base leading-relaxed font-normal max-w-xl">
+              <p className="text-slate-200 text-xs sm:text-sm lg:text-[15px] leading-relaxed font-normal max-w-2xl">
                 Al-Mukhtar Institute provides certified Islamic scholarship integrated with contemporary academic education — guided by qualified scholars and built on academic rigor, discipline, and sincere mentorship.
               </p>
 
-              {/* CTA Buttons */}
-              <div className="flex flex-wrap items-center gap-3 pt-1">
+              {/* CTA Buttons — 2 buttons in a single row on mobile */}
+              <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2.5 sm:gap-3 pt-1">
                 <Link
                   to="/courses"
-                  className="inline-flex items-center gap-2 bg-[#0F6E8C] hover:bg-[#0B5C74] text-white font-bold px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl shadow-lg shadow-[#0F6E8C]/25 transition-all text-xs sm:text-sm hover:scale-[1.02] active:scale-[0.98]"
+                  className="inline-flex items-center justify-center gap-1.5 sm:gap-2 bg-[#0F6E8C] hover:bg-[#0B5C74] text-white font-bold px-3 sm:px-6 py-2.5 sm:py-3 rounded-xl shadow-lg shadow-[#0F6E8C]/25 transition-all text-xs sm:text-sm hover:scale-[1.02] active:scale-[0.98] text-center"
                 >
                   <span>Explore Courses</span>
-                  <ArrowRight size={15} />
+                  <ArrowRight size={14} className="hidden xs:inline shrink-0" />
                 </Link>
                 <Link
                   to="/apply"
-                  className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/25 hover:border-white/40 backdrop-blur-sm font-bold px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl transition-all text-xs sm:text-sm shadow-sm hover:scale-[1.02] active:scale-[0.98]"
+                  className="inline-flex items-center justify-center gap-1.5 sm:gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/25 hover:border-white/40 backdrop-blur-sm font-bold px-3 sm:px-6 py-2.5 sm:py-3 rounded-xl transition-all text-xs sm:text-sm shadow-sm hover:scale-[1.02] active:scale-[0.98] text-center"
                 >
-                  <span>Apply for Admission</span>
+                  <span>Apply Now</span>
                 </Link>
               </div>
 
@@ -153,15 +151,15 @@ function Home() {
               </div>
             </div>
 
-            {/* Right Column — Founder Showcase */}
-            <div className="lg:col-span-5 flex justify-center lg:justify-end">
-              <div className="relative w-full max-w-[320px] sm:max-w-[350px]">
+            {/* Right Column — Founder Showcase (Proportionate Width) */}
+            <div className="lg:col-span-4 flex justify-center lg:justify-end">
+              <div className="relative w-full max-w-[290px] sm:max-w-[310px]">
                 <Link
                   to="/teachers"
                   className="group block relative rounded-2xl overflow-hidden border border-white/15 bg-white/5 backdrop-blur-md p-2 shadow-2xl transition-all duration-300 hover:border-teal-400/50 hover:shadow-teal-900/30"
                   title="View Muhammad Anwar's Profile & Faculty"
                 >
-                  <div className="relative h-[320px] sm:h-[360px] lg:h-[380px] w-full rounded-xl overflow-hidden bg-slate-900">
+                  <div className="relative h-[300px] sm:h-[340px] lg:h-[350px] w-full rounded-xl overflow-hidden bg-slate-900">
                     <img
                       src={FounderImage}
                       alt="Muhammad Anwar — CEO Al-Mukhtar"
@@ -359,7 +357,7 @@ function Home() {
                 Academic Offerings
               </span>
               <h2 className="font-heading text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
-                Featured Programs
+                Featured Courses
               </h2>
             </div>
             <Link
@@ -415,113 +413,33 @@ function Home() {
         </section>
       )}
 
-      {/* ── FACULTY / TEACHERS ── */}
-      {activeTeachers.length > 0 && activeTeacher && (
-        <section className="border-t border-slate-200/80 bg-white dark:bg-[#070d18] py-12 sm:py-14">
+      {/* ── FACULTY / TEACHERS (STATIC GRID) ── */}
+      {activeTeachers.length > 0 && (
+        <section className="border-t border-slate-200/80 dark:border-slate-800 bg-white dark:bg-[#070d18] py-12 sm:py-16 transition-colors">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-slate-100 dark:border-slate-800 pb-3">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-slate-100 dark:border-slate-800 pb-4">
               <div>
                 <span className="text-[#0F6E8C] dark:text-teal-400 text-[10.5px] font-bold tracking-widest uppercase font-mono mb-1 block">
-                  Our Faculty
+                  Our Distinguished Faculty
                 </span>
-                <h2 className="font-heading text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
+                <h2 className="font-heading text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
                   Learn Under Experienced Scholars
                 </h2>
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed mt-1">
+                  Guided by qualified scholars holding verified chains of transmission (Ijazah) from recognized academic institutions.
+                </p>
               </div>
               <Link
-                to="/about"
-                className="inline-flex items-center gap-1 text-[#0F6E8C] dark:text-teal-400 text-xs sm:text-sm font-semibold hover:gap-1.5 transition-all shrink-0"
+                to="/teachers"
+                className="inline-flex items-center gap-1.5 text-[#0F6E8C] dark:text-teal-400 text-xs sm:text-sm font-semibold hover:underline transition-all shrink-0"
               >
-                <span>Explore Faculty &amp; Credentials</span>
-                <ArrowRight size={13} />
+                <span>View all faculty ({activeTeachers.length})</span>
+                <ArrowRight size={14} />
               </Link>
             </div>
 
-            {/* Wrapping Faculty Selector */}
-            <div className="flex flex-wrap items-center gap-x-4 sm:gap-x-6 gap-y-2 pb-2.5 border-b border-slate-100 dark:border-slate-800">
-              {activeTeachers.map((t, i) => {
-                const tId = t._id || t.id || `teacher-${i}`;
-                const isSelected = tId === (activeTeacher._id || activeTeacher.id);
-                return (
-                  <button
-                    key={`${tId}-${i}`}
-                    type="button"
-                    onClick={() => setSelectedTeacherId(tId)}
-                    className={`flex items-center gap-2 pb-1 transition-all cursor-pointer whitespace-nowrap relative ${
-                      isSelected
-                        ? "text-slate-900 dark:text-white font-bold"
-                        : "text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 font-medium"
-                    }`}
-                  >
-                    <img
-                      src={getImageUrl(t.image, FounderImage)}
-                      onError={(e) => {
-                        e.currentTarget.onerror = null;
-                        e.currentTarget.src = FounderImage;
-                      }}
-                      alt={t.name}
-                      className={`w-6 h-6 rounded-full object-cover object-top transition-all ${
-                        isSelected ? "ring-2 ring-[#0F6E8C]" : "opacity-70 hover:opacity-100"
-                      }`}
-                    />
-                    <span className="text-xs sm:text-sm">{t.name}</span>
-                    {isSelected && (
-                      <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-[#0F6E8C] rounded-full" />
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Scholar Profile View */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-7 items-center pt-1">
-              <div className="lg:col-span-7 flex flex-col sm:flex-row items-start sm:items-center gap-3.5 sm:gap-4">
-                <img
-                  src={getImageUrl(activeTeacher.image, FounderImage)}
-                  onError={(e) => {
-                    e.currentTarget.onerror = null;
-                    e.currentTarget.src = FounderImage;
-                  }}
-                  alt={activeTeacher.name}
-                  className="w-20 h-20 sm:w-24 sm:h-24 rounded-xl object-cover object-top shadow-2xs shrink-0"
-                />
-                <div className="space-y-0.5 text-left min-w-0">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="text-[9.5px] font-bold text-[#0F6E8C] dark:text-teal-400 font-mono uppercase tracking-wider">
-                      {activeTeacher.department}
-                    </span>
-                    <span className="text-slate-300 dark:text-slate-600">•</span>
-                    <span className="text-[10.5px] text-slate-400 font-mono">
-                      {activeTeacher.experienceYears || "Certified"} Experience
-                    </span>
-                  </div>
-                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white font-heading tracking-tight truncate">
-                    {activeTeacher.name}
-                  </h3>
-                  <p className="text-xs font-semibold text-slate-600 dark:text-slate-300">
-                    {activeTeacher.role}
-                  </p>
-                  {activeTeacher.studentsMentored && (
-                    <div className="flex items-center gap-1.5 pt-0.5 text-[10.5px] text-slate-500 dark:text-slate-400 font-mono">
-                      <span className="text-slate-400">Mentored:</span>
-                      <span className="font-bold text-slate-700 dark:text-slate-200">{activeTeacher.studentsMentored}</span>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {activeTeacher.quote && (
-                <div className="lg:col-span-5 border-l-2 border-[#0F6E8C] pl-3.5 space-y-1 text-left">
-                  <div className="flex items-center gap-1 text-[#0F6E8C]/70 dark:text-teal-400/70 text-[9.5px] font-bold font-mono uppercase tracking-wider">
-                    <Quote size={11} />
-                    <span>Scholarly Philosophy</span>
-                  </div>
-                  <blockquote className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-serif italic leading-relaxed">
-                    "{activeTeacher.quote}"
-                  </blockquote>
-                </div>
-              )}
-            </div>
+            {/* Static Grid for Laptop & Mobile */}
+            <TeacherCards />
           </div>
         </section>
       )}
@@ -535,7 +453,7 @@ function Home() {
                 News &amp; Publications
               </span>
               <h2 className="font-heading text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
-                Latest from the Institute
+                Latest Blogs from the Institute
               </h2>
             </div>
             <Link
@@ -569,9 +487,9 @@ function Home() {
 
           {!blogsLoading && !isBlogsError && recentBlogs.length > 0 && (
             <div className="space-y-8">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 items-start">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8 items-start">
                 {recentBlogs.map((blog) => (
-                  <BlogCard key={blog._id || blog.slug} blog={blog} viewMode="grid" />
+                  <BlogCard key={blog._id || blog.slug} blog={blog} />
                 ))}
               </div>
 
@@ -591,7 +509,7 @@ function Home() {
         </section>
       )}
 
-      {/* ── STUDENTS & ALUMNI SUCCESS SHOWCASE (AFTER BLOG SECTION) ── */}
+      {/* ── STUDENTS & ALUMNI SUCCESS SHOWCASE (STATIC GRID) ── */}
       <StudentShowcase limit={6} showHeaderAction={true} />
 
       {/* ── FAQS ── */}
@@ -653,7 +571,7 @@ function Home() {
             <p className="text-slate-600 dark:text-slate-300 mb-4 max-w-md mx-auto text-xs leading-relaxed font-normal">
               Join students learning under qualified scholars in a structured, supportive academic environment.
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-2.5">
+            <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center justify-center gap-2.5 sm:gap-3 max-w-sm sm:max-w-none mx-auto">
               <Link
                 to="/apply"
                 className="inline-flex items-center gap-1.5 bg-[#0F6E8C] dark:bg-teal-600 text-white font-semibold px-5 py-2.5 rounded-lg hover:bg-[#0B5C74] dark:hover:bg-teal-700 shadow-2xs transition-colors text-xs"

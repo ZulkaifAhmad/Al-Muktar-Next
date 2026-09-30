@@ -443,20 +443,20 @@ function CourseDetails() {
                 </div>
               </div>
 
-              <div className="pt-2 space-y-2.5">
+              <div className="pt-2 grid grid-cols-2 gap-2 sm:space-y-2.5 sm:block">
                 <Link
                   to={`/apply?course=${encodeURIComponent(course.title)}`}
-                  className="w-full inline-flex items-center justify-center gap-2 bg-[#0F6E8C] hover:bg-[#0B5C74] text-white font-bold py-3 rounded-xl transition-all text-xs sm:text-sm shadow-2xs"
+                  className="w-full inline-flex items-center justify-center gap-1.5 bg-[#0F6E8C] hover:bg-[#0B5C74] text-white font-bold py-2.5 sm:py-3 px-2 rounded-xl transition-all text-xs sm:text-sm shadow-2xs text-center"
                 >
-                  <span>Apply for This Course</span>
-                  <ArrowRight size={15} />
+                  <span>Apply Now</span>
+                  <ArrowRight size={13} className="hidden xs:inline" />
                 </Link>
 
                 <Link
                   to="/contact"
-                  className="w-full inline-flex items-center justify-center gap-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold py-2.5 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-all text-xs"
+                  className="w-full inline-flex items-center justify-center gap-1.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold py-2.5 px-2 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-all text-xs text-center sm:mt-2.5"
                 >
-                  Have Questions? Contact Us
+                  <span>Contact Us</span>
                 </Link>
               </div>
             </div>

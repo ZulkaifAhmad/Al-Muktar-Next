@@ -301,7 +301,7 @@ function AdminBlog() {
               <input
                 type="text"
                 placeholder="e.g. Understanding the Rules of Tajweed in Quranic Recitation..."
-                className={`w-full border rounded-xl px-4 py-2.5 text-sm sm:text-base font-semibold text-slate-900 dark:text-white focus:outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 bg-slate-50/50 dark:bg-slate-800/80 hover:bg-white dark:hover:bg-slate-800 focus:bg-white dark:focus:bg-slate-800 transition-all ${
+                className={`w-full border rounded-xl px-4 py-3 sm:py-2.5 min-h-[48px] sm:min-h-[44px] text-sm sm:text-base font-semibold text-slate-900 dark:text-white focus:outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 bg-slate-50/50 dark:bg-slate-800/80 hover:bg-white dark:hover:bg-slate-800 focus:bg-white dark:focus:bg-slate-800 transition-all ${
                   errors.title ? "border-rose-400" : "border-slate-200 dark:border-slate-700"
                 }`}
                 {...register("title", { required: "Title is required" })}
@@ -331,12 +331,12 @@ function AdminBlog() {
                   <input
                     type="text"
                     placeholder="Enter custom category name..."
-                    className="w-full border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-sm bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:bg-white dark:focus:bg-slate-800 focus:outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400"
+                    className="w-full border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 sm:py-2.5 min-h-[46px] sm:min-h-[42px] text-sm bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:bg-white dark:focus:bg-slate-800 focus:outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15"
                     {...register("subject", { required: "Subject is required" })}
                   />
                 ) : (
                   <select
-                    className="w-full border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-sm bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:bg-white dark:focus:bg-slate-800 focus:outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 cursor-pointer"
+                    className="w-full border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 sm:py-2.5 min-h-[46px] sm:min-h-[42px] text-sm bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:bg-white dark:focus:bg-slate-800 focus:outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 cursor-pointer"
                     {...register("subject", { required: "Subject is required" })}
                   >
                     {PRESET_CATEGORIES.map((cat) => (
@@ -357,7 +357,7 @@ function AdminBlog() {
                   Publication Status
                 </label>
                 <select
-                  className="w-full border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-sm bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:bg-white dark:focus:bg-slate-800 focus:outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 cursor-pointer"
+                  className="w-full border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 sm:py-2.5 min-h-[46px] sm:min-h-[42px] text-sm bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:bg-white dark:focus:bg-slate-800 focus:outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 cursor-pointer"
                   {...register("status")}
                 >
                   <option value="published">Published (Public)</option>
@@ -366,15 +366,17 @@ function AdminBlog() {
               </div>
             </div>
 
-            {/* Short Description / Lead Excerpt */}
+            {/* Short Description / Lead Excerpt (Very Big Height) */}
             <div>
-              <label className="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider font-mono block mb-1.5">
-                Lead Excerpt / Summary <span className="text-slate-400 dark:text-slate-500 font-normal font-sans">(Displayed at top of article & in cards)</span>
-              </label>
+              <div className="flex items-center justify-between mb-1.5">
+                <label className="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider font-mono block">
+                  Lead Excerpt &amp; Article Summary <span className="text-slate-400 dark:text-slate-500 font-normal font-sans">(Displayed at top of article & in cards)</span>
+                </label>
+              </div>
               <textarea
-                rows={2}
-                placeholder="Brief 1-2 sentence overview summarizing key takeaways of this research or educational article..."
-                className="w-full border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-xs sm:text-sm text-slate-800 dark:text-slate-100 bg-slate-50/50 dark:bg-slate-800/80 hover:bg-white dark:hover:bg-slate-800 focus:bg-white dark:focus:bg-slate-800 focus:outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 transition-all resize-none"
+                rows={4}
+                placeholder="Brief multi-sentence overview summarizing key takeaways, target audience, and executive thesis of this research or educational article..."
+                className="w-full border border-slate-200 dark:border-slate-700 rounded-xl p-3.5 sm:p-4 text-xs sm:text-sm min-h-[120px] sm:min-h-[140px] text-slate-800 dark:text-slate-100 bg-slate-50/50 dark:bg-slate-800/80 hover:bg-white dark:hover:bg-slate-800 focus:bg-white dark:focus:bg-slate-800 focus:outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 leading-relaxed transition-all resize-y"
                 {...register("description")}
               />
             </div>
@@ -433,7 +435,7 @@ function AdminBlog() {
               </div>
             </div>
 
-            {/* Rich Text Editor Content */}
+            {/* Rich Text Editor Content (Very Big Height) */}
             <div>
               <div className="flex items-center justify-between mb-2">
                 <label className="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider font-mono block">
@@ -459,7 +461,7 @@ function AdminBlog() {
                     value={field.value}
                     onChange={field.onChange}
                     modules={quillModules}
-                    className="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden [&>.ql-container]:min-h-[320px] [&>.ql-container]:rounded-b-2xl [&>.ql-toolbar]:rounded-t-2xl [&>.ql-container]:text-base border border-slate-200 dark:border-slate-700"
+                    className="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden [&>.ql-container]:min-h-[380px] sm:[&>.ql-container]:min-h-[440px] [&>.ql-container]:rounded-b-2xl [&>.ql-toolbar]:rounded-t-2xl [&>.ql-container]:text-base border border-slate-200 dark:border-slate-700"
                     placeholder="Write detailed Islamic research insights, Quranic explanations, or announcements..."
                   />
                 )}

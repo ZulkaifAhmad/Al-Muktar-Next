@@ -920,19 +920,19 @@ function BlogDetail() {
                     Sign in with your account to share your academic reflections or reply to others.
                   </p>
                 </div>
-                <div className="flex flex-wrap items-center justify-center gap-3 pt-1">
+                <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap items-center justify-center sm:gap-3 pt-1 max-w-sm sm:max-w-none mx-auto">
                   <Link
                     to={`/login?redirect=${encodeURIComponent(location.pathname)}`}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0F6E8C] hover:bg-[#0B5C74] text-white font-bold text-xs shadow-2xs hover:scale-105 transition-all"
+                    className="inline-flex items-center justify-center gap-1.5 px-3 sm:px-5 py-2.5 rounded-xl bg-[#0F6E8C] hover:bg-[#0B5C74] text-white font-bold text-xs shadow-2xs text-center"
                   >
                     <LogIn size={14} />
-                    <span>Sign In to Comment</span>
+                    <span>Sign In</span>
                   </Link>
                   <Link
                     to={`/signup?redirect=${encodeURIComponent(location.pathname)}`}
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-[#0F6E8C] text-slate-700 dark:text-slate-200 hover:text-[#0F6E8C] dark:hover:text-[#38BDF8] text-xs font-bold transition-all bg-white dark:bg-slate-800 shadow-3xs"
+                    className="inline-flex items-center justify-center gap-1.5 px-3 sm:px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-[#0F6E8C] text-slate-700 dark:text-slate-200 hover:text-[#0F6E8C] dark:hover:text-[#38BDF8] text-xs font-bold transition-all bg-white dark:bg-slate-800 shadow-3xs text-center"
                   >
-                    <span>Create Account</span>
+                    <span>Sign Up</span>
                   </Link>
                 </div>
               </div>

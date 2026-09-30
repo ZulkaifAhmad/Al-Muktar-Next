@@ -249,20 +249,20 @@ function AdminUsers() {
 
       {/* Filters */}
       <div className="flex flex-col sm:flex-row gap-2.5">
-        <div className="flex items-center gap-2 bg-white dark:bg-[#0c1827] border border-slate-200 dark:border-slate-800 rounded-lg px-2.5 py-1.5 flex-1 shadow-2xs focus-within:border-[#0F6E8C] dark:focus-within:border-teal-400 focus-within:ring-1 focus-within:ring-[#0F6E8C]">
-          <Search size={13} className="text-slate-400 dark:text-slate-500 shrink-0" />
+        <div className="flex items-center gap-2 bg-white dark:bg-[#0c1827] border border-slate-200 dark:border-slate-800 rounded-xl px-3.5 py-2.5 sm:py-2 min-h-[46px] sm:min-h-[38px] flex-1 shadow-2xs focus-within:border-[#0F6E8C] dark:focus-within:border-teal-400 focus-within:ring-2 focus-within:ring-[#0F6E8C]/15 transition-all">
+          <Search size={14} className="text-slate-400 dark:text-slate-500 shrink-0" />
           <input
             type="text"
             placeholder="Search by username or email..."
             value={search}
             onChange={handleSearchChange}
-            className="text-xs outline-none w-full placeholder:text-slate-400 dark:placeholder:text-slate-500 text-slate-800 dark:text-slate-100 bg-transparent"
+            className="text-xs sm:text-sm outline-none w-full placeholder:text-slate-400 dark:placeholder:text-slate-500 text-slate-800 dark:text-slate-100 bg-transparent"
           />
         </div>
         <select
           value={roleFilter}
           onChange={handleRoleChange}
-          className="border border-slate-200 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-xs bg-white dark:bg-slate-800 focus:outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 text-slate-700 dark:text-slate-200 shadow-2xs sm:w-44 cursor-pointer"
+          className="border border-slate-200 dark:border-slate-700 rounded-xl px-3.5 py-2.5 sm:py-2 min-h-[46px] sm:min-h-[38px] text-xs sm:text-sm bg-white dark:bg-slate-800 focus:outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 text-slate-700 dark:text-slate-200 shadow-2xs sm:w-48 cursor-pointer transition-all"
         >
           <option value="all">All Roles</option>
           <option value="superadmin">Super Administrators</option>
@@ -597,7 +597,7 @@ function AdminUsers() {
                   placeholder="e.g. admin_usman"
                   value={adminUsername}
                   onChange={(e) => setAdminUsername(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-xs sm:text-sm text-slate-900 dark:text-slate-100 bg-white dark:bg-slate-800/90 placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 transition-all"
+                  className="w-full px-4 py-3 sm:py-2.5 min-h-[46px] sm:min-h-[42px] rounded-xl border border-slate-200 dark:border-slate-700 text-xs sm:text-sm text-slate-900 dark:text-slate-100 bg-white dark:bg-slate-800/90 placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 transition-all"
                   required
                 />
               </div>
@@ -611,7 +611,7 @@ function AdminUsers() {
                   placeholder="e.g. usman@almukhtar.org"
                   value={adminEmail}
                   onChange={(e) => setAdminEmail(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-xs sm:text-sm text-slate-900 dark:text-slate-100 bg-white dark:bg-slate-800/90 placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 transition-all"
+                  className="w-full px-4 py-3 sm:py-2.5 min-h-[46px] sm:min-h-[42px] rounded-xl border border-slate-200 dark:border-slate-700 text-xs sm:text-sm text-slate-900 dark:text-slate-100 bg-white dark:bg-slate-800/90 placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 transition-all"
                   required
                 />
               </div>
@@ -636,7 +636,7 @@ function AdminUsers() {
                     placeholder="At least 6 characters"
                     value={adminPassword}
                     onChange={(e) => setAdminPassword(e.target.value)}
-                    className="w-full pl-3.5 pr-20 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-xs sm:text-sm text-slate-900 dark:text-slate-100 bg-white dark:bg-slate-800/90 font-mono placeholder:font-sans placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 transition-all"
+                    className="w-full pl-4 pr-20 py-3 sm:py-2.5 min-h-[46px] sm:min-h-[42px] rounded-xl border border-slate-200 dark:border-slate-700 text-xs sm:text-sm text-slate-900 dark:text-slate-100 bg-white dark:bg-slate-800/90 font-mono placeholder:font-sans placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 transition-all"
                     required
                   />
                   <div className="absolute right-2.5 top-1/2 -translate-y-1/2 flex items-center gap-1">

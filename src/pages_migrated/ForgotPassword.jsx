@@ -63,9 +63,8 @@ function StepEmail({ onNext }) {
           <input
             type="email"
             placeholder="you@example.com"
-            className={`w-full px-4 py-2.5 rounded-xl border text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-all focus:ring-2 focus:ring-[#0F6E8C]/20 focus:border-[#0F6E8C] ${
-              errors.email ? "border-rose-400 bg-rose-50/30" : "border-slate-200 bg-white"
-            }`}
+            className={`w-full px-4 py-2.5 rounded-xl border text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-all focus:ring-2 focus:ring-[#0F6E8C]/20 focus:border-[#0F6E8C] ${errors.email ? "border-rose-400 bg-rose-50/30" : "border-slate-200 bg-white"
+              }`}
             {...register("email", {
               required: "Email is required",
               pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: "Enter a valid email" },
@@ -145,9 +144,8 @@ function StepOtp({ email, onNext }) {
             type="text"
             maxLength={6}
             placeholder="e.g. 482910"
-            className={`w-full px-4 py-2.5 rounded-xl border text-center text-2xl font-bold tracking-[0.4em] text-slate-900 outline-none transition-all focus:ring-2 focus:ring-[#0F6E8C]/20 focus:border-[#0F6E8C] bg-white ${
-              errors.otp ? "border-rose-400 bg-rose-50/30" : "border-slate-200"
-            }`}
+            className={`w-full px-4 py-2.5 rounded-xl border text-center text-2xl font-bold tracking-[0.4em] text-slate-900 outline-none transition-all focus:ring-2 focus:ring-[#0F6E8C]/20 focus:border-[#0F6E8C] bg-white ${errors.otp ? "border-rose-400 bg-rose-50/30" : "border-slate-200"
+              }`}
             {...register("otp", {
               required: "OTP is required",
               pattern: { value: /^\d{6}$/, message: "Enter a valid 6-digit OTP" },
@@ -225,9 +223,8 @@ function StepNewPassword({ resetToken, onDone }) {
             <input
               type={showPwd ? "text" : "password"}
               placeholder="Enter new password"
-              className={`w-full px-4 py-2.5 pr-11 rounded-xl border text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-all focus:ring-2 focus:ring-[#0F6E8C]/20 focus:border-[#0F6E8C] bg-white ${
-                errors.newPassword ? "border-rose-400 bg-rose-50/30" : "border-slate-200"
-              }`}
+              className={`w-full px-4 py-2.5 pr-11 rounded-xl border text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-all focus:ring-2 focus:ring-[#0F6E8C]/20 focus:border-[#0F6E8C] bg-white ${errors.newPassword ? "border-rose-400 bg-rose-50/30" : "border-slate-200"
+                }`}
               {...register("newPassword", {
                 required: "Password is required",
                 minLength: { value: 6, message: "At least 6 characters" },
@@ -251,9 +248,8 @@ function StepNewPassword({ resetToken, onDone }) {
             <input
               type={showConfirm ? "text" : "password"}
               placeholder="Confirm new password"
-              className={`w-full px-4 py-2.5 pr-11 rounded-xl border text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-all focus:ring-2 focus:ring-[#0F6E8C]/20 focus:border-[#0F6E8C] bg-white ${
-                errors.confirmPassword ? "border-rose-400 bg-rose-50/30" : "border-slate-200"
-              }`}
+              className={`w-full px-4 py-2.5 pr-11 rounded-xl border text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-all focus:ring-2 focus:ring-[#0F6E8C]/20 focus:border-[#0F6E8C] bg-white ${errors.confirmPassword ? "border-rose-400 bg-rose-50/30" : "border-slate-200"
+                }`}
               {...register("confirmPassword", {
                 required: "Please confirm your password",
                 validate: (v) => v === watch("newPassword") || "Passwords do not match",
@@ -357,20 +353,18 @@ function ForgotPassword() {
             {["Enter your email", "Verify OTP", "Set new password"].map((label, i) => (
               <div key={i} className="flex items-center gap-3">
                 <div
-                  className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold font-mono shrink-0 transition-all ${
-                    i < stepIndex
+                  className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold font-mono shrink-0 transition-all ${i < stepIndex
                       ? "bg-[#8FB3AA] text-[#0A2540]"
                       : i === stepIndex
-                      ? "bg-white text-[#0A2540]"
-                      : "bg-white/10 border border-white/20 text-white/50"
-                  }`}
+                        ? "bg-white text-[#0A2540]"
+                        : "bg-white/10 border border-white/20 text-white/50"
+                    }`}
                 >
                   {i < stepIndex ? <CheckCircle2 size={13} /> : i + 1}
                 </div>
                 <span
-                  className={`text-xs ${
-                    i <= stepIndex ? "text-white font-semibold" : "text-white/40 font-normal"
-                  }`}
+                  className={`text-xs ${i <= stepIndex ? "text-white font-semibold" : "text-white/40 font-normal"
+                    }`}
                 >
                   {label}
                 </span>

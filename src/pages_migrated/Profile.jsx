@@ -26,6 +26,13 @@ import {
   KeyRound,
   ArrowRight,
   LogOut,
+  Camera,
+  Edit2,
+  ChevronRight,
+  Info,
+  Sparkles,
+  X,
+  FileText,
 } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import { Link, useNavigate } from "@/lib/navigation-adapter";
@@ -36,7 +43,10 @@ function Profile() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const [activeTab, setActiveTab] = useState("applications"); // 'applications' | 'edit-profile' | 'security'
+  const [editProfileModalOpen, setEditProfileModalOpen] = useState(false);
+  const [passwordModalOpen, setPasswordModalOpen] = useState(false);
+  const [selectedApplication, setSelectedApplication] = useState(null);
+
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -62,6 +72,7 @@ function Profile() {
   const {
     register: registerProfile,
     handleSubmit: handleSubmitProfile,
+    reset: resetProfileForm,
     formState: { errors: profileErrors },
   } = useForm({
     defaultValues: {
@@ -69,6 +80,16 @@ function Profile() {
       email: user?.email || "",
     },
   });
+
+  // Reset default values when user loads or modal opens
+  React.useEffect(() => {
+    if (user) {
+      resetProfileForm({
+        username: user.username || "",
+        email: user.email || "",
+      });
+    }
+  }, [user, resetProfileForm]);
 
   // 3. React Hook Form for Password Change
   const {
@@ -87,14 +108,14 @@ function Profile() {
 
   // Mutation for updating profile info
   const updateProfileMutation = useMutation({
-    mutationFn: (data) =>
-      api.put("/api/auth/update-profile", data),
+    mutationFn: (data) => api.put("/api/auth/update-profile", data),
     onSuccess: (res) => {
       toast.success(res.data.message || "Profile updated successfully!");
       if (res.data.user) {
         login(res.data.user);
       }
       queryClient.invalidateQueries({ queryKey: ["authUser"] });
+      setEditProfileModalOpen(false);
     },
     onError: (err) => {
       toast.error(
@@ -106,16 +127,14 @@ function Profile() {
   // Mutation for updating password
   const changePasswordMutation = useMutation({
     mutationFn: (data) =>
-      api.put(
-        "/api/auth/change-password",
-        {
-          currentPassword: data.currentPassword,
-          newPassword: data.newPassword,
-        },
-      ),
+      api.put("/api/auth/change-password", {
+        currentPassword: data.currentPassword,
+        newPassword: data.newPassword,
+      }),
     onSuccess: (res) => {
       toast.success(res.data.message || "Password updated successfully!");
       resetPasswordForm();
+      setPasswordModalOpen(false);
     },
     onError: (err) => {
       toast.error(
@@ -138,588 +157,666 @@ function Profile() {
   };
 
   const applications = applicationsData || [];
-  const initials = user?.username ? user.username.slice(0, 2).toUpperCase() : "U";
+  const initials = user?.username ? user.username.slice(0, 2).toUpperCase() : "AM";
 
   return (
-    <div className="min-h-screen bg-slate-50/50 dark:bg-[#070d18] text-slate-800 dark:text-slate-100 font-sans pb-16 transition-colors duration-200">
-      {/* Top Banner & Header */}
-      <section className="relative bg-gradient-to-br from-[#0A2540] via-[#081E2E] to-[#0F6E8C] overflow-hidden text-white pt-8 sm:pt-12 pb-20 sm:pb-24 border-b border-slate-800/40">
-        <div className="absolute -top-24 -right-24 w-72 sm:w-96 h-72 sm:h-96 bg-[#8FB3AA]/15 rounded-full blur-[110px] pointer-events-none" />
-        <div className="absolute -bottom-20 -left-20 w-60 sm:w-80 h-60 sm:h-80 bg-[#0F6E8C]/20 rounded-full blur-[100px] pointer-events-none" />
-
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-5 sm:gap-6">
-            
-            {/* Left side: Avatar + User Info */}
-            <div className="flex flex-col sm:flex-row items-center sm:items-start md:items-center gap-4 sm:gap-6">
-              
-              {/* Profile Avatar */}
-              <div className="relative shrink-0">
-                <div className="w-20 h-20 sm:w-22 sm:h-22 rounded-2xl bg-gradient-to-br from-[#0F6E8C] to-[#0A2540] text-white flex items-center justify-center font-heading font-black text-2xl sm:text-3xl shadow-lg border border-white/20 ring-2 ring-[#8FB3AA]/50 ring-offset-4 ring-offset-[#0A2540] relative overflow-hidden">
-                  <span className="relative z-10 text-white tracking-widest">{initials}</span>
-                </div>
+    <div className="min-h-screen bg-[#F0F2F5] dark:bg-[#070d18] text-slate-800 dark:text-slate-100 font-sans pb-16 transition-colors duration-200">
+      
+      {/* ── TOP HEADER / BANNER (Fully Responsive for Mobile & Laptop) ── */}
+      <section className="bg-white dark:bg-[#0c1827] border-b border-slate-200/80 dark:border-slate-800 pt-5 sm:pt-6 pb-4 sm:pb-5 px-3.5 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex items-center gap-3.5 sm:gap-4 min-w-0">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 lg:w-18 lg:h-18 rounded-2xl bg-gradient-to-tr from-[#0F6E8C] to-[#0A2540] text-white flex items-center justify-center font-heading font-black text-xl sm:text-2xl lg:text-3xl shadow-md border-2 border-white dark:border-slate-800 ring-2 ring-[#0F6E8C]/30 shrink-0 select-none">
+              <span>{initials}</span>
+            </div>
+            <div className="min-w-0 flex-1">
+              <div className="flex items-center gap-1.5 flex-wrap">
+                <h1 className="text-base sm:text-lg lg:text-xl font-bold text-slate-900 dark:text-white font-heading truncate">
+                  {user?.username || "Student"}
+                </h1>
                 {user?.isVerified && (
-                  <div className="absolute -bottom-1 -right-1 bg-emerald-500 text-white rounded-full p-1 border-2 border-[#0A2540] shadow-md" title="Verified Account">
-                    <ShieldCheck size={14} className="text-white" />
-                  </div>
+                  <CheckCircle2 size={16} className="text-[#0F6E8C] dark:text-teal-400 shrink-0" />
                 )}
               </div>
-
-              {/* User Meta Information */}
-              <div className="text-center sm:text-left w-full sm:w-auto">
-                <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-3 mb-2">
-                  <h1 className="font-heading text-xl sm:text-2xl font-black text-white tracking-tight">
-                    {user?.username}
-                  </h1>
-
-                  <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-white/10 text-[#8FB3AA] border border-white/15 shadow-2xs font-mono">
-                    {user?.role || "Student"}
-                  </span>
-
-                  {user?.isVerified && (
-                    <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-300 bg-emerald-500/15 border border-emerald-500/30 px-2.5 py-0.5 rounded-full font-mono">
-                      <CheckCircle2 size={12} className="text-emerald-400" />
-                      Verified
-                    </span>
-                  )}
-                </div>
-
-                {/* Email Address */}
-                <div className="inline-flex items-center gap-2 text-xs sm:text-sm text-slate-300 bg-white/5 border border-white/10 px-3 py-1 rounded-xl mb-3 max-w-full truncate">
-                  <Mail size={13} className="text-[#8FB3AA] shrink-0" />
-                  <span className="font-mono text-slate-200 truncate">{user?.email}</span>
-                </div>
-
-                {/* Micro Stats Bar */}
-                <div className="grid grid-cols-2 sm:flex sm:items-center gap-2 sm:gap-3 max-w-sm sm:max-w-none mx-auto sm:mx-0">
-                  <div className="flex items-center justify-center sm:justify-start gap-2 bg-white/10 backdrop-blur-xs px-3 py-1.5 rounded-xl border border-white/15 text-center sm:text-left">
-                    <GraduationCap size={14} className="text-[#8FB3AA] shrink-0" />
-                    <span className="text-[11px] sm:text-xs font-medium text-slate-200">
-                      Applied: <strong className="text-white font-bold">{applications.length}</strong>
-                    </span>
-                  </div>
-
-                  <div className="flex items-center justify-center sm:justify-start gap-2 bg-white/10 backdrop-blur-xs px-3 py-1.5 rounded-xl border border-white/15 text-center sm:text-left">
-                    <Calendar size={14} className="text-[#8FB3AA] shrink-0" />
-                    <span className="text-[11px] sm:text-xs font-medium text-slate-200">
-                      Status: <strong className="text-emerald-400 font-bold">{user?.isVerified ? "Active" : "Pending"}</strong>
-                    </span>
-                  </div>
-                </div>
+              <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-mono truncate">
+                {user?.email}
+              </p>
+              <div className="pt-1 flex items-center gap-1.5 flex-wrap">
+                <span className="px-2 py-0.5 rounded-full bg-[#0F6E8C]/10 text-[#0F6E8C] dark:text-teal-300 text-[9.5px] sm:text-[10px] font-bold font-mono uppercase tracking-wider">
+                  {user?.role || "Student"}
+                </span>
+                <span className="px-2 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 text-[9.5px] sm:text-[10px] font-bold font-mono">
+                  {user?.isVerified ? "Verified Account" : "Pending Verification"}
+                </span>
               </div>
             </div>
+          </div>
 
-            {/* Right side: Logout Action Button */}
-            <div className="shrink-0 self-center sm:self-auto pt-1 sm:pt-0">
-              <button
-                onClick={handleLogout}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-rose-500/20 text-slate-200 hover:text-white border border-white/15 hover:border-rose-400/40 text-xs font-bold px-4 py-2.5 rounded-xl transition-all shadow-2xs active:scale-95 group cursor-pointer"
-              >
-                <LogOut size={14} className="text-slate-300 group-hover:text-rose-300 transition-transform group-hover:-translate-x-0.5" />
-                <span>Sign Out</span>
-              </button>
-            </div>
-
+          <div className="w-full sm:w-auto">
+            <Link
+              to="/apply"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2.5 sm:py-2 rounded-xl bg-[#0F6E8C] hover:bg-[#0B5C74] active:scale-[0.98] text-white text-xs font-bold transition-all cursor-pointer shadow-xs text-center"
+            >
+              <BookOpen size={14} />
+              <span>Apply for Course</span>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Main Content Area */}
-      <div className="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8 -mt-10 sm:-mt-12 relative z-20">
-        <div className="bg-white dark:bg-[#0c1827] rounded-2xl shadow-lg shadow-slate-900/5 dark:shadow-slate-950/50 border border-slate-200/80 dark:border-slate-800 overflow-hidden transition-colors duration-200">
+      {/* ── TWO-COLUMN LAYOUT ON LAPTOP / DESKTOP (CLEAN STREAMLINED ON MOBILE) ── */}
+      <main className="max-w-6xl mx-auto px-3.5 sm:px-6 lg:px-8 pt-4 sm:pt-6 pb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5 lg:gap-6 items-start">
           
-          {/* Mobile-Friendly Navigation Tabs */}
-          <div className="border-b border-slate-100 dark:border-slate-800 bg-slate-50/70 dark:bg-[#091523] p-1.5 sm:p-2">
-            <div className="grid grid-cols-3 gap-1 sm:flex sm:gap-2">
-              <button
-                onClick={() => setActiveTab("applications")}
-                className={`flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 py-2.5 sm:py-3 px-2 sm:px-5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                  activeTab === "applications"
-                    ? "bg-[#0F6E8C] text-white shadow-sm shadow-[#0F6E8C]/20"
-                    : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-slate-800/80"
-                }`}
+          {/* ── LEFT COLUMN: PROFILE DETAILS & SECURITY ── */}
+          <div className="lg:col-span-5 space-y-4 sm:space-y-5">
+            
+            {/* GROUP 1: PERSONAL DETAILS (Single Edit Option + Name & Email) */}
+            <div className="bg-white dark:bg-[#0c1827] rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs overflow-hidden divide-y divide-slate-100 dark:divide-slate-800/80">
+              
+              {/* Single Dedicated Edit Profile Action */}
+              <div
+                onClick={() => setEditProfileModalOpen(true)}
+                className="flex items-center gap-3 p-3.5 sm:p-4 hover:bg-slate-50 dark:hover:bg-slate-800/40 active:bg-slate-100/80 dark:active:bg-slate-800/70 transition-colors cursor-pointer group"
               >
-                <BookOpen size={15} className="shrink-0" />
-                <span className="truncate">Applications</span>
-                {applications.length > 0 && (
-                  <span
-                    className={`hidden sm:inline text-xs px-2 py-0.2 rounded-full font-mono ${
-                      activeTab === "applications"
-                        ? "bg-white text-[#0F6E8C] font-bold"
-                        : "bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300"
-                    }`}
-                  >
-                    {applications.length}
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-teal-50 dark:bg-teal-950/50 text-[#0F6E8C] dark:text-teal-400 flex items-center justify-center shrink-0">
+                  <Edit2 size={16} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white truncate">
+                    Edit Profile Details
+                  </p>
+                  <p className="text-[10.5px] sm:text-[11px] text-slate-400 dark:text-slate-500 truncate">
+                    Update your username and email address
+                  </p>
+                </div>
+                <ChevronRight size={16} className="text-slate-400 group-hover:translate-x-0.5 transition-transform shrink-0" />
+              </div>
+
+              {/* Name Display Row */}
+              <div className="flex items-center gap-3 p-3.5 sm:p-4">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 flex items-center justify-center shrink-0">
+                  <User size={16} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <span className="text-[10px] sm:text-[11px] font-medium text-slate-400 uppercase font-mono tracking-wider block">
+                    Name
                   </span>
-                )}
-              </button>
+                  <p className="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white truncate">
+                    {user?.username}
+                  </p>
+                  <p className="text-[10.5px] sm:text-[11px] text-slate-400 dark:text-slate-500 truncate">
+                    Visible to academy instructors and students.
+                  </p>
+                </div>
+              </div>
 
-              <button
-                onClick={() => setActiveTab("edit-profile")}
-                className={`flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 py-2.5 sm:py-3 px-2 sm:px-5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                  activeTab === "edit-profile"
-                    ? "bg-[#0F6E8C] text-white shadow-sm shadow-[#0F6E8C]/20"
-                    : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-slate-800/80"
-                }`}
-              >
-                <User size={15} className="shrink-0" />
-                <span className="truncate">Edit Profile</span>
-              </button>
+              {/* Email Display Row */}
+              <div className="flex items-center gap-3 p-3.5 sm:p-4">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
+                  <Mail size={16} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <span className="text-[10px] sm:text-[11px] font-medium text-slate-400 uppercase font-mono tracking-wider block">
+                    Email Address
+                  </span>
+                  <p className="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white truncate font-mono">
+                    {user?.email}
+                  </p>
+                  <p className="text-[10.5px] sm:text-[11px] text-emerald-600 dark:text-emerald-400 truncate">
+                    Verified Account Email
+                  </p>
+                </div>
+              </div>
 
-              <button
-                onClick={() => setActiveTab("security")}
-                className={`flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 py-2.5 sm:py-3 px-2 sm:px-5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                  activeTab === "security"
-                    ? "bg-[#0F6E8C] text-white shadow-sm shadow-[#0F6E8C]/20"
-                    : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-slate-800/80"
-                }`}
-              >
-                <Lock size={15} className="shrink-0" />
-                <span className="truncate">Security</span>
-              </button>
             </div>
+
+            {/* GROUP 2: SECURITY & ACCOUNT ACTIONS */}
+            <div className="bg-white dark:bg-[#0c1827] rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs overflow-hidden divide-y divide-slate-100 dark:divide-slate-800/80">
+              
+              {/* Change Password */}
+              <div
+                onClick={() => setPasswordModalOpen(true)}
+                className="flex items-center gap-3 p-3.5 sm:p-4 hover:bg-slate-50 dark:hover:bg-slate-800/40 active:bg-slate-100/80 dark:active:bg-slate-800/70 transition-colors cursor-pointer group"
+              >
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-amber-50 dark:bg-amber-950/50 text-amber-600 dark:text-amber-400 flex items-center justify-center shrink-0">
+                  <KeyRound size={16} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white truncate">
+                    Change Password
+                  </p>
+                  <p className="text-[10.5px] sm:text-[11px] text-slate-400 dark:text-slate-500 truncate">
+                    Update your login password and credentials
+                  </p>
+                </div>
+                <ChevronRight size={16} className="text-slate-400 group-hover:translate-x-0.5 transition-transform shrink-0" />
+              </div>
+
+              {/* Log Out Option */}
+              <div
+                onClick={handleLogout}
+                className="flex items-center gap-3 p-3.5 sm:p-4 hover:bg-rose-50/50 dark:hover:bg-rose-950/30 active:bg-rose-100/60 dark:active:bg-rose-950/50 transition-colors cursor-pointer group"
+              >
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-rose-50 dark:bg-rose-950/50 text-rose-600 dark:text-rose-400 flex items-center justify-center shrink-0">
+                  <LogOut size={16} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-xs sm:text-sm font-bold text-rose-600 dark:text-rose-400 truncate">
+                    Sign Out
+                  </p>
+                  <p className="text-[10.5px] sm:text-[11px] text-slate-400 truncate">
+                    Safely log out of your session on this device.
+                  </p>
+                </div>
+                <ChevronRight size={16} className="text-rose-400 group-hover:translate-x-0.5 transition-transform shrink-0" />
+              </div>
+
+            </div>
+
           </div>
 
-          {/* Tab Content Body */}
-          <div className="p-4 sm:p-8 lg:p-10">
-            {/* ── TAB 1: APPLIED COURSES ────────────────────────────────────── */}
-            {activeTab === "applications" && (
-              <div>
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 mb-6 sm:mb-8">
-                  <div>
-                    <h2 className="font-heading text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
-                      My Applied Courses
+          {/* ── RIGHT COLUMN: COURSE APPLICATIONS & ENROLLMENTS ── */}
+          <div className="lg:col-span-7 space-y-4 sm:space-y-5">
+            
+            <div className="bg-white dark:bg-[#0c1827] rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-2xs overflow-hidden">
+              <div className="p-3.5 sm:p-5 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-teal-50 dark:bg-teal-950/60 text-[#0F6E8C] dark:text-teal-300 flex items-center justify-center shrink-0">
+                    <BookOpen size={16} />
+                  </div>
+                  <div className="min-w-0">
+                    <h2 className="text-xs sm:text-base font-bold text-slate-900 dark:text-white font-heading truncate">
+                      My Course Applications
                     </h2>
-                    <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5 font-normal">
-                      Track the status of your course applications submitted to Al-Mukhtar Institute.
+                    <p className="text-[10px] sm:text-[11px] text-slate-400 font-mono">
+                      {applications.length} submitted {applications.length === 1 ? "application" : "applications"}
                     </p>
                   </div>
-
-                  <Link
-                    to="/apply"
-                    className="inline-flex items-center justify-center gap-2 bg-[#0F6E8C] text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl hover:bg-[#0B5C74] active:scale-95 transition-all shadow-sm w-full sm:w-auto"
-                  >
-                    Apply for New Course
-                    <ArrowRight size={15} />
-                  </Link>
                 </div>
 
-                {applicationsLoading ? (
-                  <div className="space-y-4">
-                    {[1, 2].map((i) => (
-                      <div
-                        key={i}
-                        className="h-36 bg-slate-100 dark:bg-slate-800/60 rounded-2xl animate-pulse"
-                      />
-                    ))}
-                  </div>
-                ) : applicationsError ? (
+                <Link
+                  to="/apply"
+                  className="text-[11.5px] sm:text-xs font-bold text-[#0F6E8C] dark:text-teal-400 hover:underline inline-flex items-center gap-1 shrink-0"
+                >
+                  <span>New Apply</span>
+                  <ArrowRight size={12} />
+                </Link>
+              </div>
+
+              {applicationsLoading ? (
+                <div className="p-4 sm:p-5 space-y-3 animate-pulse">
+                  <div className="h-14 sm:h-16 bg-slate-100 dark:bg-slate-800 rounded-xl" />
+                  <div className="h-14 sm:h-16 bg-slate-100 dark:bg-slate-800 rounded-xl" />
+                </div>
+              ) : applicationsError ? (
+                <div className="p-4 sm:p-5">
                   <ApiErrorState
-                    title="Unable to load your applications"
-                    message="We couldn't retrieve your enrolled and applied courses. Check your connection and click refresh."
+                    title="Unable to load applications"
+                    message="Please refresh to try again."
                     onRetry={refetchApplications}
                   />
-                ) : applications.length === 0 ? (
-                  <div className="text-center py-12 sm:py-16 px-4 border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-2xl bg-slate-50/50 dark:bg-slate-900/30">
-                    <div className="w-14 h-14 rounded-2xl bg-teal-50 dark:bg-teal-950/50 text-[#0F6E8C] dark:text-teal-400 flex items-center justify-center mx-auto mb-3 border border-teal-100 dark:border-teal-800/60">
-                      <BookOpen size={24} />
-                    </div>
-                    <h3 className="font-heading text-base sm:text-lg font-bold text-slate-800 dark:text-slate-100 mb-1">
-                      No Course Applications Found
-                    </h3>
-                    <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto mb-5 font-normal">
-                      You haven't submitted any course applications yet. Explore our available programs and begin your journey.
+                </div>
+              ) : applications.length === 0 ? (
+                <div className="p-6 sm:p-8 text-center space-y-3">
+                  <GraduationCap size={36} className="text-slate-300 dark:text-slate-600 mx-auto" />
+                  <div className="space-y-1">
+                    <p className="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200">
+                      No course applications yet
                     </p>
+                    <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 max-w-sm mx-auto">
+                      Explore our academic curriculum and apply for Islamic scholarship and classical language programs.
+                    </p>
+                  </div>
+                  <div className="pt-1">
                     <Link
-                      to="/courses"
-                      className="inline-flex items-center gap-2 bg-[#0F6E8C] text-white text-xs sm:text-sm font-bold px-5 py-2.5 rounded-xl hover:bg-[#0B5C74] transition-all shadow-sm"
+                      to="/apply"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-[#0F6E8C] hover:bg-[#0B5C74] text-white text-xs font-bold shadow-xs transition-colors"
                     >
-                      Browse Courses
+                      <span>Apply for a Course</span>
+                      <ArrowRight size={13} />
                     </Link>
                   </div>
-                ) : (
-                  <div className="space-y-4 sm:space-y-6">
-                    {applications.map((app) => {
-                      const status = app.status || "pending";
-                      return (
-                        <div
-                          key={app._id}
-                          className="bg-white dark:bg-[#0a1524] border border-slate-200/90 dark:border-slate-800 rounded-2xl p-4 sm:p-6 hover:shadow-md dark:hover:border-slate-700 transition-all duration-200"
-                        >
-                          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800/80 pb-3 sm:pb-4 mb-3 sm:mb-4">
-                            <div>
-                              <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
-                                <h3 className="font-heading text-base sm:text-lg font-bold text-slate-900 dark:text-white capitalize">
-                                  {app.course?.replace(/-/g, " ") || "Course Application"}
-                                </h3>
-                                <span className="text-[10px] sm:text-xs font-bold uppercase px-2.5 py-0.5 rounded-md bg-teal-50 dark:bg-teal-950/50 text-[#0F6E8C] dark:text-teal-300 border border-teal-200/60 dark:border-teal-800/60 font-mono">
-                                  {app.shift} Shift
-                                </span>
-                              </div>
-                              <p className="text-[11px] sm:text-xs text-slate-400 dark:text-slate-400 mt-1 flex items-center gap-1.5 font-normal">
-                                <Calendar size={12} />
-                                Applied on{" "}
-                                {new Date(app.createdAt).toLocaleDateString(
-                                  "en-US",
-                                  {
-                                    year: "numeric",
-                                    month: "short",
-                                    day: "numeric",
-                                  }
-                                )}
-                              </p>
-                            </div>
-
-                            {/* Status Badge */}
-                            <div className="self-start sm:self-auto">
-                              {status === "pending" && (
-                                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800/60 font-mono">
-                                  <Clock size={13} className="text-amber-500 dark:text-amber-400" />
-                                  Pending Review
-                                </span>
-                              )}
-                              {status === "approved" && (
-                                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 font-mono">
-                                  <CheckCircle2 size={13} className="text-emerald-500 dark:text-emerald-400" />
-                                  Approved
-                                </span>
-                              )}
-                              {status === "rejected" && (
-                                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800/60 font-mono">
-                                  <XCircle size={13} className="text-rose-500 dark:text-rose-400" />
-                                  Rejected
-                                </span>
-                              )}
-                            </div>
+                </div>
+              ) : (
+                <div className="divide-y divide-slate-100 dark:divide-slate-800/80">
+                  {applications.map((app) => {
+                    const status = app.status || "pending";
+                    return (
+                      <div
+                        key={app._id}
+                        onClick={() => setSelectedApplication(app)}
+                        className="p-3.5 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-3 hover:bg-slate-50 dark:hover:bg-slate-800/40 active:bg-slate-100/70 dark:active:bg-slate-800/60 transition-colors cursor-pointer group"
+                      >
+                        <div className="min-w-0 flex-1 space-y-1">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <h3 className="text-xs sm:text-base font-bold text-slate-900 dark:text-white capitalize truncate">
+                              {app.course?.replace(/-/g, " ") || "Course Application"}
+                            </h3>
+                            <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200/60 dark:border-slate-700">
+                              {app.shift}
+                            </span>
                           </div>
 
-                          {/* Detail Grid */}
-                          <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5 sm:gap-3 text-xs bg-slate-50/80 dark:bg-[#070f1a] p-3 sm:p-4 rounded-xl border border-slate-100 dark:border-slate-800">
-                            <div className="flex items-start gap-2">
-                              <div className="w-6 h-6 rounded-lg bg-white dark:bg-slate-800 text-[#0F6E8C] dark:text-teal-400 border border-slate-100 dark:border-slate-700/80 shadow-2xs flex items-center justify-center shrink-0 mt-0.5">
-                                <User size={12} />
-                              </div>
-                              <div className="min-w-0">
-                                <span className="text-[10px] text-slate-400 dark:text-slate-400 uppercase font-semibold block">Applicant</span>
-                                <span className="font-bold text-slate-800 dark:text-slate-100 truncate block">{app.name}</span>
-                              </div>
-                            </div>
-
-                            <div className="flex items-start gap-2">
-                              <div className="w-6 h-6 rounded-lg bg-white dark:bg-slate-800 text-[#0F6E8C] dark:text-teal-400 border border-slate-100 dark:border-slate-700/80 shadow-2xs flex items-center justify-center shrink-0 mt-0.5">
-                                <Phone size={12} />
-                              </div>
-                              <div className="min-w-0">
-                                <span className="text-[10px] text-slate-400 dark:text-slate-400 uppercase font-semibold block">Mobile</span>
-                                <span className="font-bold text-slate-800 dark:text-slate-100 truncate block">{app.mobile}</span>
-                              </div>
-                            </div>
-
-                            <div className="flex items-start gap-2">
-                              <div className="w-6 h-6 rounded-lg bg-white dark:bg-slate-800 text-[#0F6E8C] dark:text-teal-400 border border-slate-100 dark:border-slate-700/80 shadow-2xs flex items-center justify-center shrink-0 mt-0.5">
-                                <MessageCircle size={12} />
-                              </div>
-                              <div className="min-w-0">
-                                <span className="text-[10px] text-slate-400 dark:text-slate-400 uppercase font-semibold block">WhatsApp</span>
-                                <span className="font-bold text-slate-800 dark:text-slate-100 truncate block">{app.whatsapp}</span>
-                              </div>
-                            </div>
-
-                            <div className="flex items-start gap-2">
-                              <div className="w-6 h-6 rounded-lg bg-white dark:bg-slate-800 text-[#0F6E8C] dark:text-teal-400 border border-slate-100 dark:border-slate-700/80 shadow-2xs flex items-center justify-center shrink-0 mt-0.5">
-                                <CreditCard size={12} />
-                              </div>
-                              <div className="min-w-0">
-                                <span className="text-[10px] text-slate-400 dark:text-slate-400 uppercase font-semibold block">CNIC</span>
-                                <span className="font-bold text-slate-800 dark:text-slate-100 truncate block">{app.cnic}</span>
-                              </div>
-                            </div>
-
-                            <div className="flex items-start gap-2">
-                              <div className="w-6 h-6 rounded-lg bg-white dark:bg-slate-800 text-[#0F6E8C] dark:text-teal-400 border border-slate-100 dark:border-slate-700/80 shadow-2xs flex items-center justify-center shrink-0 mt-0.5">
-                                <GraduationCap size={12} />
-                              </div>
-                              <div className="min-w-0">
-                                <span className="text-[10px] text-slate-400 dark:text-slate-400 uppercase font-semibold block">Education</span>
-                                <span className="font-bold text-slate-800 dark:text-slate-100 truncate block">{app.qualification}</span>
-                              </div>
-                            </div>
-
-                            <div className="col-span-2 md:col-span-1 flex items-start gap-2">
-                              <div className="w-6 h-6 rounded-lg bg-white dark:bg-slate-800 text-[#0F6E8C] dark:text-teal-400 border border-slate-100 dark:border-slate-700/80 shadow-2xs flex items-center justify-center shrink-0 mt-0.5">
-                                <MapPin size={12} />
-                              </div>
-                              <div className="min-w-0 flex-1">
-                                <span className="text-[10px] text-slate-400 dark:text-slate-400 uppercase font-semibold block">Address</span>
-                                <span className="font-bold text-slate-800 dark:text-slate-100 line-clamp-1 block">{app.address}</span>
-                              </div>
-                            </div>
+                          <div className="flex items-center gap-2.5 text-[11px] text-slate-400 font-mono">
+                            <span className="flex items-center gap-1">
+                              <Calendar size={11} />
+                              {new Date(app.createdAt).toLocaleDateString("en-US", {
+                                month: "short",
+                                day: "numeric",
+                                year: "numeric",
+                              })}
+                            </span>
+                            <span>•</span>
+                            <span>CNIC: {app.cnic || "Provided"}</span>
                           </div>
                         </div>
-                      );
-                    })}
-                  </div>
+
+                        <div className="flex items-center justify-between sm:justify-end gap-2 shrink-0 pt-1 sm:pt-0 border-t sm:border-t-0 border-slate-100 dark:border-slate-800/60">
+                          {status === "approved" && (
+                            <span className="px-2.5 py-0.5 rounded-full text-[10.5px] font-bold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 font-mono">
+                              Approved
+                            </span>
+                          )}
+                          {status === "rejected" && (
+                            <span className="px-2.5 py-0.5 rounded-full text-[10.5px] font-bold bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300 border border-rose-200 dark:border-rose-800/60 font-mono">
+                              Rejected
+                            </span>
+                          )}
+                          {status === "pending" && (
+                            <span className="px-2.5 py-0.5 rounded-full text-[10.5px] font-bold bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800/60 font-mono">
+                              Pending
+                            </span>
+                          )}
+                          <ChevronRight size={16} className="text-slate-400 group-hover:translate-x-0.5 transition-transform" />
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+
+            {/* Quick Admissions Helpdesk Notice */}
+            <div className="p-3.5 sm:p-5 rounded-2xl bg-teal-50/70 dark:bg-teal-950/30 border border-teal-200/80 dark:border-teal-800/50 flex items-start gap-3">
+              <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-teal-100/80 dark:bg-teal-900/60 text-[#0F6E8C] dark:text-teal-300 flex items-center justify-center shrink-0 mt-0.5">
+                <Info size={16} />
+              </div>
+              <div className="text-[11.5px] sm:text-xs space-y-0.5 sm:space-y-1">
+                <p className="font-bold text-slate-900 dark:text-white font-heading">
+                  Admissions Verification Notice
+                </p>
+                <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Application review and verification takes 1-2 business days. For urgent status verification, please contact administration.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </main>
+
+      {/* ── MODAL 1: WHATSAPP-STYLE EDIT PROFILE (Name & Email) ── */}
+      {editProfileModalOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/80 backdrop-blur-xs animate-in fade-in duration-150"
+          onClick={() => setEditProfileModalOpen(false)}
+        >
+          <div
+            className="bg-white dark:bg-[#0c1827] border border-slate-200 dark:border-slate-800 rounded-2xl max-w-md w-full p-5 sm:p-6 shadow-2xl space-y-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+              <h2 className="font-heading text-base sm:text-lg font-bold text-slate-900 dark:text-white">
+                Edit Profile Details
+              </h2>
+              <button
+                type="button"
+                onClick={() => setEditProfileModalOpen(false)}
+                className="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            <form onSubmit={handleSubmitProfile(onUpdateProfile)} className="space-y-4">
+              <div>
+                <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1 font-mono">
+                  Your Name
+                </label>
+                <input
+                  type="text"
+                  placeholder="Enter your name"
+                  className={`w-full px-3.5 py-2 rounded-xl border text-sm text-slate-900 dark:text-slate-100 outline-none transition-all focus:ring-2 focus:ring-[#0F6E8C]/20 focus:border-[#0F6E8C] dark:focus:border-teal-400 ${
+                    profileErrors.username
+                      ? "border-rose-400 bg-rose-50/30"
+                      : "border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90"
+                  }`}
+                  {...registerProfile("username", {
+                    required: "Username is required",
+                    minLength: {
+                      value: 3,
+                      message: "Username must be at least 3 characters",
+                    },
+                    maxLength: {
+                      value: 25,
+                      message: "Username cannot exceed 25 characters",
+                    },
+                  })}
+                />
+                {profileErrors.username && (
+                  <p className="text-xs text-rose-500 mt-1 font-medium">
+                    {profileErrors.username.message}
+                  </p>
+                )}
+                <p className="text-[11px] text-slate-400 mt-1">
+                  This is not your username or pin. This name will be visible to your instructors.
+                </p>
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1 font-mono">
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  placeholder="you@example.com"
+                  className={`w-full px-3.5 py-2 rounded-xl border text-sm text-slate-900 dark:text-slate-100 outline-none transition-all focus:ring-2 focus:ring-[#0F6E8C]/20 focus:border-[#0F6E8C] dark:focus:border-teal-400 ${
+                    profileErrors.email
+                      ? "border-rose-400 bg-rose-50/30"
+                      : "border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90"
+                  }`}
+                  {...registerProfile("email", {
+                    required: "Email address is required",
+                    pattern: {
+                      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                      message: "Enter a valid email address",
+                    },
+                  })}
+                />
+                {profileErrors.email && (
+                  <p className="text-xs text-rose-500 mt-1 font-medium">
+                    {profileErrors.email.message}
+                  </p>
                 )}
               </div>
-            )}
 
-            {/* ── TAB 2: EDIT PROFILE ───────────────────────────────────────── */}
-            {activeTab === "edit-profile" && (
-              <div className="max-w-xl mx-auto sm:mx-0">
-                <div className="mb-5 sm:mb-6">
-                  <h2 className="font-heading text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
-                    Account Details
-                  </h2>
-                  <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5 font-normal">
-                    Update your display username and registered email address.
-                  </p>
-                </div>
-
-                <form onSubmit={handleSubmitProfile(onUpdateProfile)} className="space-y-4 sm:space-y-5">
-                  {/* Username */}
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5 font-mono">
-                      Username
-                    </label>
-                    <div className="relative">
-                      <input
-                        type="text"
-                        placeholder="Enter username"
-                        className={`w-full px-4 py-2.5 pl-11 rounded-xl border text-sm text-slate-900 dark:text-slate-100 outline-none transition-all focus:ring-2 focus:ring-[#0F6E8C]/20 focus:border-[#0F6E8C] dark:focus:border-teal-400 ${
-                          profileErrors.username
-                            ? "border-rose-400 bg-rose-50/30 dark:bg-rose-950/30"
-                            : "border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 placeholder:text-slate-400 dark:placeholder:text-slate-500"
-                        }`}
-                        {...registerProfile("username", {
-                          required: "Username is required",
-                          minLength: {
-                            value: 5,
-                            message: "Username must be at least 5 characters",
-                          },
-                          maxLength: {
-                            value: 10,
-                            message: "Username cannot exceed 10 characters",
-                          },
-                        })}
-                      />
-                      <User
-                        size={16}
-                        className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500"
-                      />
-                    </div>
-                    {profileErrors.username && (
-                      <p className="text-xs text-rose-500 dark:text-rose-400 mt-1.5 font-medium">
-                        {profileErrors.username.message}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* Email */}
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5 font-mono">
-                      Email Address
-                    </label>
-                    <div className="relative">
-                      <input
-                        type="email"
-                        placeholder="you@example.com"
-                        className={`w-full px-4 py-2.5 pl-11 rounded-xl border text-sm text-slate-900 dark:text-slate-100 outline-none transition-all focus:ring-2 focus:ring-[#0F6E8C]/20 focus:border-[#0F6E8C] dark:focus:border-teal-400 ${
-                          profileErrors.email
-                            ? "border-rose-400 bg-rose-50/30 dark:bg-rose-950/30"
-                            : "border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 placeholder:text-slate-400 dark:placeholder:text-slate-500"
-                        }`}
-                        {...registerProfile("email", {
-                          required: "Email address is required",
-                          pattern: {
-                            value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                            message: "Enter a valid email address",
-                          },
-                        })}
-                      />
-                      <Mail
-                        size={16}
-                        className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500"
-                      />
-                    </div>
-                    {profileErrors.email && (
-                      <p className="text-xs text-rose-500 dark:text-rose-400 mt-1.5 font-medium">
-                        {profileErrors.email.message}
-                      </p>
-                    )}
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={updateProfileMutation.isPending}
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#0F6E8C] text-white px-6 py-2.5 rounded-xl font-bold text-sm hover:bg-[#0B5C74] active:scale-98 transition-all shadow-sm disabled:opacity-60 cursor-pointer"
-                  >
-                    <Save size={15} />
-                    {updateProfileMutation.isPending
-                      ? "Saving Changes..."
-                      : "Save Profile"}
-                  </button>
-                </form>
+              {/* 2 Buttons in a Single Row */}
+              <div className="grid grid-cols-2 gap-2.5 pt-2">
+                <button
+                  type="button"
+                  onClick={() => setEditProfileModalOpen(false)}
+                  className="w-full py-2 px-3 text-xs font-bold text-slate-700 dark:text-slate-300 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 rounded-xl transition-colors cursor-pointer"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={updateProfileMutation.isPending}
+                  className="w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-[#0F6E8C] text-white text-xs font-bold hover:bg-[#0B5C74] transition-all disabled:opacity-60 cursor-pointer shadow-xs"
+                >
+                  <Save size={13} />
+                  <span>{updateProfileMutation.isPending ? "Saving..." : "Save"}</span>
+                </button>
               </div>
-            )}
-
-            {/* ── TAB 3: SECURITY & PASSWORD ────────────────────────────────── */}
-            {activeTab === "security" && (
-              <div className="max-w-xl mx-auto sm:mx-0">
-                <div className="mb-5 sm:mb-6">
-                  <h2 className="font-heading text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
-                    Change Password
-                  </h2>
-                  <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5 font-normal">
-                    Ensure your account stays secure by using a strong password.
-                  </p>
-                </div>
-
-                <form onSubmit={handleSubmitPassword(onChangePassword)} className="space-y-4 sm:space-y-5">
-                  {/* Current Password */}
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5 font-mono">
-                      Current Password
-                    </label>
-                    <div className="relative">
-                      <input
-                        type={showCurrentPassword ? "text" : "password"}
-                        placeholder="Enter current password"
-                        className={`w-full px-4 py-2.5 pl-11 pr-11 rounded-xl border text-sm text-slate-900 dark:text-slate-100 outline-none transition-all focus:ring-2 focus:ring-[#0F6E8C]/20 focus:border-[#0F6E8C] dark:focus:border-teal-400 ${
-                          passwordErrors.currentPassword
-                            ? "border-rose-400 bg-rose-50/30 dark:bg-rose-950/30"
-                            : "border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 placeholder:text-slate-400 dark:placeholder:text-slate-500"
-                        }`}
-                        {...registerPassword("currentPassword", {
-                          required: "Current password is required",
-                        })}
-                      />
-                      <KeyRound
-                        size={16}
-                        className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => setShowCurrentPassword((prev) => !prev)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-200 p-1 cursor-pointer"
-                        tabIndex={-1}
-                      >
-                        {showCurrentPassword ? (
-                          <EyeOff size={16} />
-                        ) : (
-                          <Eye size={16} />
-                        )}
-                      </button>
-                    </div>
-                    {passwordErrors.currentPassword && (
-                      <p className="text-xs text-rose-500 dark:text-rose-400 mt-1.5 font-medium">
-                        {passwordErrors.currentPassword.message}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* New Password */}
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5 font-mono">
-                      New Password
-                    </label>
-                    <div className="relative">
-                      <input
-                        type={showNewPassword ? "text" : "password"}
-                        placeholder="Enter new password"
-                        className={`w-full px-4 py-2.5 pl-11 pr-11 rounded-xl border text-sm text-slate-900 dark:text-slate-100 outline-none transition-all focus:ring-2 focus:ring-[#0F6E8C]/20 focus:border-[#0F6E8C] dark:focus:border-teal-400 ${
-                          passwordErrors.newPassword
-                            ? "border-rose-400 bg-rose-50/30 dark:bg-rose-950/30"
-                            : "border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 placeholder:text-slate-400 dark:placeholder:text-slate-500"
-                        }`}
-                        {...registerPassword("newPassword", {
-                          required: "New password is required",
-                          minLength: {
-                            value: 6,
-                            message: "Password must be at least 6 characters",
-                          },
-                        })}
-                      />
-                      <Lock
-                        size={16}
-                        className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => setShowNewPassword((prev) => !prev)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-200 p-1 cursor-pointer"
-                        tabIndex={-1}
-                      >
-                        {showNewPassword ? <EyeOff size={16} /> : <Eye size={16} />}
-                      </button>
-                    </div>
-                    {passwordErrors.newPassword && (
-                      <p className="text-xs text-rose-500 dark:text-rose-400 mt-1.5 font-medium">
-                        {passwordErrors.newPassword.message}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* Confirm New Password */}
-                  <div>
-                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5 font-mono">
-                      Confirm New Password
-                    </label>
-                    <div className="relative">
-                      <input
-                        type={showConfirmPassword ? "text" : "password"}
-                        placeholder="Confirm new password"
-                        className={`w-full px-4 py-2.5 pl-11 pr-11 rounded-xl border text-sm text-slate-900 dark:text-slate-100 outline-none transition-all focus:ring-2 focus:ring-[#0F6E8C]/20 focus:border-[#0F6E8C] dark:focus:border-teal-400 ${
-                          passwordErrors.confirmPassword
-                            ? "border-rose-400 bg-rose-50/30 dark:bg-rose-950/30"
-                            : "border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 placeholder:text-slate-400 dark:placeholder:text-slate-500"
-                        }`}
-                        {...registerPassword("confirmPassword", {
-                          required: "Please confirm your new password",
-                          validate: (val) =>
-                            val === watch("newPassword") ||
-                            "Passwords do not match",
-                        })}
-                      />
-                      <Lock
-                        size={16}
-                        className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => setShowConfirmPassword((prev) => !prev)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-200 p-1 cursor-pointer"
-                        tabIndex={-1}
-                      >
-                        {showConfirmPassword ? (
-                          <EyeOff size={16} />
-                        ) : (
-                          <Eye size={16} />
-                        )}
-                      </button>
-                    </div>
-                    {passwordErrors.confirmPassword && (
-                      <p className="text-xs text-rose-500 dark:text-rose-400 mt-1.5 font-medium">
-                        {passwordErrors.confirmPassword.message}
-                      </p>
-                    )}
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={changePasswordMutation.isPending}
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#0F6E8C] text-white px-6 py-2.5 rounded-xl font-bold text-sm hover:bg-[#0B5C74] active:scale-98 transition-all shadow-sm disabled:opacity-60 cursor-pointer"
-                  >
-                    <Save size={15} />
-                    {changePasswordMutation.isPending
-                      ? "Updating Password..."
-                      : "Update Password"}
-                  </button>
-                </form>
-              </div>
-            )}
+            </form>
           </div>
         </div>
-      </div>
+      )}
+
+      {/* ── MODAL 2: CHANGE PASSWORD ── */}
+      {passwordModalOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/80 backdrop-blur-xs animate-in fade-in duration-150"
+          onClick={() => setPasswordModalOpen(false)}
+        >
+          <div
+            className="bg-white dark:bg-[#0c1827] border border-slate-200 dark:border-slate-800 rounded-2xl max-w-md w-full p-5 sm:p-6 shadow-2xl space-y-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+              <h2 className="font-heading text-base sm:text-lg font-bold text-slate-900 dark:text-white">
+                Change Password
+              </h2>
+              <button
+                type="button"
+                onClick={() => setPasswordModalOpen(false)}
+                className="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            <form onSubmit={handleSubmitPassword(onChangePassword)} className="space-y-3.5">
+              {/* Current Password */}
+              <div>
+                <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1 font-mono">
+                  Current Password
+                </label>
+                <div className="relative">
+                  <input
+                    type={showCurrentPassword ? "text" : "password"}
+                    placeholder="Enter current password"
+                    className="w-full px-3.5 py-2 pr-10 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-slate-900 dark:text-slate-100 outline-none focus:ring-2 focus:ring-[#0F6E8C]/20 focus:border-[#0F6E8C]"
+                    {...registerPassword("currentPassword", {
+                      required: "Current password is required",
+                    })}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowCurrentPassword(!showCurrentPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                  >
+                    {showCurrentPassword ? <EyeOff size={15} /> : <Eye size={15} />}
+                  </button>
+                </div>
+                {passwordErrors.currentPassword && (
+                  <p className="text-xs text-rose-500 mt-1">{passwordErrors.currentPassword.message}</p>
+                )}
+              </div>
+
+              {/* New Password */}
+              <div>
+                <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1 font-mono">
+                  New Password
+                </label>
+                <div className="relative">
+                  <input
+                    type={showNewPassword ? "text" : "password"}
+                    placeholder="Enter new password"
+                    className="w-full px-3.5 py-2 pr-10 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-slate-900 dark:text-slate-100 outline-none focus:ring-2 focus:ring-[#0F6E8C]/20 focus:border-[#0F6E8C]"
+                    {...registerPassword("newPassword", {
+                      required: "New password is required",
+                      minLength: {
+                        value: 6,
+                        message: "Password must be at least 6 characters",
+                      },
+                    })}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowNewPassword(!showNewPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                  >
+                    {showNewPassword ? <EyeOff size={15} /> : <Eye size={15} />}
+                  </button>
+                </div>
+                {passwordErrors.newPassword && (
+                  <p className="text-xs text-rose-500 mt-1">{passwordErrors.newPassword.message}</p>
+                )}
+              </div>
+
+              {/* Confirm Password */}
+              <div>
+                <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1 font-mono">
+                  Confirm New Password
+                </label>
+                <div className="relative">
+                  <input
+                    type={showConfirmPassword ? "text" : "password"}
+                    placeholder="Confirm new password"
+                    className="w-full px-3.5 py-2 pr-10 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm text-slate-900 dark:text-slate-100 outline-none focus:ring-2 focus:ring-[#0F6E8C]/20 focus:border-[#0F6E8C]"
+                    {...registerPassword("confirmPassword", {
+                      required: "Please confirm your password",
+                      validate: (val) =>
+                        val === watch("newPassword") || "Passwords do not match",
+                    })}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                  >
+                    {showConfirmPassword ? <EyeOff size={15} /> : <Eye size={15} />}
+                  </button>
+                </div>
+                {passwordErrors.confirmPassword && (
+                  <p className="text-xs text-rose-500 mt-1">{passwordErrors.confirmPassword.message}</p>
+                )}
+              </div>
+
+              {/* 2 Buttons in a Single Row */}
+              <div className="grid grid-cols-2 gap-2.5 pt-2">
+                <button
+                  type="button"
+                  onClick={() => setPasswordModalOpen(false)}
+                  className="w-full py-2 px-3 text-xs font-bold text-slate-700 dark:text-slate-300 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 rounded-xl transition-colors cursor-pointer"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={changePasswordMutation.isPending}
+                  className="w-full inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-[#0F6E8C] text-white text-xs font-bold hover:bg-[#0B5C74] transition-all disabled:opacity-60 cursor-pointer shadow-xs"
+                >
+                  <KeyRound size={13} />
+                  <span>{changePasswordMutation.isPending ? "Updating..." : "Update"}</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* ── MODAL 3: APPLICATION DETAILS POPUP (Wider on Laptop, Fixed Sticky Header on Mobile) ── */}
+      {selectedApplication && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 lg:p-6 bg-slate-950/80 backdrop-blur-xs animate-in fade-in duration-150"
+          onClick={() => setSelectedApplication(null)}
+        >
+          <div
+            className="bg-white dark:bg-[#0c1827] border border-slate-200 dark:border-slate-800 rounded-2xl w-full max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl shadow-2xl flex flex-col max-h-[90vh] overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Fixed Sticky Header for Mobile & Laptop */}
+            <div className="sticky top-0 z-20 bg-white/95 dark:bg-[#0c1827]/95 backdrop-blur-md px-5 sm:px-7 py-3.5 sm:py-4 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between shrink-0">
+              <div className="flex items-center gap-2.5 min-w-0 pr-3">
+                <div className="w-8 h-8 rounded-lg bg-teal-50 dark:bg-teal-950/60 text-[#0F6E8C] dark:text-teal-300 flex items-center justify-center shrink-0">
+                  <GraduationCap size={17} />
+                </div>
+                <div className="min-w-0">
+                  <span className="text-[10px] font-mono text-slate-400 dark:text-slate-500 uppercase tracking-wider block">
+                    Course Application
+                  </span>
+                  <h2 className="font-heading text-sm sm:text-base lg:text-lg font-bold text-slate-900 dark:text-white capitalize truncate">
+                    {selectedApplication.course?.replace(/-/g, " ") || "Application Details"}
+                  </h2>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setSelectedApplication(null)}
+                aria-label="Close popup"
+                className="p-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-100 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors shrink-0 cursor-pointer"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            {/* Scrollable Body with Clean 2-Column Responsive Layout */}
+            <div className="p-5 sm:p-7 overflow-y-auto custom-scrollbar flex-1 space-y-4 sm:space-y-5">
+              
+              {/* Status & Timestamp Banner */}
+              <div className="flex flex-wrap items-center justify-between gap-2 p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-800">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">Application Status:</span>
+                  {selectedApplication.status === "approved" ? (
+                    <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 font-mono">Approved</span>
+                  ) : selectedApplication.status === "rejected" ? (
+                    <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-rose-100 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 font-mono">Rejected</span>
+                  ) : (
+                    <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 font-mono">Pending Review</span>
+                  )}
+                </div>
+                <div className="text-xs text-slate-400 font-mono">
+                  Applied: {new Date(selectedApplication.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+                </div>
+              </div>
+
+              {/* Specifications in 2 Columns on Laptop Screen */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 divide-y md:divide-y-0 divide-slate-100 dark:divide-slate-800 text-xs sm:text-sm">
+                <div className="pt-2 md:pt-0 flex items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800/80 pb-2">
+                  <span className="text-slate-500 dark:text-slate-400 font-medium">Applicant Name</span>
+                  <span className="font-semibold text-slate-900 dark:text-white text-right">{selectedApplication.name}</span>
+                </div>
+
+                <div className="pt-2 md:pt-0 flex items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800/80 pb-2">
+                  <span className="text-slate-500 dark:text-slate-400 font-medium">Academic Shift</span>
+                  <span className="font-semibold text-slate-900 dark:text-white text-right uppercase font-mono text-xs px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800">{selectedApplication.shift}</span>
+                </div>
+
+                <div className="pt-2 md:pt-0 flex items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800/80 pb-2">
+                  <span className="text-slate-500 dark:text-slate-400 font-medium">Mobile Phone</span>
+                  <span className="font-semibold text-slate-900 dark:text-white text-right font-mono">{selectedApplication.mobile}</span>
+                </div>
+
+                <div className="pt-2 md:pt-0 flex items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800/80 pb-2">
+                  <span className="text-slate-500 dark:text-slate-400 font-medium">WhatsApp Number</span>
+                  <span className="font-semibold text-slate-900 dark:text-white text-right font-mono">{selectedApplication.whatsapp || selectedApplication.mobile}</span>
+                </div>
+
+                <div className="pt-2 md:pt-0 flex items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800/80 pb-2">
+                  <span className="text-slate-500 dark:text-slate-400 font-medium">CNIC / ID Card</span>
+                  <span className="font-semibold text-slate-900 dark:text-white text-right font-mono">{selectedApplication.cnic}</span>
+                </div>
+
+                <div className="pt-2 md:pt-0 flex items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800/80 pb-2">
+                  <span className="text-slate-500 dark:text-slate-400 font-medium">Prior Qualification</span>
+                  <span className="font-semibold text-slate-900 dark:text-white text-right">{selectedApplication.qualification}</span>
+                </div>
+
+                <div className="pt-2 md:pt-0 flex items-start justify-between gap-3 border-b border-slate-100 dark:border-slate-800/80 pb-2 md:col-span-2">
+                  <span className="text-slate-500 dark:text-slate-400 font-medium shrink-0">Residential Address</span>
+                  <span className="font-semibold text-slate-900 dark:text-white text-right max-w-lg">{selectedApplication.address}</span>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Fixed Sticky Footer with 2 Paired Buttons */}
+            <div className="sticky bottom-0 z-20 bg-white/95 dark:bg-[#0c1827]/95 backdrop-blur-md px-5 sm:px-7 py-3.5 border-t border-slate-100 dark:border-slate-800 shrink-0">
+              <div className="grid grid-cols-2 gap-3">
+                <button
+                  type="button"
+                  onClick={() => setSelectedApplication(null)}
+                  className="w-full py-2.5 px-3 text-xs font-bold text-slate-700 dark:text-slate-300 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 rounded-xl transition-colors cursor-pointer text-center"
+                >
+                  Close
+                </button>
+                <Link
+                  to="/courses"
+                  className="w-full inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-[#0F6E8C] hover:bg-[#0B5C74] text-white text-xs font-bold transition-all text-center shadow-xs"
+                >
+                  <span>Explore Courses</span>
+                  <ArrowRight size={13} />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }

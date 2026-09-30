@@ -177,19 +177,19 @@ function Apply() {
             <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6 max-w-md mx-auto">
               You need to be logged in to submit a course application. Please sign in or create an account to continue.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <div className="grid grid-cols-2 gap-2.5 sm:flex sm:flex-row sm:items-center sm:justify-center sm:gap-3">
               <Link
                 to={`/login?redirect=${encodeURIComponent(location.pathname + (location.search || ""))}`}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#0F6E8C] text-white font-bold px-6 py-2.5 rounded-xl hover:bg-[#0B5C74] active:scale-[0.98] transition-all shadow-xs text-xs sm:text-sm"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 bg-[#0F6E8C] text-white font-bold px-3 sm:px-6 py-2.5 rounded-xl hover:bg-[#0B5C74] active:scale-[0.98] transition-all shadow-xs text-xs sm:text-sm text-center"
               >
                 <LogIn size={15} />
-                Sign In
+                <span>Sign In</span>
               </Link>
               <Link
                 to={`/signup?redirect=${encodeURIComponent(location.pathname + (location.search || ""))}`}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-slate-300 text-slate-700 font-bold px-6 py-2.5 rounded-xl hover:bg-slate-50 transition-all text-xs sm:text-sm"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 border border-slate-300 text-slate-700 font-bold px-3 sm:px-6 py-2.5 rounded-xl hover:bg-slate-50 transition-all text-xs sm:text-sm text-center"
               >
-                Create Account
+                <span>Create Account</span>
               </Link>
             </div>
             <p className="mt-6 text-xs text-slate-400">
@@ -281,28 +281,28 @@ function Apply() {
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <div className="grid grid-cols-2 gap-2.5 sm:flex sm:flex-row sm:items-center sm:justify-center sm:gap-3">
                 <button
                   type="button"
                   onClick={() => {
                     setSubmitted(false);
                     window.scrollTo({ top: 0, behavior: "smooth" });
                   }}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#0F6E8C] hover:bg-[#0B5C74] text-white font-bold px-6 py-3 rounded-xl transition-all text-xs sm:text-sm shadow-xs cursor-pointer active:scale-95"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 bg-[#0F6E8C] hover:bg-[#0B5C74] text-white font-bold px-3 sm:px-6 py-2.5 sm:py-3 rounded-xl transition-all text-xs sm:text-sm shadow-xs cursor-pointer active:scale-95 text-center"
                 >
-                  Submit Another Application
+                  <span>Apply Again</span>
                 </button>
                 <Link
                   to="/profile"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-slate-900 font-bold px-6 py-3 rounded-xl transition-all text-xs sm:text-sm cursor-pointer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-slate-900 font-bold px-3 sm:px-6 py-2.5 sm:py-3 rounded-xl transition-all text-xs sm:text-sm cursor-pointer text-center"
                 >
-                  View My Applications
+                  <span>My Profile</span>
                 </Link>
                 <Link
                   to="/courses"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-slate-300 text-slate-700 hover:bg-slate-50 font-semibold px-5 py-3 rounded-xl transition-all text-xs sm:text-sm cursor-pointer"
+                  className="col-span-2 sm:col-span-1 w-full sm:w-auto inline-flex items-center justify-center gap-1.5 border border-slate-300 text-slate-700 hover:bg-slate-50 font-semibold px-3 sm:px-5 py-2.5 sm:py-3 rounded-xl transition-all text-xs sm:text-sm cursor-pointer text-center"
                 >
-                  Explore Courses
+                  <span>Explore Courses</span>
                 </Link>
               </div>
             </div>

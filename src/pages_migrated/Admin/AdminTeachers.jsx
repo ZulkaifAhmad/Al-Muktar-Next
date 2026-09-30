@@ -373,16 +373,16 @@ function AdminTeachers() {
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            <div className="grid grid-cols-1 sm:grid-cols-12 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-12 gap-3.5 sm:gap-4">
               {/* Full Name */}
               <div className="sm:col-span-6">
-                <label className="text-[11px] font-semibold text-slate-700 dark:text-slate-300 block mb-1">
+                <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 block mb-1.5">
                   Teacher Name <span className="text-rose-500">*</span>
                 </label>
                 <input
                   type="text"
                   placeholder="e.g. Mufti Muhammad Ismail"
-                  className={`w-full border rounded-lg px-3 py-2 text-xs outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-1 focus:ring-[#0F6E8C] bg-white dark:bg-slate-800/90 text-slate-900 dark:text-slate-100 ${
+                  className={`w-full border rounded-xl px-3.5 py-3 sm:py-2.5 text-sm sm:text-xs min-h-[46px] sm:min-h-[42px] outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 bg-white dark:bg-slate-800/90 text-slate-900 dark:text-slate-100 transition-all ${
                     errors.name ? "border-rose-400" : "border-slate-300 dark:border-slate-700"
                   }`}
                   {...register("name", { required: "Teacher name is required" })}
@@ -394,13 +394,13 @@ function AdminTeachers() {
 
               {/* Role / Title */}
               <div className="sm:col-span-6">
-                <label className="text-[11px] font-semibold text-slate-700 dark:text-slate-300 block mb-1">
+                <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 block mb-1.5">
                   Academic Role / Title <span className="text-rose-500">*</span>
                 </label>
                 <input
                   type="text"
                   placeholder="e.g. Senior Scholar & Director"
-                  className={`w-full border rounded-lg px-3 py-2 text-xs outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-1 focus:ring-[#0F6E8C] bg-white dark:bg-slate-800/90 text-slate-900 dark:text-slate-100 ${
+                  className={`w-full border rounded-xl px-3.5 py-3 sm:py-2.5 text-sm sm:text-xs min-h-[46px] sm:min-h-[42px] outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 bg-white dark:bg-slate-800/90 text-slate-900 dark:text-slate-100 transition-all ${
                     errors.role ? "border-rose-400" : "border-slate-300 dark:border-slate-700"
                   }`}
                   {...register("role", { required: "Role is required" })}
@@ -412,13 +412,13 @@ function AdminTeachers() {
 
               {/* Department */}
               <div className="sm:col-span-6">
-                <label className="text-[11px] font-semibold text-slate-700 dark:text-slate-300 block mb-1">
+                <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 block mb-1.5">
                   Department <span className="text-rose-500">*</span>
                 </label>
                 <input
                   type="text"
                   placeholder="e.g. Islamic Jurisprudence & Hadith"
-                  className={`w-full border rounded-lg px-3 py-2 text-xs outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-1 focus:ring-[#0F6E8C] bg-white dark:bg-slate-800/90 text-slate-900 dark:text-slate-100 ${
+                  className={`w-full border rounded-xl px-3.5 py-3 sm:py-2.5 text-sm sm:text-xs min-h-[46px] sm:min-h-[42px] outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 bg-white dark:bg-slate-800/90 text-slate-900 dark:text-slate-100 transition-all ${
                     errors.department ? "border-rose-400" : "border-slate-300 dark:border-slate-700"
                   }`}
                   {...register("department", { required: "Department is required" })}
@@ -430,63 +430,63 @@ function AdminTeachers() {
 
               {/* Experience Years */}
               <div className="sm:col-span-3">
-                <label className="text-[11px] font-semibold text-slate-700 dark:text-slate-300 block mb-1">
+                <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 block mb-1.5">
                   Experience
                 </label>
                 <input
                   type="text"
                   placeholder="e.g. 10+ Years"
-                  className="w-full border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-2 text-xs outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-1 focus:ring-[#0F6E8C] bg-white dark:bg-slate-800/90 text-slate-900 dark:text-slate-100"
+                  className="w-full border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-3 sm:py-2.5 text-sm sm:text-xs min-h-[46px] sm:min-h-[42px] outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 bg-white dark:bg-slate-800/90 text-slate-900 dark:text-slate-100 transition-all"
                   {...register("experienceYears")}
                 />
               </div>
 
               {/* Students Mentored */}
               <div className="sm:col-span-3">
-                <label className="text-[11px] font-semibold text-slate-700 dark:text-slate-300 block mb-1">
+                <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 block mb-1.5">
                   Mentored Count
                 </label>
                 <input
                   type="text"
                   placeholder="e.g. 800+"
-                  className="w-full border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-2 text-xs outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-1 focus:ring-[#0F6E8C] bg-white dark:bg-slate-800/90 text-slate-900 dark:text-slate-100"
+                  className="w-full border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-3 sm:py-2.5 text-sm sm:text-xs min-h-[46px] sm:min-h-[42px] outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 bg-white dark:bg-slate-800/90 text-slate-900 dark:text-slate-100 transition-all"
                   {...register("studentsMentored")}
                 />
               </div>
 
               {/* Email (Optional) */}
               <div className="sm:col-span-4">
-                <label className="text-[11px] font-semibold text-slate-700 dark:text-slate-300 block mb-1">
+                <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 block mb-1.5">
                   Email (Optional)
                 </label>
                 <input
                   type="email"
                   placeholder="teacher@almukhtar.edu"
-                  className="w-full border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-2 text-xs outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-1 focus:ring-[#0F6E8C] bg-white dark:bg-slate-800/90 text-slate-900 dark:text-slate-100"
+                  className="w-full border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-3 sm:py-2.5 text-sm sm:text-xs min-h-[46px] sm:min-h-[42px] outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 bg-white dark:bg-slate-800/90 text-slate-900 dark:text-slate-100 transition-all"
                   {...register("email")}
                 />
               </div>
 
               {/* Phone (Optional) */}
               <div className="sm:col-span-4">
-                <label className="text-[11px] font-semibold text-slate-700 dark:text-slate-300 block mb-1">
+                <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 block mb-1.5">
                   Phone (Optional)
                 </label>
                 <input
                   type="text"
                   placeholder="+92 300 1234567"
-                  className="w-full border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-2 text-xs outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-1 focus:ring-[#0F6E8C] bg-white dark:bg-slate-800/90 text-slate-900 dark:text-slate-100"
+                  className="w-full border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-3 sm:py-2.5 text-sm sm:text-xs min-h-[46px] sm:min-h-[42px] outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 bg-white dark:bg-slate-800/90 text-slate-900 dark:text-slate-100 transition-all"
                   {...register("phone")}
                 />
               </div>
 
               {/* Status */}
               <div className="sm:col-span-4">
-                <label className="text-[11px] font-semibold text-slate-700 dark:text-slate-300 block mb-1">
+                <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 block mb-1.5">
                   Status
                 </label>
                 <select
-                  className="w-full border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-2 text-xs outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 bg-white dark:bg-slate-800/90 text-slate-900 dark:text-slate-100"
+                  className="w-full border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-3 sm:py-2.5 text-sm sm:text-xs min-h-[46px] sm:min-h-[42px] outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 bg-white dark:bg-slate-800/90 text-slate-900 dark:text-slate-100 cursor-pointer transition-all"
                   {...register("status")}
                 >
                   <option value="active">Active Faculty</option>
@@ -496,13 +496,13 @@ function AdminTeachers() {
 
               {/* Specializations */}
               <div className="sm:col-span-12">
-                <label className="text-[11px] font-semibold text-slate-700 dark:text-slate-300 block mb-1">
+                <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 block mb-1.5">
                   Specializations (Comma separated)
                 </label>
                 <input
                   type="text"
                   placeholder="e.g. Fiqh, Usul-ul-Fiqh, Hadith Studies, Tafseer"
-                  className="w-full border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-2 text-xs outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 bg-white dark:bg-slate-800/90 text-slate-900 dark:text-slate-100"
+                  className="w-full border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-3 sm:py-2.5 text-sm sm:text-xs min-h-[46px] sm:min-h-[42px] outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 bg-white dark:bg-slate-800/90 text-slate-900 dark:text-slate-100 transition-all"
                   {...register("specializations")}
                 />
                 <span className="text-[10px] text-slate-400 mt-1 block">
@@ -512,26 +512,31 @@ function AdminTeachers() {
 
               {/* Scholarly Philosophy / Quote */}
               <div className="sm:col-span-12">
-                <label className="text-[11px] font-semibold text-slate-700 dark:text-slate-300 block mb-1">
+                <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 block mb-1.5">
                   Scholarly Philosophy / Direct Quote
                 </label>
                 <textarea
-                  rows={2}
+                  rows={3}
                   placeholder="e.g. Our mission is to cultivate principled scholars anchored in classical authenticity..."
-                  className="w-full border border-slate-300 dark:border-slate-700 rounded-lg p-2.5 text-xs outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 bg-white dark:bg-slate-800/90 text-slate-900 dark:text-slate-100 resize-y"
+                  className="w-full border border-slate-300 dark:border-slate-700 rounded-xl p-3.5 text-xs sm:text-sm min-h-[90px] sm:min-h-[110px] outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 bg-white dark:bg-slate-800/90 text-slate-900 dark:text-slate-100 leading-relaxed transition-all resize-y"
                   {...register("quote")}
                 />
               </div>
 
-              {/* Biography / Description */}
+              {/* Biography / Description (Very Big Height) */}
               <div className="sm:col-span-12">
-                <label className="text-[11px] font-semibold text-slate-700 dark:text-slate-300 block mb-1">
-                  Academic Biography / Details
-                </label>
+                <div className="flex items-center justify-between mb-1.5">
+                  <label className="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider font-mono block">
+                    Detailed Academic Biography, Publications &amp; Sanad History
+                  </label>
+                  <span className="text-[11px] text-slate-400 dark:text-slate-500">
+                    Comprehensive scholarly pedigree &amp; teaching achievements
+                  </span>
+                </div>
                 <textarea
-                  rows={3}
-                  placeholder="Full background, educational career, published works, and teaching philosophy..."
-                  className="w-full border border-slate-300 dark:border-slate-700 rounded-lg p-2.5 text-xs outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 bg-white dark:bg-slate-800/90 text-slate-900 dark:text-slate-100 resize-y"
+                  rows={7}
+                  placeholder="Comprehensive academic dossier: seminary education, teachers, ijazaat (licenses to teach), published treatises, research work, departmental responsibilities, and mentorship methodology..."
+                  className="w-full border border-slate-300 dark:border-slate-700 rounded-xl p-3.5 sm:p-4 text-xs sm:text-sm min-h-[180px] sm:min-h-[220px] outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 bg-white dark:bg-slate-800/90 text-slate-900 dark:text-slate-100 leading-relaxed transition-all resize-y"
                   {...register("bio")}
                 />
               </div>

@@ -518,32 +518,18 @@ function Blog() {
               </div>
             )}
 
-            {/* Render Blogs: List (2 per row) or Cards (3-4 per row) */}
+            {/* Render Blogs: 1 column on mobile, 2 on tablet, 3 on desktop grid (gap-8 to gap-10) */}
             {!isLoading && !isError && filteredBlogs.length > 0 && (
               <>
-                {viewMode === "list" ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
-                    {paginatedBlogs.map((blog) => (
-                      <BlogCard
-                        key={blog._id || blog.slug}
-                        blog={blog}
-                        viewMode="list"
-                        onCategoryClick={handleCategorySelect}
-                      />
-                    ))}
-                  </div>
-                ) : (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6">
-                    {paginatedBlogs.map((blog) => (
-                      <BlogCard
-                        key={blog._id || blog.slug}
-                        blog={blog}
-                        viewMode="grid"
-                        onCategoryClick={handleCategorySelect}
-                      />
-                    ))}
-                  </div>
-                )}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8">
+                  {paginatedBlogs.map((blog) => (
+                    <BlogCard
+                      key={blog._id || blog.slug}
+                      blog={blog}
+                      onCategoryClick={handleCategorySelect}
+                    />
+                  ))}
+                </div>
 
                 {/* Pagination Toolbar when totalPages > 1 */}
                 {totalPages > 1 ? (

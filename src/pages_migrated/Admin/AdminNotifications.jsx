@@ -390,39 +390,39 @@ export default function AdminNotifications() {
             </button>
           </div>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-3.5">
-            <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 sm:gap-3.5">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-12 gap-3.5 sm:gap-4">
               {/* Title */}
               <div className="sm:col-span-8">
-                <label className="text-[11px] font-semibold text-slate-700 dark:text-slate-300 block mb-1">
+                <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 block mb-1.5">
                   Notification Title <span className="text-slate-400 font-normal">(Optional)</span>
                 </label>
                 <input
                   type="text"
                   placeholder="e.g. New Tajweed & Qira'at Certification Course Announced!"
-                  className="w-full border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-1.5 text-xs outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-1 focus:ring-[#0F6E8C] bg-white dark:bg-slate-800/90 text-slate-900 dark:text-slate-100"
+                  className="w-full border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-3 sm:py-2.5 text-sm sm:text-xs min-h-[46px] sm:min-h-[42px] outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 bg-white dark:bg-slate-800/90 text-slate-900 dark:text-slate-100 transition-all"
                   {...register("title")}
                 />
               </div>
 
               {/* Badge Tag */}
               <div className="sm:col-span-4">
-                <label className="text-[11px] font-semibold text-slate-700 dark:text-slate-300 block mb-1">
+                <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 block mb-1.5">
                   Category Tag / Badge
                 </label>
                 <input
                   type="text"
                   placeholder="e.g. Announcement"
-                  className="w-full border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-1.5 text-xs outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-1 focus:ring-[#0F6E8C] bg-white dark:bg-slate-800/90 text-slate-900 dark:text-slate-100"
+                  className="w-full border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-3 sm:py-2.5 text-sm sm:text-xs min-h-[46px] sm:min-h-[42px] outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 bg-white dark:bg-slate-800/90 text-slate-900 dark:text-slate-100 transition-all"
                   {...register("badge")}
                 />
-                <div className="flex flex-wrap gap-1 mt-1.5">
+                <div className="flex flex-wrap gap-1.5 mt-2">
                   {PRESET_BADGES.slice(0, 4).map((b) => (
                     <button
                       type="button"
                       key={b}
                       onClick={() => setValue("badge", b)}
-                      className={`text-[10px] px-1.5 py-0.5 rounded border transition-all cursor-pointer ${
+                      className={`text-[10px] px-2 py-1 rounded-md border transition-all cursor-pointer ${
                         watchedBadge === b
                           ? "bg-[#0F6E8C] text-white border-[#0F6E8C]"
                           : "bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700 hover:border-[#0F6E8C]"
@@ -434,30 +434,35 @@ export default function AdminNotifications() {
                 </div>
               </div>
 
-              {/* Description */}
+              {/* Description (Very Big Height) */}
               <div className="sm:col-span-12">
-                <label className="text-[11px] font-semibold text-slate-700 dark:text-slate-300 block mb-1">
-                  Description / Message Text <span className="text-slate-400 font-normal">(Optional)</span>
-                </label>
+                <div className="flex items-center justify-between mb-1.5">
+                  <label className="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider font-mono block">
+                    Detailed Announcement / Notification Message
+                  </label>
+                  <span className="text-[11px] text-slate-400 dark:text-slate-500">
+                    Comprehensive notice details displayed to students
+                  </span>
+                </div>
                 <textarea
-                  rows={2}
-                  placeholder="Enter notice details, short description, or launch notes..."
-                  className="w-full border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-1.5 text-xs outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-1 focus:ring-[#0F6E8C] bg-white dark:bg-slate-800/90 text-slate-900 dark:text-slate-100 resize-none"
+                  rows={5}
+                  placeholder="Enter full announcement details, schedule notes, instructions, admission highlights, or eligibility guidelines..."
+                  className="w-full border border-slate-300 dark:border-slate-700 rounded-xl p-3.5 sm:p-4 text-xs sm:text-sm min-h-[140px] sm:min-h-[170px] outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 bg-white dark:bg-slate-800/90 text-slate-900 dark:text-slate-100 leading-relaxed transition-all resize-y"
                   {...register("description")}
                 />
               </div>
 
               {/* Course Quick Auto-fill */}
-              <div className="sm:col-span-12 p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60 space-y-2.5">
-                <div className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-700 dark:text-slate-300">
-                  <BookOpen size={12} className="text-[#0F6E8C]" />
+              <div className="sm:col-span-12 p-3.5 sm:p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700/60 space-y-3">
+                <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-700 dark:text-slate-300">
+                  <BookOpen size={14} className="text-[#0F6E8C]" />
                   <span>Link to a Course (Auto-fill Button Text & Route)</span>
                 </div>
 
                 <select
                   onChange={handleCourseSelect}
                   defaultValue=""
-                  className="w-full border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-xs bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 outline-none focus:border-[#0F6E8C]"
+                  className="w-full border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-3 sm:py-2.5 text-sm sm:text-xs min-h-[46px] sm:min-h-[42px] bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 outline-none focus:border-[#0F6E8C] cursor-pointer"
                 >
                   <option value="">-- Optional: Select course to auto-fill redirect details --</option>
                   {courses.map((course) => (
@@ -467,26 +472,26 @@ export default function AdminNotifications() {
                   ))}
                 </select>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
-                    <label className="text-[10px] font-semibold text-slate-600 dark:text-slate-400 block mb-0.5">
+                    <label className="text-[11px] font-semibold text-slate-600 dark:text-slate-400 block mb-1">
                       Button Label
                     </label>
                     <input
                       type="text"
                       placeholder="e.g. View Course"
-                      className="w-full border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1 text-xs bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 outline-none focus:border-[#0F6E8C]"
+                      className="w-full border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-2.5 text-sm sm:text-xs min-h-[44px] sm:min-h-[40px] bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 outline-none focus:border-[#0F6E8C]"
                       {...register("buttonText")}
                     />
                   </div>
                   <div>
-                    <label className="text-[10px] font-semibold text-slate-600 dark:text-slate-400 block mb-0.5">
+                    <label className="text-[11px] font-semibold text-slate-600 dark:text-slate-400 block mb-1">
                       Redirect URL (Internal route or external link)
                     </label>
                     <input
                       type="text"
                       placeholder="e.g. /courses/quran-tajweed-course"
-                      className="w-full border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1 text-xs bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 outline-none focus:border-[#0F6E8C]"
+                      className="w-full border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-2.5 text-sm sm:text-xs min-h-[44px] sm:min-h-[40px] bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 outline-none focus:border-[#0F6E8C]"
                       {...register("buttonUrl")}
                     />
                   </div>
@@ -495,12 +500,12 @@ export default function AdminNotifications() {
 
               {/* Cover Image Upload */}
               <div className="sm:col-span-8">
-                <label className="text-[11px] font-semibold text-slate-700 dark:text-slate-300 block mb-1">
+                <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 block mb-1.5">
                   Banner Image <span className="text-slate-400 font-normal">(Optional)</span>
                 </label>
                 <div className="flex items-center gap-3">
                   {imagePreview ? (
-                    <div className="relative w-16 h-12 rounded-lg border border-slate-200 dark:border-slate-700 overflow-hidden shrink-0 group">
+                    <div className="relative w-16 h-12 rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden shrink-0 group">
                       <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
                       <button
                         type="button"
@@ -511,8 +516,8 @@ export default function AdminNotifications() {
                       </button>
                     </div>
                   ) : null}
-                  <label className="flex items-center gap-1.5 px-3 py-1.5 border border-dashed border-slate-300 dark:border-slate-700 rounded-lg text-xs text-slate-600 dark:text-slate-300 hover:border-[#0F6E8C] cursor-pointer bg-slate-50 dark:bg-slate-800/60 transition-colors">
-                    <Upload size={13} className="text-slate-400 dark:text-slate-500" />
+                  <label className="flex items-center gap-2 px-4 py-3 sm:py-2.5 min-h-[46px] sm:min-h-[42px] border border-dashed border-slate-300 dark:border-slate-700 rounded-xl text-xs sm:text-sm text-slate-600 dark:text-slate-300 hover:border-[#0F6E8C] cursor-pointer bg-slate-50 dark:bg-slate-800/60 transition-all">
+                    <Upload size={14} className="text-slate-400 dark:text-slate-500" />
                     <span>{imagePreview ? "Change Image" : "Upload Banner (PNG/JPG)"}</span>
                     <input type="file" accept="image/*" className="hidden" onChange={handleImageChange} />
                   </label>
@@ -521,13 +526,13 @@ export default function AdminNotifications() {
 
               {/* Active Toggle */}
               <div className="sm:col-span-4 flex items-center pt-2 sm:pt-4">
-                <label className="flex items-center gap-2 cursor-pointer">
+                <label className="flex items-center gap-2.5 cursor-pointer">
                   <input
                     type="checkbox"
                     className="w-4 h-4 rounded text-[#0F6E8C] border-slate-300 dark:border-slate-700 focus:ring-[#0F6E8C]"
                     {...register("isActive")}
                   />
-                  <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+                  <span className="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300">
                     Active (Live on Website)
                   </span>
                 </label>

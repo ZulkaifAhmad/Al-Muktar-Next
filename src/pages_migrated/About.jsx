@@ -5,445 +5,407 @@ import { Link } from "@/lib/navigation-adapter";
 import {
   BookOpen,
   Users,
-  Award,
+  GraduationCap,
   Sparkles,
   ArrowRight,
-  GraduationCap,
   ShieldCheck,
   CheckCircle2,
   Globe,
-  Building2,
   Quote,
-  Check,
   Compass,
-  Library,
   Layers,
   HeartHandshake,
-  Clock,
-  ChevronRight,
+  Building2,
+  Library,
+  Calendar,
+  Award,
+  Check,
+  MapPin,
+  FileCheck,
 } from "lucide-react";
-import { CampusImage, GreenDecorationBg, bg } from "../assets/assets.js";
-
-
-const corePillars = [
-  {
-    icon: ShieldCheck,
-    title: "Classical Authenticity",
-    description:
-      "Grounded in verified transmission chains (Sanad) and classical foundational texts under authoritative scholarship.",
-  },
-  {
-    icon: Layers,
-    title: "Modern Academic Rigor",
-    description:
-      "Structured syllabi, modular assessments, and critical thinking methodologies adapted for contemporary students.",
-  },
-  {
-    icon: HeartHandshake,
-    title: "Holistic Character (Tarbiyah)",
-    description:
-      "Knowledge paired with spiritual discipline, moral integrity, humility, and community leadership ethos.",
-  },
-  {
-    icon: Globe,
-    title: "Global Reach & Relevance",
-    description:
-      "Equipping graduates to serve as principled educators, researchers, and counselors in communities worldwide.",
-  },
-];
-
-const methodologySteps = [
-  {
-    number: "01",
-    title: "Textual Immersion",
-    desc: "Direct study of foundational classical treatises in Arabic grammar, Fiqh, Usul, Hadith, and Tajweed.",
-  },
-  {
-    number: "02",
-    title: "Scholarly Mentorship",
-    desc: "One-on-one tutorial sessions and oral recitation examinations with verified resident scholars.",
-  },
-  {
-    number: "03",
-    title: "Applied Ethics & Context",
-    desc: "Synthesizing timeless Shariah principles with contemporary legal, economic, and social challenges.",
-  },
-  {
-    number: "04",
-    title: "Certification & Ijazah",
-    desc: "Awarding authenticated diplomas and continuous chains of transmission upon rigorous evaluation.",
-  },
-];
-
-const campusFacilities = [
-  {
-    title: "Scholarly Reference Library",
-    desc: "Curated collection of classical Arabic lexicons, Tafseer compendiums, and modern Islamic jurisprudence journals.",
-  },
-  {
-    title: "Acoustic Recitation Chambers",
-    desc: "Dedicated Tajweed studios designed for precise phonetic articulation and oral recitation training.",
-  },
-  {
-    title: "Interactive Digital Portal",
-    desc: "High-definition live streaming and archived modular repository for distance learning scholars.",
-  },
-  {
-    title: "Seminar & Discourse Halls",
-    desc: "Modern lecture spaces equipped for academic symposia, research workshops, and guest lectures.",
-  },
-];
+import { CampusImage, bg, FounderImage } from "../assets/assets.js";
 
 function About() {
   return (
     <div className="bg-white dark:bg-[#070d18] font-sans text-slate-800 dark:text-slate-100 transition-colors duration-200">
-      {/* ── 1. INSTITUTIONAL HERO SECTION ── */}
-      <section className="relative overflow-hidden bg-slate-950 text-white py-14 sm:py-18 border-b border-slate-800">
-        {/* Background Image & Overlay */}
+      {/* ── 1. INSTITUTIONAL HERO SECTION (CLEAR BG & NORMAL EDUCATIONAL TYPOGRAPHY) ── */}
+      <section className="relative overflow-hidden bg-slate-950 text-white py-10 sm:py-14 border-b border-slate-800/80">
+        {/* Background Image — Clearly Visible */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <img
             src={bg}
             alt="Islamic Academic Heritage"
-            className="w-full h-full object-cover object-center opacity-45"
+            className="w-full h-full object-cover object-center opacity-80 sm:opacity-85"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/85 via-slate-950/80 to-[#07111e]/95" />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/75 to-slate-950/50" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-transparent to-slate-950/20" />
         </div>
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#8FB3AA_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none z-0" />
-        <div className="absolute -top-20 -right-20 w-80 h-80 bg-[#0F6E8C]/25 rounded-full blur-3xl pointer-events-none z-0" />
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl space-y-4 text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#8FB3AA] text-[11px] font-bold uppercase tracking-widest font-mono border border-white/10">
-              <Sparkles size={12} className="text-[#8FB3AA]" />
+          <div className="max-w-2xl space-y-3 text-left">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/15 backdrop-blur-md text-teal-300 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider font-mono border border-white/20">
+              <Sparkles size={11} className="text-teal-300" />
               <span>Institutional Profile</span>
             </div>
 
-            <h1 className="text-2xl sm:text-4xl font-extrabold text-white font-heading tracking-tight leading-tight">
+            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white font-heading tracking-tight">
               About Al-Mukhtar Institute
             </h1>
 
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl">
-              An established sanctuary of classical Islamic sciences and modern academic inquiry — dedicated to preserving authentic scholarship, cultivating principled character, and preparing leaders for the global community.
+            <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-normal">
+              An established academy of classical Islamic sciences and modern academic inquiry — dedicated to authentic scholarship, disciplined character, and preparing principled community leaders.
             </p>
 
-            {/* Quick Metrics Bar */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-3">
-              <div className="p-3 rounded-xl bg-white/[0.05] border border-white/10 backdrop-blur-xs">
-                <span className="text-lg sm:text-xl font-black text-white font-heading block">15+ Years</span>
-                <span className="text-[10.5px] text-[#8FB3AA] font-mono uppercase">Academic Tradition</span>
+            {/* Quick Metrics */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-3 border-t border-white/15">
+              <div className="p-2.5 rounded-lg bg-slate-950/60 border border-white/10 backdrop-blur-md">
+                <span className="text-base sm:text-lg font-bold text-white font-heading block">15+ Years</span>
+                <span className="text-[9.5px] text-teal-300 font-mono uppercase">Tradition</span>
               </div>
-              <div className="p-3 rounded-xl bg-white/[0.05] border border-white/10 backdrop-blur-xs">
-                <span className="text-lg sm:text-xl font-black text-[#8FB3AA] font-heading block">3,500+</span>
-                <span className="text-[10.5px] text-slate-300 font-mono uppercase">Scholarly Alumni</span>
+              <div className="p-2.5 rounded-lg bg-slate-950/60 border border-white/10 backdrop-blur-md">
+                <span className="text-base sm:text-lg font-bold text-teal-300 font-heading block">3,500+</span>
+                <span className="text-[9.5px] text-slate-300 font-mono uppercase">Alumni</span>
               </div>
-              <div className="p-3 rounded-xl bg-white/[0.05] border border-white/10 backdrop-blur-xs">
-                <span className="text-lg sm:text-xl font-black text-white font-heading block">100%</span>
-                <span className="text-[10.5px] text-[#8FB3AA] font-mono uppercase">Verified Sanad</span>
+              <div className="p-2.5 rounded-lg bg-slate-950/60 border border-white/10 backdrop-blur-md">
+                <span className="text-base sm:text-lg font-bold text-white font-heading block">100%</span>
+                <span className="text-[9.5px] text-teal-300 font-mono uppercase">Verified Sanad</span>
               </div>
-              <div className="p-3 rounded-xl bg-white/[0.05] border border-white/10 backdrop-blur-xs">
-                <span className="text-lg sm:text-xl font-black text-[#8FB3AA] font-heading block">Global</span>
-                <span className="text-[10.5px] text-slate-300 font-mono uppercase">Accredited Syllabi</span>
+              <div className="p-2.5 rounded-lg bg-slate-950/60 border border-white/10 backdrop-blur-md">
+                <span className="text-base sm:text-lg font-bold text-teal-300 font-heading block">Global</span>
+                <span className="text-[9.5px] text-slate-300 font-mono uppercase">Curricula</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── 2. FOUNDATIONAL HISTORY & IDENTITY ── */}
-      <section className="py-12 sm:py-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-          {/* Left Column: Campus Image & Inception Card */}
-          <div className="lg:col-span-5 space-y-4">
-            <div className="relative rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-md">
-              <img
-                src={CampusImage}
-                alt="Al-Mukhtar Institute Campus"
-                className="w-full h-64 sm:h-72 object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#091E2D]/80 via-transparent to-transparent flex items-end p-4">
-                <div className="text-white space-y-0.5">
-                  <p className="text-xs font-bold font-heading">Al-Mukhtar Academic Campus</p>
-                  <p className="text-[10px] text-[#8FB3AA] font-mono">Peshawar, Khyber Pakhtunkhwa</p>
-                </div>
+      {/* ── 2. MAIN ACADEMIC CONTENT (STARTS FROM THE LEFT) ── */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+          
+          {/* Left Main Content Column (8 Cols) */}
+          <div className="lg:col-span-8 space-y-10 text-left">
+            
+            {/* SECTION 1: GENESIS & MISSION */}
+            <article className="space-y-4">
+              <div className="border-b border-slate-200 dark:border-slate-800 pb-3">
+                <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#0F6E8C] dark:text-teal-400">
+                  Institutional Genesis
+                </span>
+                <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white font-heading tracking-tight mt-0.5">
+                  Preserving Sacred Tradition with Academic Rigor
+                </h2>
               </div>
-            </div>
 
-            <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800 space-y-2">
-              <div className="flex items-center gap-2 text-[#0F6E8C] dark:text-teal-400 text-xs font-bold font-mono uppercase">
-                <Compass size={14} />
-                <span>Foundational Inception</span>
-              </div>
-              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                Established under the guidance of senior scholars, Al-Mukhtar Institute was founded to revive the authentic methodology of traditional Islamic seminaries while utilizing modern pedagogical tools.
+              <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-200 leading-relaxed">
+                Founded under the supervision of verified scholars, <strong className="font-semibold text-slate-900 dark:text-white">Al-Mukhtar Institute</strong> was established to preserve the classical depth of traditional Islamic seminaries while adopting modern pedagogical clarity and structured learning.
               </p>
-            </div>
-          </div>
 
-          {/* Right Column: Mission & Vision */}
-          <div className="lg:col-span-7 space-y-5 text-left">
-            <div className="space-y-1.5">
-              <span className="text-xs font-bold text-[#0F6E8C] dark:text-teal-400 uppercase tracking-widest font-mono block">
-                Vision &amp; Mission
-              </span>
-              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 dark:text-white font-heading tracking-tight">
-                Preserving Sacred Knowledge, Inspiring Principled Action
-              </h2>
-            </div>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                In today’s fast-paced world, learning sacred knowledge requires more than casual reading—it demands an unbroken chain of transmission (<em className="italic font-serif">Sanad</em>), close teacher mentorship, and an emphasis on spiritual discipline (<em className="italic font-serif">Tarbiyah</em>).
+              </p>
 
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              At Al-Mukhtar, education is not merely the transmission of abstract facts; it is a transformative spiritual journey. We believe that authentic scholarship must cultivate humility, intellectual acuity, and empathetic leadership.
-            </p>
-
-            <div className="space-y-3 pt-1">
-              <div className="flex items-start gap-3 p-3.5 rounded-xl bg-slate-50/80 dark:bg-slate-900/50 border border-slate-200/70 dark:border-slate-800">
-                <div className="w-8 h-8 rounded-lg bg-[#0F6E8C]/10 text-[#0F6E8C] dark:text-teal-300 flex items-center justify-center shrink-0 mt-0.5">
-                  <CheckCircle2 size={16} />
-                </div>
-                <div>
-                  <h3 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white font-heading">
-                    Our Mission
-                  </h3>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed">
-                    To provide rigorous, accessible, and structured Islamic education anchored in classical texts, supervised by verified scholars, and relevant to modern intellectual questions.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3 p-3.5 rounded-xl bg-slate-50/80 dark:bg-slate-900/50 border border-slate-200/70 dark:border-slate-800">
-                <div className="w-8 h-8 rounded-lg bg-teal-500/10 text-teal-600 dark:text-teal-400 flex items-center justify-center shrink-0 mt-0.5">
-                  <Globe size={16} />
-                </div>
-                <div>
-                  <h3 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white font-heading">
-                    Our Vision
-                  </h3>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed">
-                    To be a globally recognized center of learning that graduates principled scholars, teachers, and leaders capable of uplifting Muslim communities worldwide with wisdom and authenticity.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 3. CORE INSTITUTIONAL PILLARS ── */}
-      <section className="py-12 sm:py-16 bg-slate-50/70 dark:bg-[#08121f] border-y border-slate-200/80 dark:border-slate-800">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <span className="text-xs font-bold text-[#0F6E8C] dark:text-teal-400 uppercase tracking-widest font-mono block">
-              Core Principles
-            </span>
-            <h2 className="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white font-heading tracking-tight">
-              The Four Pillars of Al-Mukhtar
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-              The timeless educational philosophy that defines our institution across every course and curriculum.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {corePillars.map((pillar, i) => {
-              const Icon = pillar.icon;
-              return (
-                <div
-                  key={i}
-                  className="bg-white dark:bg-[#0c1827] p-5 rounded-2xl border border-slate-200/90 dark:border-slate-800 shadow-2xs space-y-3"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-[#0F6E8C]/10 dark:bg-[#0F6E8C]/20 text-[#0F6E8C] dark:text-teal-300 flex items-center justify-center">
-                    <Icon size={18} />
+              {/* Campus Visual */}
+              <div className="my-5 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm bg-slate-100 dark:bg-slate-900">
+                <div className="relative h-56 sm:h-72 w-full">
+                  <img
+                    src={CampusImage}
+                    alt="Al-Mukhtar Academic Campus"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent flex items-end p-4">
+                    <div className="text-white space-y-0.5">
+                      <p className="text-xs font-bold font-heading">Al-Mukhtar Academic Facility</p>
+                      <p className="text-[10.5px] text-slate-300 font-mono">Peshawar, Khyber Pakhtunkhwa — Classical lecture halls and Tajweed recitation studios.</p>
+                    </div>
                   </div>
-                  <h3 className="text-sm font-bold text-slate-900 dark:text-white font-heading">
-                    {pillar.title}
-                  </h3>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                    {pillar.description}
+                </div>
+              </div>
+
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                From foundational modular tracks in Arabic syntax (<em className="italic font-serif">Nahw &amp; Sarf</em>) and Tajweed to advanced compendiums of Jurisprudence (<em className="italic font-serif">Fiqh</em>) and Hadith sciences, each program is structured to cultivate balanced individuals equipped with both classical mastery and contemporary understanding.
+              </p>
+
+              {/* Pull-Quote */}
+              <div className="my-5 p-4 sm:p-5 rounded-xl bg-slate-50 dark:bg-[#0c1827] border-l-3 border-[#0F6E8C] dark:border-teal-400 border border-slate-200/80 dark:border-slate-800">
+                <blockquote className="space-y-1.5">
+                  <p className="text-xs sm:text-sm font-serif italic text-slate-800 dark:text-slate-200 leading-relaxed">
+                    "Knowledge is not merely the accumulation of facts; true knowledge is a light that illuminates the heart and translates into righteous conduct, humility, and sincere service to humanity."
+                  </p>
+                  <footer className="text-[10.5px] font-mono font-semibold uppercase tracking-wider text-[#0F6E8C] dark:text-teal-400">
+                    — Founding Principle of Al-Mukhtar
+                  </footer>
+                </blockquote>
+              </div>
+            </article>
+
+            {/* SECTION 2: THE FOUR CORE PILLARS */}
+            <article className="space-y-4">
+              <div className="border-b border-slate-200 dark:border-slate-800 pb-3">
+                <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#0F6E8C] dark:text-teal-400">
+                  Educational Philosophy
+                </span>
+                <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white font-heading tracking-tight mt-0.5">
+                  The Four Pillars of Our Curriculum
+                </h2>
+              </div>
+
+              <div className="space-y-3 pt-1">
+                <div className="p-4 rounded-xl bg-slate-50/70 dark:bg-[#0c1827] border border-slate-200/80 dark:border-slate-800 space-y-1.5">
+                  <div className="flex items-center gap-2 text-[#0F6E8C] dark:text-teal-400 font-bold text-xs sm:text-sm font-heading">
+                    <ShieldCheck size={16} />
+                    <span>1. Classical Authenticity (Al-Asalah)</span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-6">
+                    Direct study of foundational classical treatises with verified chains of transmission under authorized scholars holding traditional Ijazahs.
                   </p>
                 </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
 
-      {/* ── 4. PEDAGOGY & METHODOLOGY ── */}
-      <section className="py-12 sm:py-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="text-center max-w-2xl mx-auto space-y-2">
-          <span className="text-xs font-bold text-[#0F6E8C] dark:text-teal-400 uppercase tracking-widest font-mono block">
-            Academic Pedagogy
-          </span>
-          <h2 className="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white font-heading tracking-tight">
-            How Knowledge is Cultivated
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-            A step-by-step instructional model that preserves classical mastery while developing contemporary analytical skill.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {methodologySteps.map((step, i) => (
-            <div
-              key={i}
-              className="p-5 rounded-2xl bg-white dark:bg-[#0c1827] border border-slate-200 dark:border-slate-800/90 shadow-2xs space-y-2 relative"
-            >
-              <span className="text-2xl font-black text-[#0F6E8C]/30 dark:text-teal-400/30 font-heading block">
-                {step.number}
-              </span>
-              <h3 className="text-sm font-bold text-slate-900 dark:text-white font-heading">
-                {step.title}
-              </h3>
-              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                {step.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── 5. CAMPUS & LEARNING ENVIRONMENT ── */}
-      <section className="py-12 sm:py-16 bg-slate-50/70 dark:bg-[#08121f] border-t border-slate-200/80 dark:border-slate-800">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <span className="text-xs font-bold text-[#0F6E8C] dark:text-teal-400 uppercase tracking-widest font-mono block">
-              Infrastructure
-            </span>
-            <h2 className="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white font-heading tracking-tight">
-              Learning Facilities &amp; Campus
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-              Modern academic infrastructure designed to cultivate focus, reflection, and rigorous scholarship.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {campusFacilities.map((fac, i) => (
-              <div
-                key={i}
-                className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-[#0c1827] border border-slate-200/90 dark:border-slate-800 shadow-2xs flex items-start gap-3.5"
-              >
-                <div className="w-9 h-9 rounded-xl bg-[#0F6E8C]/10 text-[#0F6E8C] dark:text-teal-300 flex items-center justify-center shrink-0 mt-0.5">
-                  <Building2 size={16} />
+                <div className="p-4 rounded-xl bg-slate-50/70 dark:bg-[#0c1827] border border-slate-200/80 dark:border-slate-800 space-y-1.5">
+                  <div className="flex items-center gap-2 text-[#0F6E8C] dark:text-teal-400 font-bold text-xs sm:text-sm font-heading">
+                    <Layers size={16} />
+                    <span>2. Modern Academic Structure (Al-Manhajiyyah)</span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-6">
+                    Structured modular curricula, clear syllabi, continuous assessments, and interactive digital resources tailored for modern learners.
+                  </p>
                 </div>
-                <div className="space-y-1">
-                  <h3 className="text-sm font-bold text-slate-900 dark:text-white font-heading">
-                    {fac.title}
-                  </h3>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                    {fac.desc}
+
+                <div className="p-4 rounded-xl bg-slate-50/70 dark:bg-[#0c1827] border border-slate-200/80 dark:border-slate-800 space-y-1.5">
+                  <div className="flex items-center gap-2 text-[#0F6E8C] dark:text-teal-400 font-bold text-xs sm:text-sm font-heading">
+                    <HeartHandshake size={16} />
+                    <span>3. Holistic Character &amp; Ethics (At-Tarbiyah)</span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-6">
+                    Emphasis on personal integrity, humility, sincerity, and ethical conduct through continuous faculty mentorship.
+                  </p>
+                </div>
+
+                <div className="p-4 rounded-xl bg-slate-50/70 dark:bg-[#0c1827] border border-slate-200/80 dark:border-slate-800 space-y-1.5">
+                  <div className="flex items-center gap-2 text-[#0F6E8C] dark:text-teal-400 font-bold text-xs sm:text-sm font-heading">
+                    <Globe size={16} />
+                    <span>4. Global Relevance &amp; Community Leadership</span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed pl-6">
+                    Equipping students to articulate Islamic values clearly and engage positively in contemporary societal discussions.
                   </p>
                 </div>
               </div>
-            ))}
+            </article>
+
+            {/* SECTION 3: LEARNING METHODOLOGY */}
+            <article className="space-y-4">
+              <div className="border-b border-slate-200 dark:border-slate-800 pb-3">
+                <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#0F6E8C] dark:text-teal-400">
+                  Instructional Framework
+                </span>
+                <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white font-heading tracking-tight mt-0.5">
+                  How Students Progress
+                </h2>
+              </div>
+
+              <div className="space-y-3.5 border-l-2 border-[#0F6E8C]/30 dark:border-teal-500/30 pl-4 sm:pl-5 ml-2">
+                <div className="relative space-y-1">
+                  <div className="absolute -left-[21px] sm:-left-[25px] top-1.5 w-3 h-3 rounded-full bg-[#0F6E8C] border-2 border-white dark:border-[#070d18]" />
+                  <h4 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white font-heading">
+                    Phase 1: Textual Foundation
+                  </h4>
+                  <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    Direct reading and structural understanding of core primer texts in Arabic grammar and Tajweed rules.
+                  </p>
+                </div>
+
+                <div className="relative space-y-1 pt-2">
+                  <div className="absolute -left-[21px] sm:-left-[25px] top-3.5 w-3 h-3 rounded-full bg-[#0F6E8C] border-2 border-white dark:border-[#070d18]" />
+                  <h4 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white font-heading">
+                    Phase 2: Scholarly Mentorship &amp; Oral Recitation
+                  </h4>
+                  <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    Interactive recitation sessions and real-time pronunciation corrections directly by authorized faculty.
+                  </p>
+                </div>
+
+                <div className="relative space-y-1 pt-2">
+                  <div className="absolute -left-[21px] sm:-left-[25px] top-3.5 w-3 h-3 rounded-full bg-[#0F6E8C] border-2 border-white dark:border-[#070d18]" />
+                  <h4 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white font-heading">
+                    Phase 3: Applied Jurisprudence &amp; Ethics
+                  </h4>
+                  <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    Connecting classical legal maxims to modern real-world contexts and developing analytical skills.
+                  </p>
+                </div>
+
+                <div className="relative space-y-1 pt-2">
+                  <div className="absolute -left-[21px] sm:-left-[25px] top-3.5 w-3 h-3 rounded-full bg-teal-500 border-2 border-white dark:border-[#070d18]" />
+                  <h4 className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white font-heading">
+                    Phase 4: Formal Evaluation &amp; Certification
+                  </h4>
+                  <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                    Comprehensive examinations leading to authenticated certificates and recognized Ijazah diplomas.
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            {/* SECTION 4: CAMPUS & FACILITIES */}
+            <article className="space-y-4">
+              <div className="border-b border-slate-200 dark:border-slate-800 pb-3">
+                <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#0F6E8C] dark:text-teal-400">
+                  Infrastructure
+                </span>
+                <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white font-heading tracking-tight mt-0.5">
+                  Learning Facilities &amp; Campus Resources
+                </h2>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 space-y-1">
+                  <div className="flex items-center gap-2 text-[#0F6E8C] dark:text-teal-400 font-bold text-xs sm:text-sm font-heading">
+                    <Library size={15} />
+                    <span>Reference Library</span>
+                  </div>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                    Classical Arabic manuscripts, Tafseer compendiums, and contemporary Islamic journals.
+                  </p>
+                </div>
+
+                <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 space-y-1">
+                  <div className="flex items-center gap-2 text-[#0F6E8C] dark:text-teal-400 font-bold text-xs sm:text-sm font-heading">
+                    <Building2 size={15} />
+                    <span>Recitation Studios</span>
+                  </div>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                    Acoustic studios calibrated for phonetics training and oral Tajweed examinations.
+                  </p>
+                </div>
+
+                <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 space-y-1">
+                  <div className="flex items-center gap-2 text-[#0F6E8C] dark:text-teal-400 font-bold text-xs sm:text-sm font-heading">
+                    <Globe size={15} />
+                    <span>Online Learning Portal</span>
+                  </div>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                    Live interactive classrooms and recorded modular resources for distance scholars.
+                  </p>
+                </div>
+
+                <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 space-y-1">
+                  <div className="flex items-center gap-2 text-[#0F6E8C] dark:text-teal-400 font-bold text-xs sm:text-sm font-heading">
+                    <Users size={15} />
+                    <span>Lecture Halls</span>
+                  </div>
+                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                    Spacious halls designed for academic symposia, guest seminars, and student gatherings.
+                  </p>
+                </div>
+              </div>
+            </article>
+
           </div>
-        </div>
-      </section>
 
-      {/* ── 6. DEDICATED SECTIONS EXPLORER (Faculty, Alumni, Courses) ── */}
-      <section className="py-12 sm:py-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="text-center max-w-2xl mx-auto space-y-2">
-          <span className="text-xs font-bold text-[#0F6E8C] dark:text-teal-400 uppercase tracking-widest font-mono block">
-            Explore Further
-          </span>
-          <h2 className="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white font-heading tracking-tight">
-            Discover Our Community
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-            Meet the scholars directing our curricula and read about the global impact of our graduates.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {/* Card 1: Teachers */}
-          <Link
-            to="/teachers"
-            className="group p-5 rounded-2xl bg-white dark:bg-[#0c1827] border border-slate-200/90 dark:border-slate-800 hover:border-[#0F6E8C] dark:hover:border-teal-400 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between space-y-4"
-          >
-            <div className="space-y-2.5">
-              <div className="w-10 h-10 rounded-xl bg-[#0F6E8C]/10 text-[#0F6E8C] dark:text-teal-300 flex items-center justify-center group-hover:scale-105 transition-transform">
-                <Users size={18} />
+          {/* Right Sidebar Column (4 Cols — Sticky Quick Info & Portals) */}
+          <div className="lg:col-span-4 space-y-5 lg:sticky lg:top-20">
+            
+            {/* Quick Fact Sheet Card */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 dark:bg-[#0c1827] border border-slate-200/90 dark:border-slate-800 space-y-3.5 shadow-2xs">
+              <div className="flex items-center gap-2 text-[#0F6E8C] dark:text-teal-400 font-mono text-xs font-bold uppercase tracking-wider border-b border-slate-200 dark:border-slate-800 pb-2">
+                <FileCheck size={14} />
+                <span>Quick Facts</span>
               </div>
-              <h3 className="text-base font-bold text-slate-900 dark:text-white font-heading group-hover:text-[#0F6E8C] dark:group-hover:text-teal-300 transition-colors">
-                Faculty &amp; Resident Scholars
-              </h3>
-              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                Meet our founding Mufti, senior professors, and Tajweed instructors who guide students daily.
-              </p>
-            </div>
-            <div className="flex items-center gap-1.5 text-xs font-bold text-[#0F6E8C] dark:text-teal-400 pt-2 border-t border-slate-100 dark:border-slate-800">
-              <span>View Faculty Directory</span>
-              <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
-            </div>
-          </Link>
 
-          {/* Card 2: Students */}
-          <Link
-            to="/students"
-            className="group p-5 rounded-2xl bg-white dark:bg-[#0c1827] border border-slate-200/90 dark:border-slate-800 hover:border-[#0F6E8C] dark:hover:border-teal-400 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between space-y-4"
-          >
-            <div className="space-y-2.5">
-              <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center group-hover:scale-105 transition-transform">
-                <GraduationCap size={18} />
+              <div className="space-y-2.5 text-xs">
+                <div className="flex items-start justify-between gap-2">
+                  <span className="text-slate-500 dark:text-slate-400">Campus Location:</span>
+                  <span className="font-semibold text-slate-900 dark:text-white text-right">Peshawar, KPK</span>
+                </div>
+                <div className="flex items-start justify-between gap-2">
+                  <span className="text-slate-500 dark:text-slate-400">Study Modes:</span>
+                  <span className="font-semibold text-slate-900 dark:text-white text-right">On-Campus &amp; Online</span>
+                </div>
+                <div className="flex items-start justify-between gap-2">
+                  <span className="text-slate-500 dark:text-slate-400">Core Disciplines:</span>
+                  <span className="font-semibold text-slate-900 dark:text-white text-right">Tajweed, Arabic, Fiqh, Hadith</span>
+                </div>
+                <div className="flex items-start justify-between gap-2">
+                  <span className="text-slate-500 dark:text-slate-400">Certification:</span>
+                  <span className="font-semibold text-teal-600 dark:text-teal-400 text-right">Sanad &amp; Ijazah</span>
+                </div>
               </div>
-              <h3 className="text-base font-bold text-slate-900 dark:text-white font-heading group-hover:text-[#0F6E8C] dark:group-hover:text-teal-300 transition-colors">
-                Alumni &amp; Graduates
-              </h3>
-              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                Discover where our alumni stand today across international pulpits, universities, and organizations.
-              </p>
             </div>
-            <div className="flex items-center gap-1.5 text-xs font-bold text-[#0F6E8C] dark:text-teal-400 pt-2 border-t border-slate-100 dark:border-slate-800">
-              <span>View Alumni Stories</span>
-              <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
-            </div>
-          </Link>
 
-          {/* Card 3: Courses */}
-          <Link
-            to="/courses"
-            className="group p-5 rounded-2xl bg-white dark:bg-[#0c1827] border border-slate-200/90 dark:border-slate-800 hover:border-[#0F6E8C] dark:hover:border-teal-400 shadow-2xs hover:shadow-md transition-all flex flex-col justify-between space-y-4"
-          >
-            <div className="space-y-2.5">
-              <div className="w-10 h-10 rounded-xl bg-teal-500/10 text-teal-600 dark:text-teal-400 flex items-center justify-center group-hover:scale-105 transition-transform">
-                <BookOpen size={18} />
+            {/* Quick Portal Navigation Links */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-slate-50 dark:bg-[#0c1827] border border-slate-200/90 dark:border-slate-800 space-y-3 shadow-2xs">
+              <h3 className="text-xs font-bold text-slate-900 dark:text-white font-heading uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                Explore Portals
+              </h3>
+
+              <div className="space-y-2">
+                <Link
+                  to="/teachers"
+                  className="flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 hover:border-[#0F6E8C] dark:hover:border-teal-400 transition-all text-xs font-bold text-slate-800 dark:text-slate-200 group"
+                >
+                  <span className="flex items-center gap-2">
+                    <Users size={14} className="text-[#0F6E8C] dark:text-teal-400" />
+                    <span>Faculty Directory</span>
+                  </span>
+                  <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
+                </Link>
+
+                <Link
+                  to="/courses"
+                  className="flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 hover:border-[#0F6E8C] dark:hover:border-teal-400 transition-all text-xs font-bold text-slate-800 dark:text-slate-200 group"
+                >
+                  <span className="flex items-center gap-2">
+                    <BookOpen size={14} className="text-[#0F6E8C] dark:text-teal-400" />
+                    <span>Academic Courses</span>
+                  </span>
+                  <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
+                </Link>
+
+                <Link
+                  to="/students"
+                  className="flex items-center justify-between p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 hover:border-[#0F6E8C] dark:hover:border-teal-400 transition-all text-xs font-bold text-slate-800 dark:text-slate-200 group"
+                >
+                  <span className="flex items-center gap-2">
+                    <GraduationCap size={14} className="text-[#0F6E8C] dark:text-teal-400" />
+                    <span>Alumni Directory</span>
+                  </span>
+                  <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
+                </Link>
               </div>
-              <h3 className="text-base font-bold text-slate-900 dark:text-white font-heading group-hover:text-[#0F6E8C] dark:group-hover:text-teal-300 transition-colors">
-                Academic Curricula
-              </h3>
-              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                Explore our accredited programs in Tajweed, Arabic syntax, Hadith studies, and Islamic jurisprudence.
-              </p>
             </div>
-            <div className="flex items-center gap-1.5 text-xs font-bold text-[#0F6E8C] dark:text-teal-400 pt-2 border-t border-slate-100 dark:border-slate-800">
-              <span>Explore Programs</span>
-              <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
-            </div>
-          </Link>
-        </div>
-      </section>
 
-      {/* ── 7. INSTITUTIONAL CTA ── */}
-      <section className="bg-gradient-to-r from-[#091E2D] to-[#0D2E45] text-white py-12 border-t border-slate-800">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-          <h2 className="text-2xl sm:text-3xl font-bold font-heading tracking-tight">
-            Begin Your Scholarly Journey at Al-Mukhtar
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto leading-relaxed">
-            Admissions are open for upcoming modular tracks and foundational certifications. Apply online or contact our admissions office.
-          </p>
-          <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
-            <Link
-              to="/apply"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0F6E8C] hover:bg-[#0B5C74] text-white text-xs font-bold shadow-md transition-all hover:scale-105"
-            >
-              <span>Apply for Admission</span>
-              <ArrowRight size={13} />
-            </Link>
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition-all border border-white/15"
-            >
-              <span>Contact Admissions</span>
-            </Link>
+            {/* Admission Box */}
+            <div className="p-4 sm:p-5 rounded-2xl bg-slate-900 text-white space-y-3 border border-slate-800 shadow-md">
+              <div className="space-y-1">
+                <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-teal-300">
+                  Admissions
+                </span>
+                <h4 className="text-sm font-bold font-heading">
+                  Ready to Enroll?
+                </h4>
+                <p className="text-[11px] text-slate-300 leading-relaxed">
+                  Admissions are currently open for upcoming on-campus and online cohorts.
+                </p>
+              </div>
+
+              <div className="pt-1 flex flex-col gap-2">
+                <Link
+                  to="/apply"
+                  className="inline-flex items-center justify-center gap-1.5 bg-[#0F6E8C] hover:bg-[#0B5C74] text-white text-xs font-bold py-2 px-4 rounded-xl transition-all text-center"
+                >
+                  <span>Apply Now</span>
+                  <ArrowRight size={12} />
+                </Link>
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center justify-center gap-1.5 bg-white/10 hover:bg-white/15 text-white text-xs font-semibold py-2 px-4 rounded-xl border border-white/10 transition-all text-center"
+                >
+                  <span>Contact Admissions</span>
+                </Link>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>

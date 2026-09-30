@@ -117,24 +117,24 @@ function Contact() {
             Have questions about academic programs, admissions criteria, or fee concessions? Reach out to our admissions desk below or connect with us directly.
           </p>
 
-          {/* Quick Direct Actions (WhatsApp + Call) */}
-          <div className="pt-4 flex flex-wrap items-center justify-center gap-3">
+          {/* Quick Direct Actions (WhatsApp + Call) — 2 Buttons in a Single Row on Mobile */}
+          <div className="pt-4 grid grid-cols-2 gap-2.5 sm:flex sm:flex-wrap items-center justify-center sm:gap-3 max-w-sm sm:max-w-none mx-auto">
             <a
               href="https://wa.me/923001234567?text=Assalam-o-Alaikum,%20I%20want%20information%20about%20Al-Mukhtar%20courses%20and%20admissions."
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm shadow-xs transition-all active:scale-95"
+              className="inline-flex items-center justify-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white px-3 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm shadow-xs transition-all active:scale-95 text-center"
             >
-              <MessageCircle size={17} />
-              <span>Chat on WhatsApp</span>
+              <MessageCircle size={15} className="shrink-0" />
+              <span>WhatsApp</span>
             </a>
 
             <a
               href="tel:+923001234567"
-              className="inline-flex items-center gap-2 bg-[#0F6E8C] hover:bg-[#0B5C74] text-white px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm shadow-xs transition-all active:scale-95"
+              className="inline-flex items-center justify-center gap-1.5 bg-[#0F6E8C] hover:bg-[#0B5C74] text-white px-3 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm shadow-xs transition-all active:scale-95 text-center"
             >
-              <Phone size={15} />
-              <span>Call Helpline: +92 300 1234567</span>
+              <Phone size={14} className="shrink-0" />
+              <span>Call Helpline</span>
             </a>
           </div>
         </div>

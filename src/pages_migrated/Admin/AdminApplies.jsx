@@ -216,20 +216,20 @@ function AppliedCandidates() {
 
       {/* Filters */}
       <div className="flex flex-col sm:flex-row gap-2.5">
-        <div className="flex items-center gap-2 bg-white dark:bg-[#0c1827] border border-slate-200 dark:border-slate-800 rounded-lg px-2.5 py-1.5 flex-1 shadow-2xs focus-within:border-[#0F6E8C] dark:focus-within:border-teal-400 focus-within:ring-1 focus-within:ring-[#0F6E8C]">
-          <Search size={13} className="text-slate-400 dark:text-slate-500 shrink-0" />
+        <div className="flex items-center gap-2 bg-white dark:bg-[#0c1827] border border-slate-200 dark:border-slate-800 rounded-xl px-3.5 py-2.5 sm:py-2 min-h-[46px] sm:min-h-[38px] flex-1 shadow-2xs focus-within:border-[#0F6E8C] dark:focus-within:border-teal-400 focus-within:ring-2 focus-within:ring-[#0F6E8C]/15 transition-all">
+          <Search size={14} className="text-slate-400 dark:text-slate-500 shrink-0" />
           <input
             type="text"
             placeholder="Search candidate by name..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="text-xs outline-none w-full placeholder:text-slate-400 dark:placeholder:text-slate-500 bg-transparent text-slate-800 dark:text-slate-100"
+            className="text-xs sm:text-sm outline-none w-full placeholder:text-slate-400 dark:placeholder:text-slate-500 bg-transparent text-slate-800 dark:text-slate-100"
           />
         </div>
         <select
           value={courseFilter}
           onChange={(e) => setCourseFilter(e.target.value)}
-          className="border border-slate-200 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-xs bg-white dark:bg-slate-800 focus:outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 text-slate-700 dark:text-slate-200 shadow-2xs sm:w-48 cursor-pointer"
+          className="border border-slate-200 dark:border-slate-700 rounded-xl px-3.5 py-2.5 sm:py-2 min-h-[46px] sm:min-h-[38px] text-xs sm:text-sm bg-white dark:bg-slate-800 focus:outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 text-slate-700 dark:text-slate-200 shadow-2xs sm:w-52 cursor-pointer transition-all"
         >
           {courses.map((c) => (
             <option key={c} value={c}>
@@ -240,7 +240,7 @@ function AppliedCandidates() {
         <select
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
-          className="border border-slate-200 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-xs bg-white dark:bg-slate-800 focus:outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 text-slate-700 dark:text-slate-200 shadow-2xs sm:w-36 cursor-pointer"
+          className="border border-slate-200 dark:border-slate-700 rounded-xl px-3.5 py-2.5 sm:py-2 min-h-[46px] sm:min-h-[38px] text-xs sm:text-sm bg-white dark:bg-slate-800 focus:outline-none focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 text-slate-700 dark:text-slate-200 shadow-2xs sm:w-40 cursor-pointer transition-all"
         >
           <option value="all">All Status</option>
           <option value="pending">Pending</option>

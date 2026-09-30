@@ -99,7 +99,7 @@ function VerifyEmail() {
 
   return (
     <div className="min-h-screen w-full flex bg-slate-50 font-sans">
-      
+
       <div className="hidden lg:flex lg:w-[42%] relative bg-gradient-to-br from-[#0A2540] via-[#081E2E] to-[#0F6E8C] overflow-hidden">
         <img
           src={moon_light}
@@ -201,9 +201,8 @@ function VerifyEmail() {
                   onChange={(e) => handleChange(index, e.target.value)}
                   onKeyDown={(e) => handleKeyDown(index, e)}
                   onPaste={index === 0 ? handlePaste : undefined}
-                  className={`w-11 h-13 sm:w-14 sm:h-15 text-center text-xl font-bold rounded-xl border text-slate-900 outline-none transition-all focus:ring-2 focus:ring-[#0F6E8C]/20 focus:border-[#0F6E8C] bg-white ${
-                    errors[`otp${index}`] ? "border-rose-400 bg-rose-50/30" : "border-slate-200"
-                  }`}
+                  className={`w-11 h-13 sm:w-14 sm:h-15 text-center text-xl font-bold rounded-xl border text-slate-900 outline-none transition-all focus:ring-2 focus:ring-[#0F6E8C]/20 focus:border-[#0F6E8C] bg-white ${errors[`otp${index}`] ? "border-rose-400 bg-rose-50/30" : "border-slate-200"
+                    }`}
                 />
               ))}
             </div>
@@ -235,8 +234,8 @@ function VerifyEmail() {
               {resendCooldown > 0
                 ? `Resend in ${resendCooldown}s`
                 : resendMutation.isPending
-                ? "Sending..."
-                : "Resend code"}
+                  ? "Sending..."
+                  : "Resend code"}
             </button>
           </p>
         </div>

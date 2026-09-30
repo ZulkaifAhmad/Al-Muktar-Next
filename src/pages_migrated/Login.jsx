@@ -173,9 +173,8 @@ function Login() {
               <input
                 type="text"
                 placeholder="you@example.com"
-                className={`w-full px-4 py-2.5 rounded-xl border text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-all focus:ring-2 focus:ring-[#0F6E8C]/20 focus:border-[#0F6E8C] ${
-                  errors.email ? "border-rose-400 bg-rose-50/30" : "border-slate-200 bg-white"
-                }`}
+                className={`w-full px-4 py-2.5 rounded-xl border text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-all focus:ring-2 focus:ring-[#0F6E8C]/20 focus:border-[#0F6E8C] ${errors.email ? "border-rose-400 bg-rose-50/30" : "border-slate-200 bg-white"
+                  }`}
                 {...register("email", {
                   required: "Email is required",
                   pattern: {
@@ -208,9 +207,8 @@ function Login() {
                 <input
                   type={showPassword ? "text" : "password"}
                   placeholder="Enter your password"
-                  className={`w-full px-4 py-2.5 pr-11 rounded-xl border text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-all focus:ring-2 focus:ring-[#0F6E8C]/20 focus:border-[#0F6E8C] ${
-                    errors.password ? "border-rose-400 bg-rose-50/30" : "border-slate-200 bg-white"
-                  }`}
+                  className={`w-full px-4 py-2.5 pr-11 rounded-xl border text-sm text-slate-900 placeholder:text-slate-400 outline-none transition-all focus:ring-2 focus:ring-[#0F6E8C]/20 focus:border-[#0F6E8C] ${errors.password ? "border-rose-400 bg-rose-50/30" : "border-slate-200 bg-white"
+                    }`}
                   {...register("password", {
                     required: "Password is required",
                   })}

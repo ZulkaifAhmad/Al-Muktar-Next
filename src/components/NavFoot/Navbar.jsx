@@ -391,36 +391,6 @@ function Navbar() {
 
         {/* Drawer Body */}
         <div className="p-4 sm:p-5 space-y-4 flex-1 overflow-y-auto">
-          {user ? (
-            <div className="flex items-center gap-3 p-3.5 bg-gradient-to-r from-teal-50/80 to-slate-100/80 dark:from-slate-800/90 dark:to-slate-800/50 rounded-2xl border border-slate-200/90 dark:border-slate-700/80 shadow-2xs">
-              <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#0F6E8C] to-[#0A2540] text-white flex items-center justify-center text-sm font-extrabold shadow-xs shrink-0 ring-2 ring-white dark:ring-slate-700">
-                {user.username?.slice(0, 2).toUpperCase() || "AM"}
-              </div>
-              <div className="min-w-0 flex-1">
-                <p className="text-sm font-bold text-slate-900 dark:text-white truncate">
-                  {user.username}
-                </p>
-                <p className="text-xs text-slate-500 dark:text-slate-400 truncate font-mono">
-                  {user.email}
-                </p>
-              </div>
-            </div>
-          ) : (
-            <div className="flex items-center gap-3 p-3.5 bg-slate-50 dark:bg-slate-800/60 rounded-2xl border border-slate-200/80 dark:border-slate-700/80">
-              <div className="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 flex items-center justify-center text-sm font-bold shrink-0">
-                <User size={18} />
-              </div>
-              <div className="min-w-0 flex-1">
-                <p className="text-xs font-bold text-slate-900 dark:text-white">
-                  Welcome Guest
-                </p>
-                <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate">
-                  Sign in to access your profile
-                </p>
-              </div>
-            </div>
-          )}
-
           {/* Navigation Links */}
           <div className="space-y-1">
             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-3 font-mono">

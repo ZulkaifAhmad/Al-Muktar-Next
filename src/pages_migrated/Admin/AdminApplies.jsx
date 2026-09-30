@@ -164,46 +164,54 @@ function AppliedCandidates() {
             </button>
 
             {exportMenuOpen && (
-              <div
-                className="absolute right-0 mt-1.5 w-60 bg-white dark:bg-[#0f1d2e] rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 p-1.5 z-40 space-y-1 font-sans text-xs"
-                onMouseLeave={() => setExportMenuOpen(false)}
-              >
-                <div className="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-400 font-mono">
-                  {courseFilter !== "all" ? courseLabel(courseFilter) : "All Courses"} ({filtered.length} Records)
+              <>
+                {/* Backdrop for closing dropdown on tap outside on mobile */}
+                <div
+                  className="fixed inset-0 z-30"
+                  onClick={() => setExportMenuOpen(false)}
+                />
+
+                <div
+                  className="absolute left-0 sm:left-auto sm:right-0 mt-1.5 w-60 sm:w-64 max-w-[calc(100vw-2rem)] bg-white dark:bg-[#0f1d2e] rounded-xl shadow-xl border border-slate-200 dark:border-slate-700 p-1.5 z-40 space-y-1 font-sans text-xs animate-in fade-in zoom-in-95 duration-100"
+                  onMouseLeave={() => setExportMenuOpen(false)}
+                >
+                  <div className="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-400 font-mono">
+                    {courseFilter !== "all" ? courseLabel(courseFilter) : "All Courses"} ({filtered.length} Records)
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      exportToCSV(filtered, exportPrefix);
+                      setExportMenuOpen(false);
+                    }}
+                    className="w-full text-left flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer font-medium"
+                  >
+                    <Download size={14} className="text-emerald-600 dark:text-emerald-400 shrink-0" />
+                    <div>
+                      <p className="font-bold text-xs text-slate-900 dark:text-white">Spreadsheet Data (.csv)</p>
+                      <p className="text-[10px] text-slate-400 dark:text-slate-500">
+                        {courseFilter !== "all" ? `Filtered for ${courseLabel(courseFilter)}` : "All courses included"}
+                      </p>
+                    </div>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      exportToPDF(filtered, exportTitle);
+                      setExportMenuOpen(false);
+                    }}
+                    className="w-full text-left flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-teal-50 dark:hover:bg-teal-950/40 hover:text-[#0F6E8C] dark:hover:text-teal-300 transition-colors cursor-pointer font-medium border-t border-slate-100 dark:border-slate-800"
+                  >
+                    <FileText size={14} className="text-[#0F6E8C] dark:text-teal-400 shrink-0" />
+                    <div>
+                      <p className="font-bold text-xs text-slate-900 dark:text-white">PDF Document (.pdf)</p>
+                      <p className="text-[10px] text-slate-400 dark:text-slate-500">
+                        Printable dossier with course header
+                      </p>
+                    </div>
+                  </button>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => {
-                    exportToCSV(filtered, exportPrefix);
-                    setExportMenuOpen(false);
-                  }}
-                  className="w-full text-left flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer font-medium"
-                >
-                  <Download size={14} className="text-emerald-600 dark:text-emerald-400 shrink-0" />
-                  <div>
-                    <p className="font-bold text-xs text-slate-900 dark:text-white">Spreadsheet Data (.csv)</p>
-                    <p className="text-[10px] text-slate-400 dark:text-slate-500">
-                      {courseFilter !== "all" ? `Filtered for ${courseLabel(courseFilter)}` : "All courses included"}
-                    </p>
-                  </div>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    exportToPDF(filtered, exportTitle);
-                    setExportMenuOpen(false);
-                  }}
-                  className="w-full text-left flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-slate-700 dark:text-slate-200 hover:bg-teal-50 dark:hover:bg-teal-950/40 hover:text-[#0F6E8C] dark:hover:text-teal-300 transition-colors cursor-pointer font-medium border-t border-slate-100 dark:border-slate-800"
-                >
-                  <FileText size={14} className="text-[#0F6E8C] dark:text-teal-400 shrink-0" />
-                  <div>
-                    <p className="font-bold text-xs text-slate-900 dark:text-white">PDF Document (.pdf)</p>
-                    <p className="text-[10px] text-slate-400 dark:text-slate-500">
-                      Printable dossier with course header
-                    </p>
-                  </div>
-                </button>
-              </div>
+              </>
             )}
           </div>
 

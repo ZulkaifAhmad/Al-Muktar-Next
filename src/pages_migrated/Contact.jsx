@@ -103,14 +103,14 @@ function Contact() {
     <div className="bg-white dark:bg-[#070d18] text-slate-900 dark:text-slate-100 font-sans min-h-screen transition-colors duration-200">
       
       {/* 1. Welcoming Hero Header (Clean English Only) */}
-      <section className="bg-slate-50/70 dark:bg-[#081220] border-b border-slate-200/80 dark:border-slate-800 pt-8 pb-10 sm:pt-12 sm:pb-14">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-100/80 dark:bg-teal-950/60 text-[#0F6E8C] dark:text-teal-300 text-xs font-bold font-mono uppercase tracking-wider border border-teal-200/70 dark:border-teal-800/60">
-            <Sparkles size={14} />
-            <span>Al-Mukhtar Student Guidance &amp; Admissions</span>
+      <section className="bg-slate-50/70 dark:bg-[#081220] border-b border-slate-200/80 dark:border-slate-800 pt-6 pb-8 sm:pt-12 sm:pb-14">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-2.5 sm:space-y-3">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1 rounded-full bg-teal-100/80 dark:bg-teal-950/60 text-[#0F6E8C] dark:text-teal-300 text-[10px] sm:text-xs font-bold font-mono uppercase tracking-wider border border-teal-200/70 dark:border-teal-800/60 max-w-full">
+            <Sparkles size={13} className="shrink-0" />
+            <span className="truncate">Al-Mukhtar Student Guidance &amp; Admissions</span>
           </div>
 
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white font-heading tracking-tight">
+          <h1 className="text-xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white font-heading tracking-tight">
             How can we help you today?
           </h1>
           <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 max-w-xl mx-auto leading-relaxed font-normal">
@@ -118,12 +118,12 @@ function Contact() {
           </p>
 
           {/* Quick Direct Actions (WhatsApp + Call) — 2 Buttons in a Single Row on Mobile */}
-          <div className="pt-4 grid grid-cols-2 gap-2.5 sm:flex sm:flex-wrap items-center justify-center sm:gap-3 max-w-sm sm:max-w-none mx-auto">
+          <div className="pt-3 sm:pt-4 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap items-center justify-center sm:gap-3 max-w-sm sm:max-w-none mx-auto">
             <a
               href="https://wa.me/923001234567?text=Assalam-o-Alaikum,%20I%20want%20information%20about%20Al-Mukhtar%20courses%20and%20admissions."
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white px-3 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm shadow-xs transition-all active:scale-95 text-center"
+              className="inline-flex items-center justify-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white px-2.5 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm shadow-xs transition-all active:scale-95 text-center"
             >
               <MessageCircle size={15} className="shrink-0" />
               <span>WhatsApp</span>
@@ -131,7 +131,7 @@ function Contact() {
 
             <a
               href="tel:+923001234567"
-              className="inline-flex items-center justify-center gap-1.5 bg-[#0F6E8C] hover:bg-[#0B5C74] text-white px-3 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm shadow-xs transition-all active:scale-95 text-center"
+              className="inline-flex items-center justify-center gap-1.5 bg-[#0F6E8C] hover:bg-[#0B5C74] text-white px-2.5 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm shadow-xs transition-all active:scale-95 text-center"
             >
               <Phone size={14} className="shrink-0" />
               <span>Call Helpline</span>
@@ -140,34 +140,34 @@ function Contact() {
         </div>
       </section>
 
-      {/* 2. Main Content Layout (Form with Urdu Sub-Labels for Students) */}
-      <section className="py-10 sm:py-14">
+      {/* 2. Main Content Layout */}
+      <section className="py-6 sm:py-14">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <div className="space-y-10">
+          <div className="space-y-6 sm:space-y-10">
 
             {/* Form Header */}
-            <div className="border-b border-slate-200 dark:border-slate-800 pb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+            <div className="border-b border-slate-200 dark:border-slate-800 pb-3 sm:pb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
               <div>
-                <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white font-heading">
+                <h2 className="text-lg sm:text-2xl font-bold text-slate-900 dark:text-white font-heading">
                   Send Your Question or Message
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
                   Our admissions team will get in touch with you shortly.
                 </p>
               </div>
-              <div className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-lg self-start sm:self-auto font-medium font-mono">
-                <Clock size={13} className="text-slate-400" />
+              <div className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 px-2.5 py-1 sm:px-3 rounded-lg self-start sm:self-auto font-medium font-mono">
+                <Clock size={13} className="text-slate-400 shrink-0" />
                 <span>Reply within 24 hours</span>
               </div>
             </div>
 
             {/* Step 1: Easy Topic Selection */}
-            <div className="space-y-2.5">
-              <label className="block text-sm font-bold text-slate-800 dark:text-slate-200">
-                1. What is your question about? <span className="text-xs text-slate-500 font-normal font-urdu">(سوال کی قسم منتخب کریں)</span>
+            <div className="space-y-2 sm:space-y-2.5">
+              <label className="block text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200">
+                1. What is your question about? <span className="hidden sm:inline text-xs text-slate-500 font-normal font-urdu">(سوال کی قسم منتخب کریں)</span>
               </label>
 
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5">
                 {TOPIC_OPTIONS.map((topic) => {
                   const Icon = topic.icon;
                   const isSelected = selectedTopic === topic.label;
@@ -176,17 +176,17 @@ function Contact() {
                       key={topic.id}
                       type="button"
                       onClick={() => handleTopicSelect(topic.label)}
-                      className={`p-3 rounded-xl text-left border transition-all cursor-pointer ${
+                      className={`p-2.5 sm:p-3 rounded-xl text-left border transition-all cursor-pointer flex flex-col justify-center ${
                         isSelected
-                          ? "border-[#0F6E8C] dark:border-teal-400 bg-teal-50/70 dark:bg-teal-950/40 text-[#0F6E8C] dark:text-teal-300 ring-2 ring-[#0F6E8C]/20 font-bold"
+                          ? "border-[#0F6E8C] dark:border-teal-400 bg-teal-50/70 dark:bg-teal-950/40 text-[#0F6E8C] dark:text-teal-300 ring-2 ring-[#0F6E8C]/20 font-bold shadow-xs"
                           : "border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0c1827] hover:bg-slate-50 dark:hover:bg-slate-800/60 text-slate-700 dark:text-slate-200 font-medium"
                       }`}
                     >
-                      <div className="flex items-center gap-2 mb-1">
-                        <Icon size={16} className={isSelected ? "text-[#0F6E8C] dark:text-teal-400" : "text-slate-400"} />
-                        <span className="text-xs sm:text-sm">{topic.label}</span>
+                      <div className="flex items-center gap-1.5 sm:gap-2 sm:mb-1">
+                        <Icon size={15} className={`shrink-0 ${isSelected ? "text-[#0F6E8C] dark:text-teal-400" : "text-slate-400"}`} />
+                        <span className="text-xs sm:text-sm leading-snug">{topic.label}</span>
                       </div>
-                      <span className="text-[11px] font-urdu text-slate-500 dark:text-slate-400 block" dir="rtl">
+                      <span className="hidden sm:block text-[11px] font-urdu text-slate-500 dark:text-slate-400" dir="rtl">
                         {topic.urdu}
                       </span>
                     </button>
@@ -195,22 +195,22 @@ function Contact() {
               </div>
             </div>
 
-            {/* Step 2: Form Inputs with Simple English + Urdu Helpers */}
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            {/* Step 2: Form Inputs */}
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                 
                 {/* Full Name */}
-                <div className="space-y-1.5">
-                  <label className="block text-sm font-bold text-slate-800 dark:text-slate-200">
-                    Your Name <span className="text-xs text-slate-500 font-normal font-urdu">(آپ کا نام)</span> <span className="text-rose-500">*</span>
+                <div className="space-y-1 sm:space-y-1.5">
+                  <label className="block text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200">
+                    Your Name <span className="hidden sm:inline text-xs text-slate-500 font-normal font-urdu">(آپ کا نام)</span> <span className="text-rose-500">*</span>
                   </label>
                   <div className="relative">
-                    <User size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+                    <User size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none shrink-0" />
                     <input
                       type="text"
                       placeholder="e.g. Muhammad Ahmad"
-                      className={`w-full pl-10 pr-4 py-3 rounded-xl border text-sm text-slate-900 dark:text-slate-100 bg-slate-50/50 dark:bg-[#0c1827] placeholder:text-slate-400 outline-none transition-all focus:bg-white dark:focus:bg-[#0f1f33] focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 ${
+                      className={`w-full pl-9 sm:pl-10 pr-3.5 sm:pr-4 py-2.5 sm:py-3 rounded-xl border text-xs sm:text-sm text-slate-900 dark:text-slate-100 bg-slate-50/50 dark:bg-[#0c1827] placeholder:text-slate-400 outline-none transition-all focus:bg-white dark:focus:bg-[#0f1f33] focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 ${
                         errors.name ? "border-rose-400 bg-rose-50/20" : "border-slate-200 dark:border-slate-800"
                       }`}
                       {...register("name", {
@@ -220,21 +220,21 @@ function Contact() {
                     />
                   </div>
                   {errors.name && (
-                    <p className="text-xs text-rose-500 font-medium">{errors.name.message}</p>
+                    <p className="text-[11px] sm:text-xs text-rose-500 font-medium">{errors.name.message}</p>
                   )}
                 </div>
 
                 {/* WhatsApp / Phone */}
-                <div className="space-y-1.5">
-                  <label className="block text-sm font-bold text-slate-800 dark:text-slate-200">
-                    WhatsApp or Mobile Number <span className="text-xs text-slate-500 font-normal font-urdu">(موبائل / واٹس ایپ نمبر)</span>
+                <div className="space-y-1 sm:space-y-1.5">
+                  <label className="block text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200">
+                    WhatsApp or Mobile Number <span className="hidden sm:inline text-xs text-slate-500 font-normal font-urdu">(موبائل / واٹس ایپ نمبر)</span>
                   </label>
                   <div className="relative">
-                    <Phone size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+                    <Phone size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none shrink-0" />
                     <input
                       type="text"
                       placeholder="e.g. 0300 1234567"
-                      className={`w-full pl-10 pr-4 py-3 rounded-xl border text-sm text-slate-900 dark:text-slate-100 bg-slate-50/50 dark:bg-[#0c1827] placeholder:text-slate-400 outline-none transition-all focus:bg-white dark:focus:bg-[#0f1f33] focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 ${
+                      className={`w-full pl-9 sm:pl-10 pr-3.5 sm:pr-4 py-2.5 sm:py-3 rounded-xl border text-xs sm:text-sm text-slate-900 dark:text-slate-100 bg-slate-50/50 dark:bg-[#0c1827] placeholder:text-slate-400 outline-none transition-all focus:bg-white dark:focus:bg-[#0f1f33] focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 ${
                         errors.phone ? "border-rose-400 bg-rose-50/20" : "border-slate-200 dark:border-slate-800"
                       }`}
                       {...register("phone", {
@@ -246,28 +246,28 @@ function Contact() {
                     />
                   </div>
                   {errors.phone && (
-                    <p className="text-xs text-rose-500 font-medium">{errors.phone.message}</p>
+                    <p className="text-[11px] sm:text-xs text-rose-500 font-medium">{errors.phone.message}</p>
                   )}
-                  <p className="text-[11px] text-slate-400">
+                  <p className="text-[10px] sm:text-[11px] text-slate-400">
                     We will send our answer to this phone or WhatsApp.
                   </p>
                 </div>
 
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
 
                 {/* Email Address */}
-                <div className="space-y-1.5">
-                  <label className="block text-sm font-bold text-slate-800 dark:text-slate-200">
-                    Email Address <span className="text-xs text-slate-500 font-normal font-urdu">(ای میل ایڈریس)</span> <span className="text-rose-500">*</span>
+                <div className="space-y-1 sm:space-y-1.5">
+                  <label className="block text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200">
+                    Email Address <span className="hidden sm:inline text-xs text-slate-500 font-normal font-urdu">(ای میل ایڈریس)</span> <span className="text-rose-500">*</span>
                   </label>
                   <div className="relative">
-                    <Mail size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+                    <Mail size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none shrink-0" />
                     <input
                       type="email"
                       placeholder="student@gmail.com"
-                      className={`w-full pl-10 pr-4 py-3 rounded-xl border text-sm text-slate-900 dark:text-slate-100 bg-slate-50/50 dark:bg-[#0c1827] placeholder:text-slate-400 outline-none transition-all focus:bg-white dark:focus:bg-[#0f1f33] focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 ${
+                      className={`w-full pl-9 sm:pl-10 pr-3.5 sm:pr-4 py-2.5 sm:py-3 rounded-xl border text-xs sm:text-sm text-slate-900 dark:text-slate-100 bg-slate-50/50 dark:bg-[#0c1827] placeholder:text-slate-400 outline-none transition-all focus:bg-white dark:focus:bg-[#0f1f33] focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 ${
                         errors.email ? "border-rose-400 bg-rose-50/20" : "border-slate-200 dark:border-slate-800"
                       }`}
                       {...register("email", {
@@ -280,19 +280,19 @@ function Contact() {
                     />
                   </div>
                   {errors.email && (
-                    <p className="text-xs text-rose-500 font-medium">{errors.email.message}</p>
+                    <p className="text-[11px] sm:text-xs text-rose-500 font-medium">{errors.email.message}</p>
                   )}
                 </div>
 
                 {/* Subject Field */}
-                <div className="space-y-1.5">
-                  <label className="block text-sm font-bold text-slate-800 dark:text-slate-200">
-                    Subject / Topic <span className="text-xs text-slate-500 font-normal font-urdu">(موضوع)</span> <span className="text-rose-500">*</span>
+                <div className="space-y-1 sm:space-y-1.5">
+                  <label className="block text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200">
+                    Subject / Topic <span className="hidden sm:inline text-xs text-slate-500 font-normal font-urdu">(موضوع)</span> <span className="text-rose-500">*</span>
                   </label>
                   <input
                     type="text"
                     placeholder="e.g. Admission inquiry"
-                    className={`w-full px-4 py-3 rounded-xl border text-sm text-slate-900 dark:text-slate-100 bg-slate-50/50 dark:bg-[#0c1827] placeholder:text-slate-400 outline-none transition-all focus:bg-white dark:focus:bg-[#0f1f33] focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 ${
+                    className={`w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl border text-xs sm:text-sm text-slate-900 dark:text-slate-100 bg-slate-50/50 dark:bg-[#0c1827] placeholder:text-slate-400 outline-none transition-all focus:bg-white dark:focus:bg-[#0f1f33] focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 ${
                       errors.subject ? "border-rose-400 bg-rose-50/20" : "border-slate-200 dark:border-slate-800"
                     }`}
                     {...register("subject", {
@@ -301,21 +301,21 @@ function Contact() {
                     })}
                   />
                   {errors.subject && (
-                    <p className="text-xs text-rose-500 font-medium">{errors.subject.message}</p>
+                    <p className="text-[11px] sm:text-xs text-rose-500 font-medium">{errors.subject.message}</p>
                   )}
                 </div>
 
               </div>
 
               {/* Message Details */}
-              <div className="space-y-1.5">
-                <label className="block text-sm font-bold text-slate-800 dark:text-slate-200">
-                  Your Message or Question <span className="text-xs text-slate-500 font-normal font-urdu">(آپ کا سوال یا تفصیلات)</span> <span className="text-rose-500">*</span>
+              <div className="space-y-1 sm:space-y-1.5">
+                <label className="block text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200">
+                  Your Message or Question <span className="hidden sm:inline text-xs text-slate-500 font-normal font-urdu">(آپ کا سوال یا تفصیلات)</span> <span className="text-rose-500">*</span>
                 </label>
                 <textarea
                   rows={4}
                   placeholder="Please write your question here..."
-                  className={`w-full p-4 rounded-xl border text-sm text-slate-900 dark:text-slate-100 bg-slate-50/50 dark:bg-[#0c1827] placeholder:text-slate-400 outline-none transition-all resize-none focus:bg-white dark:focus:bg-[#0f1f33] focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 ${
+                  className={`w-full p-3 sm:p-4 rounded-xl border text-xs sm:text-sm text-slate-900 dark:text-slate-100 bg-slate-50/50 dark:bg-[#0c1827] placeholder:text-slate-400 outline-none transition-all resize-none focus:bg-white dark:focus:bg-[#0f1f33] focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 ${
                     errors.message ? "border-rose-400 bg-rose-50/20" : "border-slate-200 dark:border-slate-800"
                   }`}
                   {...register("message", {
@@ -324,30 +324,30 @@ function Contact() {
                   })}
                 />
                 {errors.message && (
-                  <p className="text-xs text-rose-500 font-medium">{errors.message.message}</p>
+                  <p className="text-[11px] sm:text-xs text-rose-500 font-medium">{errors.message.message}</p>
                 )}
               </div>
 
               {/* Submit Button */}
-              <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-slate-100 dark:border-slate-800">
-                <p className="text-xs text-slate-500 dark:text-slate-400">
+              <div className="pt-2 flex flex-col-reverse sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 border-t border-slate-100 dark:border-slate-800">
+                <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 text-center sm:text-left">
                   All inquiries are directly received by the Al-Mukhtar Admissions Office.
                 </p>
 
                 <button
                   type="submit"
                   disabled={contactMutation.isPending}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#0F6E8C] hover:bg-[#0B5C74] text-white px-8 py-3.5 rounded-xl font-bold text-sm shadow-xs active:scale-98 transition-all disabled:opacity-60 cursor-pointer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#0F6E8C] hover:bg-[#0B5C74] text-white px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl font-bold text-xs sm:text-sm shadow-xs active:scale-98 transition-all disabled:opacity-60 cursor-pointer"
                 >
                   {contactMutation.isPending ? (
                     <>
-                      <Loader2 size={16} className="animate-spin" />
+                      <Loader2 size={15} className="animate-spin shrink-0" />
                       <span>Sending Message...</span>
                     </>
                   ) : (
                     <>
-                      <Send size={15} />
-                      <span>Send Message (پیغام بھیجیں)</span>
+                      <Send size={15} className="shrink-0" />
+                      <span>Send Message<span className="hidden sm:inline"> (پیغام بھیجیں)</span></span>
                     </>
                   )}
                 </button>
@@ -355,47 +355,47 @@ function Contact() {
 
             </form>
 
-            {/* Direct Contact Numbers & Campus Address (Clean List - English) */}
-            <div className="pt-8 border-t border-slate-200 dark:border-slate-800 grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Direct Contact Numbers & Campus Address */}
+            <div className="pt-6 sm:pt-8 border-t border-slate-200 dark:border-slate-800 grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-6">
               
-              <div className="space-y-1">
-                <p className="text-xs font-bold uppercase tracking-wider text-slate-400 font-mono">
+              <div className="p-3 sm:p-0 rounded-xl bg-slate-50/70 dark:bg-[#0c1827]/70 sm:bg-transparent sm:dark:bg-transparent border border-slate-200/60 dark:border-slate-800/60 sm:border-0 space-y-1">
+                <p className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-400 font-mono">
                   Direct Phone Call
                 </p>
                 <a
                   href="tel:+923001234567"
-                  className="text-base font-bold text-slate-900 dark:text-white hover:text-[#0F6E8C] dark:hover:text-teal-400 transition-colors block"
+                  className="text-sm sm:text-base font-bold text-slate-900 dark:text-white hover:text-[#0F6E8C] dark:hover:text-teal-400 transition-colors block"
                 >
                   +92 300 1234567
                 </a>
-                <p className="text-xs text-slate-500 dark:text-slate-400">Call during 8:00 AM – 6:00 PM</p>
+                <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">Call during 8:00 AM – 6:00 PM</p>
               </div>
 
-              <div className="space-y-1">
-                <p className="text-xs font-bold uppercase tracking-wider text-slate-400 font-mono">
+              <div className="p-3 sm:p-0 rounded-xl bg-slate-50/70 dark:bg-[#0c1827]/70 sm:bg-transparent sm:dark:bg-transparent border border-slate-200/60 dark:border-slate-800/60 sm:border-0 space-y-1">
+                <p className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-400 font-mono">
                   Email Inquiries
                 </p>
                 <a
                   href="mailto:info@almukhtar.org"
-                  className="text-base font-bold text-slate-900 dark:text-white hover:text-[#0F6E8C] dark:hover:text-teal-400 transition-colors block"
+                  className="text-sm sm:text-base font-bold text-slate-900 dark:text-white hover:text-[#0F6E8C] dark:hover:text-teal-400 transition-colors block"
                 >
                   info@almukhtar.org
                 </a>
-                <p className="text-xs text-slate-500 dark:text-slate-400">For document & admission questions</p>
+                <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">For document & admission questions</p>
               </div>
 
-              <div className="space-y-1">
-                <p className="text-xs font-bold uppercase tracking-wider text-slate-400 font-mono">
+              <div className="p-3 sm:p-0 rounded-xl bg-slate-50/70 dark:bg-[#0c1827]/70 sm:bg-transparent sm:dark:bg-transparent border border-slate-200/60 dark:border-slate-800/60 sm:border-0 space-y-1">
+                <p className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-400 font-mono">
                   Campus Address
                 </p>
-                <p className="text-xs font-medium text-slate-800 dark:text-slate-200 leading-relaxed">
+                <p className="text-[11px] sm:text-xs font-medium text-slate-800 dark:text-slate-200 leading-relaxed">
                   Al-Mukhtar Institute, University Road, Peshawar, KP
                 </p>
                 <a
                   href="https://maps.google.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-xs font-bold text-[#0F6E8C] dark:text-teal-400 hover:underline"
+                  className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold text-[#0F6E8C] dark:text-teal-400 hover:underline pt-0.5"
                 >
                   <span>Google Maps Location</span>
                   <ArrowUpRight size={12} />
@@ -409,11 +409,11 @@ function Contact() {
       </section>
 
       {/* 3. Simple Frequently Asked Questions (English Only) */}
-      <section className="border-t border-slate-200/80 dark:border-slate-800 bg-slate-50/50 dark:bg-[#081220] py-10 sm:py-14">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 space-y-6">
+      <section className="border-t border-slate-200/80 dark:border-slate-800 bg-slate-50/50 dark:bg-[#081220] py-8 sm:py-14">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 space-y-5 sm:space-y-6">
           
           <div className="text-center space-y-1">
-            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white font-heading">
+            <h2 className="text-lg sm:text-2xl font-bold text-slate-900 dark:text-white font-heading">
               Frequently Asked Questions
             </h2>
             <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
@@ -425,15 +425,15 @@ function Contact() {
             {SIMPLE_FAQS.map((faq, index) => {
               const isOpen = openFaq === index;
               return (
-                <div key={index} className="py-3.5">
+                <div key={index} className="py-3 sm:py-3.5">
                   <button
                     type="button"
                     onClick={() => setOpenFaq(isOpen ? null : index)}
                     className="w-full flex items-center justify-between gap-3 text-left font-semibold text-slate-900 dark:text-white hover:text-[#0F6E8C] dark:hover:text-teal-400 transition-colors py-1 cursor-pointer"
                   >
-                    <p className="text-sm sm:text-base">{faq.question}</p>
+                    <p className="text-xs sm:text-base leading-snug">{faq.question}</p>
                     <ChevronDown
-                      size={18}
+                      size={17}
                       className={`text-slate-400 shrink-0 transition-transform duration-200 ${
                         isOpen ? "rotate-180 text-[#0F6E8C] dark:text-teal-400" : ""
                       }`}

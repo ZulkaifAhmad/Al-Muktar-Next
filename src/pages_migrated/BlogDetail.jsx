@@ -374,34 +374,41 @@ function BlogDetail() {
     }
   };
 
-  // Get share URL using domain from env
+  // Get share URL using domain from window.location.origin or env
   const getShareUrl = () => {
-    const envDomain = import.meta.env.VITE_SITE_URL || (typeof window !== "undefined" ? window.location.origin : "");
+    if (typeof window !== "undefined" && window.location.origin) {
+      const origin = window.location.origin.replace(/\/$/, "");
+      return `${origin}/blog/${blog?.slug || slug}`;
+    }
+    const envDomain = process.env.NEXT_PUBLIC_SITE_URL || "";
     const cleanDomain = envDomain.replace(/\/$/, "");
     return `${cleanDomain}/blog/${blog?.slug || slug}`;
   };
 
   const handleShare = async () => {
-    if (!blog) return;
+    if (!blog && !slug) return;
     const shareUrl = getShareUrl();
 
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: blog.title,
-          text: blog.description || getSnippet(blog.content, 120),
-          url: shareUrl,
-        });
-        return;
-      } catch {
-        // Fallback to copy if user cancelled native dialog
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(shareUrl);
+      } else {
+        const textArea = document.createElement("textarea");
+        textArea.value = shareUrl;
+        textArea.style.position = "fixed";
+        textArea.style.opacity = "0";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textArea);
       }
+      setCopied(true);
+      toast.success("Blog link copied to clipboard!");
+      setTimeout(() => setCopied(false), 3000);
+    } catch {
+      toast.error("Failed to copy link to clipboard");
     }
-
-    navigator.clipboard.writeText(shareUrl);
-    setCopied(true);
-    toast.success(`Copied article link: ${shareUrl}`);
-    setTimeout(() => setCopied(false), 3000);
   };
 
   const handlePrint = () => {

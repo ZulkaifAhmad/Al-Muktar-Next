@@ -476,7 +476,7 @@ function Blog() {
                   viewMode === "list" ? (
                     <div
                       key={n}
-                      className="p-3.5 sm:p-4 rounded-2xl bg-slate-50/70 dark:bg-slate-800/40 border border-slate-200/80 dark:border-slate-800 animate-pulse flex flex-row items-center justify-between gap-3 sm:gap-4"
+                      className="p-0 sm:p-4 rounded-none sm:rounded-2xl bg-transparent sm:bg-slate-50/70 sm:dark:bg-slate-800/40 border-0 sm:border border-slate-200/80 dark:border-slate-800 animate-pulse flex flex-row items-center justify-between gap-3 sm:gap-4"
                     >
                       <div className="flex-1 space-y-2 py-1 min-w-0">
                         <div className="w-20 h-3 bg-slate-200 dark:bg-slate-700 rounded" />

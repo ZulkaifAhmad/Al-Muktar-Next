@@ -141,8 +141,8 @@ function BlogCard({ blog, onCategoryClick, layout = "grid" }) {
 
   if (layout === "list") {
     return (
-      <article className="group bg-white dark:bg-[#0c1827] rounded-2xl border border-slate-200/90 dark:border-slate-800/80 hover:border-[#0F6E8C]/60 dark:hover:border-teal-400/50 shadow-2xs hover:shadow-md transition-all duration-300 overflow-hidden h-full flex flex-col justify-between">
-        <div className="flex flex-row items-center sm:items-start justify-between p-3.5 sm:p-4 gap-3 sm:gap-4.5 h-full">
+      <article className="group bg-transparent sm:bg-white sm:dark:bg-[#0c1827] rounded-none sm:rounded-2xl border-0 sm:border border-slate-200/90 dark:border-slate-800/80 hover:border-transparent sm:hover:border-[#0F6E8C]/60 sm:dark:hover:border-teal-400/50 shadow-none sm:shadow-2xs sm:hover:shadow-md transition-all duration-300 overflow-visible sm:overflow-hidden h-full flex flex-col justify-between">
+        <div className="flex flex-row items-center sm:items-start justify-between p-0 sm:p-4 gap-3 sm:gap-4.5 h-full">
           {/* List Content (Left Side) */}
           <div className="flex-1 min-w-0 flex flex-col justify-between h-full space-y-2">
             <div className="space-y-1.5 min-w-0">
@@ -163,8 +163,8 @@ function BlogCard({ blog, onCategoryClick, layout = "grid" }) {
                 </button>
               </div>
 
-              {/* Title (Extra bold & big font size on mobile screen only) */}
-              <h2 className="text-[20px] min-[400px]:text-[22px] sm:text-base lg:text-[18px] font-black sm:font-bold font-heading text-slate-900 dark:text-white leading-[1.3] tracking-tight group-hover:text-[#0F6E8C] dark:group-hover:text-teal-300 transition-colors line-clamp-2">
+              {/* Title (Extra bold on mobile screen) */}
+              <h2 className="text-[18px] min-[400px]:text-[20px] sm:text-base lg:text-[18px] font-black sm:font-bold font-heading text-slate-900 dark:text-white leading-[1.3] tracking-tight group-hover:text-[#0F6E8C] dark:group-hover:text-teal-300 transition-colors line-clamp-2">
                 <Link to={blogUrl}>{blog.title}</Link>
               </h2>
 

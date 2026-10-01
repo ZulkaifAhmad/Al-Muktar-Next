@@ -28,29 +28,34 @@ import { AboutImage, FounderImage, Logo, getImageUrl, HeroAcademicBg } from "../
 
 const faqs = [
   {
-    question: "What is the admission process for new students?",
+    question: "What courses and programs are taught at Al-Mukhtar?",
     answer:
-      "Prospective students submit an application through our Apply page, followed by a placement conversation with our academic team to determine the right course and shift. Admission decisions are typically communicated within 1–2 working days.",
+      "Al-Mukhtar is a dedicated Islamic Madrasa teaching sacred Islamic sciences and classical Dars-e-Nizami, including Tajweed & Quran recitation, Arabic grammar & morphology, Fiqh (Islamic Jurisprudence), Hadith studies, Tafseer, and Seerat-un-Nabi ﷺ.",
   },
   {
-    question: "Are classes available online as well as in person?",
+    question: "Is there any age restriction or prior qualification requirement?",
     answer:
-      "Yes. Most of our programs are conducted both on-campus in modern facilities and through structured online sessions, allowing remote students to participate fully.",
+      "There is no age limitation at Al-Mukhtar. Our courses are specially designed for university students, working professionals, and elders, as well as young learners starting their journey in Deen. Everyone is taught step-by-step.",
   },
   {
-    question: "Is there an age requirement to enroll?",
+    question: "What is the study mode and where is the campus located?",
     answer:
-      "We welcome learners across age groups — from foundational Tajweed programs for young students to comprehensive Dars-e-Nizami and Islamic studies courses for adults.",
+      "All classes are conducted On-Campus with direct scholar-to-student interaction at our Peshawar campus located at Ghaz Masjid, Tanga Adda, Landi Arbab, Peshawar, KPK, Pakistan.",
   },
   {
-    question: "What qualifications do the teachers hold?",
+    question: "Who teaches the classes and what are their qualifications?",
     answer:
-      "Our faculty members hold formal degrees and verified chains of transmission (Ijazah) from recognized Islamic universities, complemented by modern pedagogical training.",
+      "All courses are taught by certified Islamic scholars (Alims) with authentic Sanad, led by Founder & CEO Mulana Muhammad Anwar (M.Phil Media Studies & Mass Communication, M.Phil Seerat Studies, Kulliyyat al-Shariah Jamia Tur Rasheed).",
   },
   {
-    question: "How can I stay updated on institute news and schedules?",
+    question: "Are certificates provided at the end of the course?",
     answer:
-      "Academic calendars, term dates, and event announcements are regularly posted on our Blog section and communicated directly to enrolled students.",
+      "Yes. Upon successful completion of the course syllabus and passing the final assessment, students are awarded an official certified Sanad / Certificate from Al-Mukhtar.",
+  },
+  {
+    question: "How do I check examination results and download result PDFs?",
+    answer:
+      "Official examination result PDF gazettes are published under the Results section of our website, where students can view and download their course result gazette at any time.",
   },
 ];
 

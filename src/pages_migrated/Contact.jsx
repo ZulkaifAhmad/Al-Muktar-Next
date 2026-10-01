@@ -33,24 +33,29 @@ const TOPIC_OPTIONS = [
 
 const SIMPLE_FAQS = [
   {
-    question: "Can students with a Madrasa / Islamic education background apply?",
+    question: "Can university students and working professionals join classes?",
     answer:
-      "Yes, absolutely! Students with Matric, F.Sc, Sanad, or equivalent religious qualification are welcome to apply for our specialized certificate and diploma programs.",
+      "Yes, absolutely! Al-Mukhtar programs are specifically structured for university students, working professionals, and elders seeking authentic Islamic knowledge with convenient schedules and no age barrier.",
   },
   {
-    question: "What class shifts (Morning / Evening) are available?",
+    question: "Where is the campus located for in-person classes & admissions?",
     answer:
-      "We offer flexible Morning and Evening shifts to accommodate students with other commitments.",
+      "Our on-campus facility is situated at Ghaz Masjid, Tanga Adda, Landi Arbab, Peshawar, KPK, Pakistan. You can visit the admissions office directly or contact us via WhatsApp.",
   },
   {
-    question: "How do I apply for fee discount or financial help?",
+    question: "How long does it take to receive a response to inquiries?",
     answer:
-      "Yes, deserving and talented students can apply for fee concessions and scholarships upon submitting their application.",
+      "Our team reviews all messages and responds via WhatsApp, phone call (+92 333 9176894), or email (izhar5ullah@gmail.com) within 24 hours.",
   },
   {
-    question: "How long does it take to receive admission confirmation?",
+    question: "Are fee concessions or financial assistance available?",
     answer:
-      "Our admissions team will call or message you on WhatsApp within 24 to 48 hours of submitting your inquiry or application.",
+      "Yes. Deserving and motivated students can apply for fee concessions and scholarships upon submitting their inquiry or admission form.",
+  },
+  {
+    question: "Are official certificates awarded upon course completion?",
+    answer:
+      "Yes. Every student who successfully completes their course and passes the examination receives an official, certified completion certificate from Al-Mukhtar.",
   },
 ];
 

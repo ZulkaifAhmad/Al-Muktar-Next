@@ -211,7 +211,7 @@ export default function SplashScreen({ onComplete }) {
             AL-MUKHTAR
           </h1>
           <p className="text-xs font-mono text-slate-400 font-medium tracking-wider uppercase">
-            Institute of Islamic &amp; Academic Studies
+            Where the Choosen Rise
           </p>
         </div>
 

@@ -20,6 +20,7 @@ const quickLinks = [
   { label: "Blog & Publications", to: "/blog" },
   { label: "Admissions & Apply", to: "/apply" },
   { label: "Contact Us", to: "/contact" },
+  { label: "Examination Results", to: "/result" },
 ];
 
 const courseLinks = [
@@ -127,26 +128,25 @@ function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin size={15} className="text-[#0F6E8C] mt-0.5 shrink-0" />
                 <span className="text-slate-300 text-sm leading-relaxed break-normal hyphens-none">
-                  Al-Mukhtar Institute, University Road, Peshawar, Khyber
-                  Pakhtunkhwa, Pakistan
+                  Ghaz Masjid, Tanga Adda, Landi Arbab, Peshawar, KPK, Pakistan
                 </span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={15} className="text-[#0F6E8C] shrink-0" />
                 <a
-                  href="tel:+920000000000"
+                  href="tel:+923339176894"
                   className="text-slate-300 text-sm hover:text-white transition-colors"
                 >
-                  +92 300 0000000
+                  +92 333 9176894
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={15} className="text-[#0F6E8C] shrink-0" />
                 <a
-                  href="mailto:info@almukhtar.org"
+                  href="mailto:izhar5ullah@gmail.com"
                   className="text-slate-300 text-sm hover:text-white transition-colors"
                 >
-                  info@almukhtar.org
+                  izhar5ullah@gmail.com
                 </a>
               </li>
               <li className="flex items-start gap-3">

@@ -154,6 +154,23 @@ export const changePasswordSchema = z.object({
   newPassword: z.string().min(6, "New password must be at least 6 characters"),
 });
 
+// ==========================================
+// RESULT SCHEMAS (Course PDF Results)
+// ==========================================
+export const resultCreateSchema = z.object({
+  courseName: z.string().trim().min(2, "Course name is required"),
+  title: z.string().trim().optional().default("Official Examination Result"),
+  session: z.string().trim().optional().default("2025-2026"),
+  pdfUrl: z.string().trim().min(10, "Result PDF file is required"),
+  pdfName: z.string().trim().optional().default("Result_Document.pdf"),
+  pdfSize: z.string().trim().optional().default(""),
+  description: z.string().trim().optional().default("Official certified examination result document."),
+  isReleased: z.boolean().optional().default(true),
+  holdReason: z.string().trim().optional().default(""),
+});
+
+export const resultUpdateSchema = resultCreateSchema.partial();
+
 export const contactSchema = z.object({
   name: z.string().trim().min(2, "Name is required"),
   email: z.string().trim().email("Valid email is required"),

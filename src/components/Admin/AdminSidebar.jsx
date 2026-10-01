@@ -10,15 +10,16 @@ import {
   X,
   LogOut,
   GraduationCap,
-  ExternalLink,
   Bell,
   UserCheck,
   Award,
+  FileSpreadsheet,
 } from "lucide-react";
 import { useAuth } from "../AuthContext.jsx";
 
 const navItems = [
   { label: "Dashboard", to: "/admin", icon: LayoutDashboard, end: true },
+  { label: "Results & Marks", to: "/admin/results", icon: FileSpreadsheet },
   { label: "Courses", to: "/admin/course-post", icon: BookOpen },
   { label: "Teachers", to: "/admin/teachers", icon: UserCheck },
   { label: "Students", to: "/admin/students", icon: Award },
@@ -99,20 +100,6 @@ function AdminSidebar({ sidebarOpen, setSidebarOpen }) {
               <span className="truncate">{item.label}</span>
             </NavLink>
           ))}
-
-          <div className="pt-4 px-2.5 pb-1.5 text-[9.5px] font-bold text-slate-500 uppercase tracking-wider font-mono">
-            Shortcut
-          </div>
-          <Link
-            to="/"
-            target="_blank"
-            className="flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium text-slate-400 hover:bg-white/[0.06] hover:text-white transition-all"
-          >
-            <span className="flex items-center gap-2.5">
-              <ExternalLink size={14} className="shrink-0" />
-              <span>Live Website</span>
-            </span>
-          </Link>
         </nav>
 
         {/* Footer info & Logout */}

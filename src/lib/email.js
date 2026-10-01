@@ -133,11 +133,7 @@ export async function sendBulkEmail(emails, subject, message) {
  * Send contact form submission to ADMIN_EMAIL via Resend.
  */
 export async function sendContactFormEmail({ name, email, phone, subject, message }) {
-  const adminEmail = process.env.ADMIN_EMAIL;
-
-  if (!adminEmail) {
-    throw new Error("ADMIN_EMAIL is missing in server environment configuration.");
-  }
+  const adminEmail = process.env.ADMIN_EMAIL || "izhar5ullah@gmail.com";
 
   const emailSubject = `[Al-Mukhtar Contact Form] ${subject}`;
 

@@ -25,7 +25,7 @@ function Students() {
 
   return (
     <div className="bg-white dark:bg-[#070d18] text-slate-800 dark:text-slate-100 font-sans transition-colors duration-200 min-h-screen">
-      
+
       {/* ── 1. HERO SECTION: GLOBAL ALUMNI DIRECTORY ── */}
       <section className="relative overflow-hidden bg-slate-950 text-white py-9 sm:py-12 border-b border-slate-800/80">
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -49,13 +49,13 @@ function Students() {
           </h1>
 
           <p className="text-xs sm:text-sm text-slate-200 max-w-2xl leading-relaxed font-normal">
-            Celebrating alumni serving across academic seminaries, research institutions, community pulpits, and organizations worldwide.
+            Our graduates carry the knowledge, values, and character they developed at Al-Mukhtar into communities around the world. Today, they serve as scholars, educators, professionals, and community leaders, making meaningful contributions in their respective fields while continuing the legacy of knowledge and service.
           </p>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 max-w-2xl pt-2.5 border-t border-white/15 text-left">
             <div className="p-2 rounded bg-slate-950/60 border border-white/10 backdrop-blur-md">
               <span className="text-base sm:text-lg font-bold text-white font-heading block">
-                3,500+
+                100+
               </span>
               <span className="text-[9.5px] text-teal-300 uppercase tracking-wider font-mono">
                 Graduates
@@ -63,10 +63,10 @@ function Students() {
             </div>
             <div className="p-2 rounded bg-slate-950/60 border border-white/10 backdrop-blur-md">
               <span className="text-base sm:text-lg font-bold text-teal-300 font-heading block">
-                15+
+                3
               </span>
               <span className="text-[9.5px] text-slate-300 uppercase tracking-wider font-mono">
-                Countries
+                Years of Excellence
               </span>
             </div>
             <div className="p-2 rounded bg-slate-950/60 border border-white/10 backdrop-blur-md">
@@ -77,21 +77,14 @@ function Students() {
                 Verified Sanad
               </span>
             </div>
-            <div className="p-2 rounded bg-slate-950/60 border border-white/10 backdrop-blur-md">
-              <span className="text-base sm:text-lg font-bold text-teal-300 font-heading block">
-                50+
-              </span>
-              <span className="text-[9.5px] text-slate-300 uppercase tracking-wider font-mono">
-                Treatises
-              </span>
-            </div>
+            
           </div>
         </div>
       </section>
 
       {/* ── 2. ALUMNI DIRECTORY (OPEN EDITORIAL ROSTER — NO BOXY CARDS) ── */}
       <section className="py-8 sm:py-12 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-        
+
         {/* Section Heading */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200/80 dark:border-slate-800 pb-3 text-left">
           <div className="space-y-0.5">
@@ -231,7 +224,7 @@ function Students() {
 
             {/* Modal Scrollable Body */}
             <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-3.5 custom-scrollbar">
-              
+
               {/* Profile Top Row */}
               <div className="flex items-center gap-3 pb-3 border-b border-slate-100 dark:border-slate-800">
                 <img

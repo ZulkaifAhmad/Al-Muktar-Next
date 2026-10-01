@@ -1,9 +1,8 @@
-import NotFound from "@/pages_migrated/NotFound";
+"use client";
 
-export const metadata = {
-  title: "404 - Page Not Found — Al-Mukhtar Institute",
-};
+import NotFound from "@/pages_migrated/NotFound";
 
 export default function NotFoundPage() {
   return <NotFound />;
 }
+

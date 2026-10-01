@@ -117,24 +117,42 @@ function Contact() {
             Have questions about academic programs, admissions criteria, or fee concessions? Reach out to our admissions desk below or connect with us directly.
           </p>
 
-          {/* Quick Direct Actions (WhatsApp + Call) — 2 Buttons in a Single Row on Mobile */}
-          <div className="pt-3 sm:pt-4 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap items-center justify-center sm:gap-3 max-w-sm sm:max-w-none mx-auto">
+          {/* Quick Direct Actions (WhatsApp + Call) */}
+          <div className="pt-3 sm:pt-4 flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 max-w-2xl mx-auto">
             <a
-              href="https://wa.me/923001234567?text=Assalam-o-Alaikum,%20I%20want%20information%20about%20Al-Mukhtar%20courses%20and%20admissions."
+              href="https://wa.me/923431775096?text=Assalam-o-Alaikum,%20I%20want%20information%20about%20Al-Mukhtar%20courses%20and%20admissions."
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white px-2.5 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm shadow-xs transition-all active:scale-95 text-center"
+              className="inline-flex items-center justify-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white px-3.5 sm:px-4 py-2 rounded-xl font-bold text-xs sm:text-sm shadow-xs transition-all active:scale-95 text-center"
             >
               <MessageCircle size={15} className="shrink-0" />
-              <span>WhatsApp</span>
+              <span>WhatsApp 1</span>
             </a>
 
             <a
-              href="tel:+923001234567"
-              className="inline-flex items-center justify-center gap-1.5 bg-[#0F6E8C] hover:bg-[#0B5C74] text-white px-2.5 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm shadow-xs transition-all active:scale-95 text-center"
+              href="https://wa.me/923009338981?text=Assalam-o-Alaikum,%20I%20want%20information%20about%20Al-Mukhtar%20courses%20and%20admissions."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-1.5 bg-emerald-700 hover:bg-emerald-800 text-white px-3.5 sm:px-4 py-2 rounded-xl font-bold text-xs sm:text-sm shadow-xs transition-all active:scale-95 text-center"
+            >
+              <MessageCircle size={15} className="shrink-0" />
+              <span>WhatsApp 2</span>
+            </a>
+
+            <a
+              href="tel:+923339176894"
+              className="inline-flex items-center justify-center gap-1.5 bg-[#0F6E8C] hover:bg-[#0B5C74] text-white px-3.5 sm:px-4 py-2 rounded-xl font-bold text-xs sm:text-sm shadow-xs transition-all active:scale-95 text-center"
             >
               <Phone size={14} className="shrink-0" />
-              <span>Call Helpline</span>
+              <span>Call Helpline 1</span>
+            </a>
+
+            <a
+              href="tel:+923329566294"
+              className="inline-flex items-center justify-center gap-1.5 bg-slate-800 hover:bg-slate-900 text-white px-3.5 sm:px-4 py-2 rounded-xl font-bold text-xs sm:text-sm shadow-xs transition-all active:scale-95 text-center"
+            >
+              <Phone size={14} className="shrink-0" />
+              <span>Call Helpline 2</span>
             </a>
           </div>
         </div>
@@ -233,7 +251,7 @@ function Contact() {
                     <Phone size={15} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none shrink-0" />
                     <input
                       type="text"
-                      placeholder="e.g. 0300 1234567"
+                      placeholder="e.g. 0333 9176894"
                       className={`w-full pl-9 sm:pl-10 pr-3.5 sm:pr-4 py-2.5 sm:py-3 rounded-xl border text-xs sm:text-sm text-slate-900 dark:text-slate-100 bg-slate-50/50 dark:bg-[#0c1827] placeholder:text-slate-400 outline-none transition-all focus:bg-white dark:focus:bg-[#0f1f33] focus:border-[#0F6E8C] dark:focus:border-teal-400 focus:ring-2 focus:ring-[#0F6E8C]/15 ${
                         errors.phone ? "border-rose-400 bg-rose-50/20" : "border-slate-200 dark:border-slate-800"
                       }`}
@@ -331,7 +349,7 @@ function Contact() {
               {/* Submit Button */}
               <div className="pt-2 flex flex-col-reverse sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 border-t border-slate-100 dark:border-slate-800">
                 <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 text-center sm:text-left">
-                  All inquiries are directly received by the Al-Mukhtar Admissions Office.
+                  Inquiries are directly forwarded to <strong className="text-slate-700 dark:text-slate-200">izhar5ullah@gmail.com</strong>.
                 </p>
 
                 <button
@@ -355,50 +373,92 @@ function Contact() {
 
             </form>
 
-            {/* Direct Contact Numbers & Campus Address */}
-            <div className="pt-6 sm:pt-8 border-t border-slate-200 dark:border-slate-800 grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-6">
+            {/* Direct Contact Numbers & Campus Address (4 Detailed Cards) */}
+            <div className="pt-6 sm:pt-8 border-t border-slate-200 dark:border-slate-800 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               
-              <div className="p-3 sm:p-0 rounded-xl bg-slate-50/70 dark:bg-[#0c1827]/70 sm:bg-transparent sm:dark:bg-transparent border border-slate-200/60 dark:border-slate-800/60 sm:border-0 space-y-1">
-                <p className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-400 font-mono">
-                  Direct Phone Call
-                </p>
-                <a
-                  href="tel:+923001234567"
-                  className="text-sm sm:text-base font-bold text-slate-900 dark:text-white hover:text-[#0F6E8C] dark:hover:text-teal-400 transition-colors block"
-                >
-                  +92 300 1234567
-                </a>
-                <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">Call during 8:00 AM – 6:00 PM</p>
+              {/* WhatsApp Card */}
+              <div className="p-4 rounded-xl bg-slate-50 dark:bg-[#0c1827] border border-slate-200/80 dark:border-slate-800 space-y-2">
+                <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-bold text-xs font-mono uppercase tracking-wider">
+                  <MessageCircle size={15} />
+                  <span>WhatsApp Support</span>
+                </div>
+                <div className="space-y-1 text-xs sm:text-sm font-semibold text-slate-900 dark:text-white">
+                  <a
+                    href="https://wa.me/923431775096"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors block"
+                  >
+                    +92 343 1775096
+                  </a>
+                  <a
+                    href="https://wa.me/923009338981"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors block"
+                  >
+                    +92 300 9338981
+                  </a>
+                </div>
+                <p className="text-[10.5px] text-slate-500 dark:text-slate-400">Direct WhatsApp messaging</p>
               </div>
 
-              <div className="p-3 sm:p-0 rounded-xl bg-slate-50/70 dark:bg-[#0c1827]/70 sm:bg-transparent sm:dark:bg-transparent border border-slate-200/60 dark:border-slate-800/60 sm:border-0 space-y-1">
-                <p className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-400 font-mono">
-                  Email Inquiries
-                </p>
-                <a
-                  href="mailto:info@almukhtar.org"
-                  className="text-sm sm:text-base font-bold text-slate-900 dark:text-white hover:text-[#0F6E8C] dark:hover:text-teal-400 transition-colors block"
-                >
-                  info@almukhtar.org
-                </a>
-                <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">For document & admission questions</p>
+              {/* Phone Helpline Card */}
+              <div className="p-4 rounded-xl bg-slate-50 dark:bg-[#0c1827] border border-slate-200/80 dark:border-slate-800 space-y-2">
+                <div className="flex items-center gap-2 text-[#0F6E8C] dark:text-teal-400 font-bold text-xs font-mono uppercase tracking-wider">
+                  <Phone size={15} />
+                  <span>Call Helpline</span>
+                </div>
+                <div className="space-y-1 text-xs sm:text-sm font-semibold text-slate-900 dark:text-white">
+                  <a
+                    href="tel:+923339176894"
+                    className="hover:text-[#0F6E8C] dark:hover:text-teal-400 transition-colors block"
+                  >
+                    +92 333 9176894
+                  </a>
+                  <a
+                    href="tel:+923329566294"
+                    className="hover:text-[#0F6E8C] dark:hover:text-teal-400 transition-colors block"
+                  >
+                    +92 332 9566294
+                  </a>
+                </div>
+                <p className="text-[10.5px] text-slate-500 dark:text-slate-400">Voice call support</p>
               </div>
 
-              <div className="p-3 sm:p-0 rounded-xl bg-slate-50/70 dark:bg-[#0c1827]/70 sm:bg-transparent sm:dark:bg-transparent border border-slate-200/60 dark:border-slate-800/60 sm:border-0 space-y-1">
-                <p className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-slate-400 font-mono">
-                  Campus Address
-                </p>
-                <p className="text-[11px] sm:text-xs font-medium text-slate-800 dark:text-slate-200 leading-relaxed">
-                  Al-Mukhtar Institute, University Road, Peshawar, KP
+              {/* Email Card */}
+              <div className="p-4 rounded-xl bg-slate-50 dark:bg-[#0c1827] border border-slate-200/80 dark:border-slate-800 space-y-2">
+                <div className="flex items-center gap-2 text-[#0F6E8C] dark:text-teal-400 font-bold text-xs font-mono uppercase tracking-wider">
+                  <Mail size={15} />
+                  <span>Email Inquiries</span>
+                </div>
+                <a
+                  href="mailto:izhar5ullah@gmail.com"
+                  className="text-xs sm:text-sm font-semibold text-slate-900 dark:text-white hover:text-[#0F6E8C] dark:hover:text-teal-400 transition-colors block truncate"
+                  title="izhar5ullah@gmail.com"
+                >
+                  izhar5ullah@gmail.com
+                </a>
+                <p className="text-[10.5px] text-slate-500 dark:text-slate-400">Formal applications &amp; documents</p>
+              </div>
+
+              {/* Campus Address Card */}
+              <div className="p-4 rounded-xl bg-slate-50 dark:bg-[#0c1827] border border-slate-200/80 dark:border-slate-800 space-y-2">
+                <div className="flex items-center gap-2 text-[#0F6E8C] dark:text-teal-400 font-bold text-xs font-mono uppercase tracking-wider">
+                  <MapPin size={15} />
+                  <span>Campus Location</span>
+                </div>
+                <p className="text-xs text-slate-800 dark:text-slate-200 font-medium leading-snug">
+                  Ghaz Masjid, Tanga Adda, Landi Arbab, Peshawar, KPK, Pakistan
                 </p>
                 <a
-                  href="https://maps.google.com"
+                  href="https://www.google.com/maps/search/?api=1&query=Ghaz+Masjid+Tanga+Adda+Landi+Arbab+Peshawar+Pakistan"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold text-[#0F6E8C] dark:text-teal-400 hover:underline pt-0.5"
+                  className="inline-flex items-center gap-1 text-[10.5px] font-bold text-[#0F6E8C] dark:text-teal-400 hover:underline pt-0.5"
                 >
-                  <span>Google Maps Location</span>
-                  <ArrowUpRight size={12} />
+                  <span>Google Maps</span>
+                  <ArrowUpRight size={11} />
                 </a>
               </div>
 

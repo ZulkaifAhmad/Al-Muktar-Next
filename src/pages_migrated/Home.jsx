@@ -104,17 +104,17 @@ function Home() {
               {/* Institutional Badge — smaller font size on mobile */}
               <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-teal-300 text-[10px] min-[380px]:text-[11px] sm:text-xs font-semibold font-mono tracking-wider shadow-sm">
                 <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-teal-400 animate-pulse" />
-                <span>Premier Islamic &amp; Academic Institute</span>
+                <span>Premier Islamic Institute</span>
               </div>
 
               {/* Dignified Main Headline — Balanced Hero Headline Size & High Contrast Weight */}
               <h1 className="font-heading text-[30px] min-[380px]:text-[34px] sm:text-4xl md:text-5xl lg:text-[46px] xl:text-[52px] font-black text-white leading-[1.14] sm:leading-[1.1] lg:leading-[1.08] tracking-tight drop-shadow-sm">
-                Authentic Islamic Education &amp; Academic Excellence
+                Your Journey Towards Islamic Knowledge Begins Here.
               </h1>
 
               {/* Description */}
               <p className="text-slate-200 text-sm sm:text-base lg:text-[17px] leading-relaxed font-normal max-w-2xl">
-                Al-Mukhtar Institute provides certified Islamic scholarship integrated with contemporary academic education — guided by qualified scholars and built on academic rigor, discipline, and sincere mentorship.
+                Explore the world of Islamic knowledge with Al-Mukhtar. We offer structured Islamic education, Dars-e-Nizami and weekend short courses to help students strengthen their understanding of Deen.
               </p>
 
               {/* CTA Buttons — Always 2 buttons in a single row on mobile */}
@@ -138,11 +138,11 @@ function Home() {
               <div className="flex flex-wrap items-center gap-x-5 sm:gap-x-6 gap-y-2.5 pt-2 text-xs sm:text-[13px] text-slate-300 font-mono">
                 <span className="flex items-center gap-1.5">
                   <CheckCircle2 size={14} className="text-teal-400 shrink-0" />
-                  <span>Certified Ijazah Faculty</span>
+                  <span>Experienced Islamic Scholars</span>
                 </span>
                 <span className="flex items-center gap-1.5">
                   <CheckCircle2 size={14} className="text-teal-400 shrink-0" />
-                  <span>Flexible Shifts (On-Campus &amp; Online)</span>
+                  <span>Flexible Shifts (Morning &amp; Evening)</span>
                 </span>
                 <span className="flex items-center gap-1.5">
                   <CheckCircle2 size={14} className="text-teal-400 shrink-0" />
@@ -157,12 +157,12 @@ function Home() {
                 <Link
                   to="/teachers"
                   className="group block relative rounded-2xl overflow-hidden border border-white/15 bg-white/5 backdrop-blur-md p-2 shadow-2xl transition-all duration-300 hover:border-teal-400/50 hover:shadow-teal-900/30"
-                  title="View Muhammad Anwar's Profile & Faculty"
+                  title="View Mulana Muhammad Anwar's Profile & Faculty"
                 >
                   <div className="relative h-[300px] sm:h-[340px] lg:h-[360px] w-full rounded-xl overflow-hidden bg-slate-900">
                     <img
                       src={FounderImage}
-                      alt="Muhammad Anwar — CEO Al-Mukhtar"
+                      alt="Mulana Muhammad Anwar — CEO Al-Mukhtar"
                       className="w-full h-full object-cover object-bottom group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent pointer-events-none" />
@@ -177,7 +177,7 @@ function Home() {
                     <div className="absolute bottom-2.5 left-2.5 right-2.5 bg-slate-950/90 backdrop-blur-md p-2.5 rounded-xl border border-white/15 shadow-md flex items-center justify-between gap-2 text-white">
                       <div className="min-w-0">
                         <p className="text-xs font-bold text-white truncate font-heading leading-tight flex items-center gap-1.5">
-                          <span>Muhammad Anwar</span>
+                          <span>Mulana Muhammad Anwar</span>
                           <span className="text-[9.5px] font-mono text-teal-400 font-normal">(CEO)</span>
                         </p>
                         <p className="text-[10px] text-slate-300 font-mono truncate">
@@ -198,19 +198,19 @@ function Home() {
           {/* Quick Metrics Strip */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-white/15">
             <div className="p-3.5 sm:p-4 bg-white/5 backdrop-blur-md rounded-xl border border-white/10">
-              <p className="font-heading text-xl sm:text-2xl font-black text-white mb-0.5">500+</p>
+              <p className="font-heading text-xl sm:text-2xl font-black text-white mb-0.5">100+</p>
               <p className="text-teal-300 text-[10.5px] sm:text-xs font-mono uppercase tracking-wider font-semibold">Students Taught</p>
             </div>
             <div className="p-3.5 sm:p-4 bg-white/5 backdrop-blur-md rounded-xl border border-white/10">
-              <p className="font-heading text-xl sm:text-2xl font-black text-white mb-0.5">12+</p>
+              <p className="font-heading text-xl sm:text-2xl font-black text-white mb-0.5">10+</p>
               <p className="text-teal-300 text-[10.5px] sm:text-xs font-mono uppercase tracking-wider font-semibold">Scholars &amp; Faculty</p>
             </div>
             <div className="p-3.5 sm:p-4 bg-white/5 backdrop-blur-md rounded-xl border border-white/10">
-              <p className="font-heading text-xl sm:text-2xl font-black text-white mb-0.5">15+</p>
+              <p className="font-heading text-xl sm:text-2xl font-black text-white mb-0.5">3</p>
               <p className="text-teal-300 text-[10.5px] sm:text-xs font-mono uppercase tracking-wider font-semibold">Years of Service</p>
             </div>
             <div className="p-3.5 sm:p-4 bg-white/5 backdrop-blur-md rounded-xl border border-white/10">
-              <p className="font-heading text-xl sm:text-2xl font-black text-white mb-0.5">20+</p>
+              <p className="font-heading text-xl sm:text-2xl font-black text-white mb-0.5">5</p>
               <p className="text-teal-300 text-[10.5px] sm:text-xs font-mono uppercase tracking-wider font-semibold">Certified Programs</p>
             </div>
           </div>
@@ -324,8 +324,8 @@ function Home() {
               },
               {
                 icon: Monitor,
-                title: "Contemporary Studies",
-                text: "Modern academic literacy, mathematics, and critical thinking using contemporary educational methods.",
+                title: "Practical Islamic Learning",
+                text: "Islamic knowledge is connected to daily life through practical learning, real-life examples, worship guidance, and lessons that help students apply what they learn.",
               },
               {
                 icon: Compass,
@@ -542,9 +542,8 @@ function Home() {
                   />
                 </button>
                 <div
-                  className={`grid transition-all duration-200 ease-in-out ${
-                    isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-                  }`}
+                  className={`grid transition-all duration-200 ease-in-out ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                    }`}
                 >
                   <div className="overflow-hidden">
                     <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed px-4 pb-3.5 pl-9 font-normal">

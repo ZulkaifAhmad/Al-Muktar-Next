@@ -52,6 +52,7 @@ const primaryNavLinks = [
   { name: "Courses", path: "/courses" },
   { name: "Blog", path: "/blog" },
   { name: "Contact", path: "/contact" },
+  { name: "Results", path: "/result" },
 ];
 
 function Navbar() {
@@ -130,7 +131,7 @@ function Navbar() {
                   Al-Mukhtar
                 </span>
                 <span className="text-[10px] font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider truncate font-mono">
-                  Islamic &amp; Academic Institute
+                  Where the Choosen Rise
                 </span>
               </div>
             </Link>
@@ -176,6 +177,8 @@ function Navbar() {
                   </>
                 )}
               </NavLink>
+
+
 
               <NavLink
                 to="/blog"
@@ -286,6 +289,26 @@ function Navbar() {
                 {({ isActive }) => (
                   <>
                     <span>Contact</span>
+                    {isActive && (
+                      <span className="absolute bottom-[-4px] left-0 w-full h-[2px] bg-[#0F6E8C] dark:bg-[#38BDF8] rounded-full" />
+                    )}
+                  </>
+                )}
+              </NavLink>
+
+              <NavLink
+                to="/result"
+                className={({ isActive }) =>
+                  `relative py-1 text-sm font-medium transition-colors ${
+                    isActive
+                      ? "text-[#0F6E8C] dark:text-[#38BDF8] font-bold"
+                      : "text-slate-600 dark:text-slate-300 hover:text-[#0F6E8C] dark:hover:text-[#38BDF8]"
+                  }`
+                }
+              >
+                {({ isActive }) => (
+                  <>
+                    <span>Results</span>
                     {isActive && (
                       <span className="absolute bottom-[-4px] left-0 w-full h-[2px] bg-[#0F6E8C] dark:bg-[#38BDF8] rounded-full" />
                     )}
@@ -431,6 +454,8 @@ function Navbar() {
                 <ChevronRight size={16} className="text-slate-400" />
               </NavLink>
 
+
+
               <NavLink
                 to="/blog"
                 onClick={closeMenu}
@@ -528,6 +553,21 @@ function Navbar() {
                 }
               >
                 <span>Contact</span>
+                <ChevronRight size={16} className="text-slate-400" />
+              </NavLink>
+
+              <NavLink
+                to="/result"
+                onClick={closeMenu}
+                className={({ isActive }) =>
+                  `flex items-center justify-between p-3 rounded-xl text-sm font-semibold transition-all ${
+                    isActive
+                      ? "bg-teal-50 dark:bg-slate-800 text-[#0F6E8C] dark:text-[#38BDF8] font-bold"
+                      : "text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/60"
+                  }`
+                }
+              >
+                <span>Examination Results</span>
                 <ChevronRight size={16} className="text-slate-400" />
               </NavLink>
 
